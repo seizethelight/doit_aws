@@ -1,0 +1,18 @@
+#header ul li{
+	display:inline;
+}
+#header ul li a{
+	display:inline-block;
+}
+#body div.video div ul li h3{
+	float:left;
+}
+#body div.ebook ul li{
+	height:1%;
+}
+#body div.ebook ul li a.download{
+	float:none;
+}
+#body div.gallery ul{
+	margin:0 0 0 -10px;
+}

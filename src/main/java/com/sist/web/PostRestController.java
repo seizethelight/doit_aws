@@ -1,0 +1,497 @@
+package com.sist.web;
+
+import java.util.HashMap;
+
+import java.util.List;
+import java.util.Map;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.sist.dao.PostDAO;
+import com.sist.vo.BlogVO;
+import com.sist.vo.CartVO;
+import com.sist.vo.ForumVO;
+import com.sist.vo.NewsVO;
+import com.sist.vo.QnaVO;
+import com.sist.vo.ReplyVO;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@RestController
+public class PostRestController {
+	@Autowired
+	private PostDAO dao;
+
+	/**************** qna ****************/
+	// qna 리스트
+	@GetMapping(value = "post/qna_list.do", produces = "text/plain;charset=utf-8")
+	public String qna_list(String page) {
+		String result = "";
+		try {
+			if (page == null)
+				page = "1";
+			int curpage = Integer.parseInt(page);
+			Map map = new HashMap();
+			int rowSize = 10;
+			int start = (rowSize * curpage) - (rowSize - 1);
+			int end = rowSize * curpage;
+			map.put("start", start);
+			map.put("end", end);
+
+			List<QnaVO> list = dao.qnaListData(map);
+			int totalpage = dao.qnaTotalPage();
+
+			JSONArray arr = new JSONArray();
+			int k = 0;
+			for (QnaVO vo : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("q_no", vo.getQ_no());
+				obj.put("title", vo.getTitle());
+				obj.put("id", vo.getId());
+				obj.put("dbday", vo.getDbday());
+				obj.put("hit", vo.getHit());
+
+				if (k == 0) {
+					obj.put("curpage", curpage);
+					obj.put("totalpage", totalpage);
+				}
+				arr.add(obj);
+				k++;
+
+			}
+			result = arr.toJSONString();
+		} catch (Exception e) {
+		}
+		return result;
+	}
+
+	// qna insert
+	@GetMapping(value = "post/qna_insert.do", produces = "text/plain;charset=utf-8")
+	public String post_qna_insert(QnaVO vo, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (Exception e) {
+		}
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		vo.setId(id);
+		dao.qnaInsertData(vo);
+		return "OK";
+	}
+
+	// qna detail
+	@GetMapping(value = "post/qna_detail.do", produces = "text/plain;charset=utf-8")
+	public String qna_detail(int q_no) {
+		String result = "";
+		QnaVO vo = dao.qnaDetailData(q_no);
+		JSONObject obj = new JSONObject();
+		obj.put("q_no", vo.getQ_no());
+		obj.put("title", vo.getTitle());
+		obj.put("id", vo.getId());
+		obj.put("content", vo.getContent());
+		obj.put("dbday", vo.getDbday());
+		obj.put("hit", vo.getHit());
+		obj.put("editeddate", vo.getEditeddate());
+
+		result = obj.toJSONString();
+		return result;
+	}
+
+	// qna edit
+	@GetMapping(value = "post/qna_edit.do", produces = "text/plain;charset=utf-8")
+	public String qna_edit(int q_no) {
+		String result = "";
+		QnaVO vo = dao.qnaEditData(q_no);
+		JSONObject obj = new JSONObject();
+		obj.put("q_no", vo.getQ_no());
+		obj.put("title", vo.getTitle());
+		obj.put("id", vo.getId());
+		obj.put("content", vo.getContent());
+		obj.put("hit", vo.getHit());
+		obj.put("dbday", vo.getDbday());
+		result = obj.toJSONString();
+		return result;
+	}
+
+	@GetMapping(value = "post/qna_edit_vue.do", produces = "text/plain;charset=utf8")
+	public String qna_edit_vue(QnaVO vo) {
+		String result = dao.qnaEdit(vo);
+		return result;
+	}
+
+	// qna delete
+	@GetMapping(value = "post/qna_delete.do", produces = "text/plain;charset=utf-8")
+	public String qna_delete(int q_no) {
+		String result = dao.qnaDeleteData(q_no);
+		return result;
+	}
+
+	/**************** news ****************/
+	// news list
+	@GetMapping(value = "post/news_list.do", produces = "text/plain;charset=utf-8")
+	public String news_list(String page) {
+		String result = "";
+		try {
+			if (page == null)
+				page = "1";
+			int curpage = Integer.parseInt(page);
+			Map map = new HashMap();
+			int rowSize = 10;
+			int start = (rowSize * curpage) - (rowSize - 1);
+			int end = rowSize * curpage;
+			map.put("start", start);
+			map.put("end", end);
+
+			List<NewsVO> list = dao.newsListData(map);
+			int totalpage = dao.newsTotalPage();
+
+			JSONArray arr = new JSONArray();
+			int k = 0;
+			for (NewsVO vo : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("n_no", vo.getN_no());
+				obj.put("title", vo.getTitle());
+				obj.put("content", vo.getContent());
+				obj.put("id", vo.getId());
+				obj.put("dbday", vo.getDbday());
+				obj.put("hit", vo.getHit());
+
+				if (k == 0) {
+					obj.put("curpage", curpage);
+					obj.put("totalpage", totalpage);
+				}
+				arr.add(obj);
+				k++;
+
+			}
+			result = arr.toJSONString();
+		} catch (Exception e) {
+		}
+		return result;
+	}
+
+	// news insert
+	@GetMapping(value = "post/news_insert.do", produces = "text/plain;charset=utf-8")
+	public String post_news_insert(NewsVO vo) {
+		dao.newsInsertData(vo);
+		return "OK";
+	}
+
+	// news detail
+	@GetMapping(value = "post/news_detail.do", produces = "text/plain;charset=utf-8")
+	public String news_detail(int n_no) {
+		String result = "";
+		NewsVO vo = dao.newsDetailData(n_no);
+		JSONObject obj = new JSONObject();
+
+//    	 if(list!=null) {
+//				listsize = list.size();
+//				for(CartVO vo:list) {
+//					//상품 이름 자르기 
+//					String goods = vo.getName();
+//					if(goods.length()>20) {
+//						goods = goods.substring(0,20)+"..";
+//					}
+//					vo.setName(goods);
+//					
+//				}
+//			}    	 
+		obj.put("n_no", vo.getN_no());
+		obj.put("title", vo.getTitle());
+		obj.put("id", vo.getId());
+		obj.put("content", vo.getContent());
+		obj.put("dbday", vo.getDbday());
+		obj.put("hit", vo.getHit());
+		obj.put("etdate", vo.getEtdate());
+
+		result = obj.toJSONString();
+		return result;
+	}
+
+	// news edit
+	@GetMapping(value = "post/news_edit.do", produces = "text/plain;charset=utf-8")
+	public String news_edit(int n_no, String title) {
+		String result = "";
+		NewsVO vo = dao.newsEditData(n_no);
+		JSONObject obj = new JSONObject();
+		obj.put("n_no", vo.getN_no());
+		obj.put("title", vo.getTitle());
+		obj.put("id", vo.getId());
+		obj.put("content", vo.getContent());
+		obj.put("hit", vo.getHit());
+		obj.put("dbday", vo.getDbday());
+		obj.put("edate", vo.getEtdate());
+		System.out.println(vo.getTitle());
+		result = obj.toJSONString();
+		return result;
+	}
+
+	@GetMapping(value = "post/news_edit_vue.do", produces = "text/plain;charset=utf8")
+	public String news_edit_vue(NewsVO vo) {
+		String result = dao.newsEdit(vo);
+		return result;
+	}
+
+	// news top
+	@GetMapping(value = "post/news_top.do", produces = "text/plain;charset=utf-8")
+	public String news_top() {
+		String result = "";
+		List<NewsVO> list = dao.newsTop();
+
+		JSONArray arr = new JSONArray();
+		for (NewsVO fvo : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("n_no", fvo.getN_no());
+			obj.put("title", fvo.getTitle());
+			obj.put("content", fvo.getContent());
+			obj.put("id", fvo.getId());
+			obj.put("dbday", fvo.getDbday());
+			obj.put("hit", fvo.getHit());
+			arr.add(obj);
+		}
+		// result에 arr 추가해줘야함
+		result = arr.toJSONString();
+		return result;
+	}
+
+	// news delete
+	@GetMapping(value = "post/news_delete.do", produces = "text/plain;charset=utf-8")
+	public String news_delete(int n_no) {
+		String result = dao.newsDeleteData(n_no);
+		return result;
+	}
+
+	/**************** blog ****************/
+	// blog list
+	@GetMapping(value = "post/blog_list.do", produces = "text/plain;charset=utf-8")
+	public String blog_list(String page) {
+		String result = "";
+		try {
+			if (page == null)
+				page = "1";
+			int curpage = Integer.parseInt(page);
+			Map map = new HashMap();
+			int rowSize = 10;
+			int start = (rowSize * curpage) - (rowSize - 1);
+			int end = rowSize * curpage;
+			map.put("start", start);
+			map.put("end", end);
+
+			List<BlogVO> list = dao.blogListData(map);
+			int totalpage = dao.blogTotalPage();
+
+			JSONArray arr = new JSONArray();
+			int k = 0;
+			for (BlogVO vo : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("b_no", vo.getB_no());
+				obj.put("title", vo.getTitle());
+				obj.put("content", vo.getContent());
+				obj.put("id", vo.getId());
+				obj.put("dbday", vo.getDbday());
+				obj.put("hit", vo.getHit());
+
+				if (k == 0) {
+					obj.put("curpage", curpage);
+					obj.put("totalpage", totalpage);
+				}
+				arr.add(obj);
+				k++;
+
+			}
+			result = arr.toJSONString();
+		} catch (Exception e) {
+		}
+		return result;
+	}
+
+	// blog detail
+	@GetMapping(value = "post/blog_detail.do", produces = "text/plain;charset=utf-8")
+	public String blog_detail(int b_no) {
+		String result = "";
+		BlogVO vo = dao.blogDetailData(b_no);
+		JSONObject obj = new JSONObject();
+
+		obj.put("b_no", vo.getB_no());
+		obj.put("title", vo.getTitle());
+		obj.put("content", vo.getContent());
+		obj.put("id", vo.getId());
+		obj.put("dbday", vo.getDbday());
+		obj.put("hit", vo.getHit());
+		result = obj.toJSONString();
+		return result;
+	}
+
+	// blog delete
+	@GetMapping(value = "post/blog_delete.do", produces = "text/plain;charset=utf-8")
+	public String blog_delete(int b_no) {
+		String result = dao.blogDeleteData(b_no);
+		return result;
+	}
+
+	// blog edit
+	@GetMapping(value = "post/blog_edit.do", produces = "text/plain;charset=utf-8")
+	public String blog_edit(int b_no) {
+		String result = "";
+		BlogVO vo = dao.blogEditData(b_no);
+		JSONObject obj = new JSONObject();
+		obj.put("b_no", vo.getB_no());
+		obj.put("title", vo.getTitle());
+		obj.put("id", vo.getId());
+		obj.put("content", vo.getContent());
+		obj.put("hit", vo.getHit());
+		obj.put("dbday", vo.getDbday());
+		result = obj.toJSONString();
+		return result;
+	}
+
+	@GetMapping(value = "post/blog_edit_vue.do", produces = "text/plain;charset=utf8")
+	public String blog_edit_vue(BlogVO vo) {
+		String result = dao.blogEdit(vo);
+		return result;
+	}
+
+	/**************** forum ****************/
+	// forum list
+	@GetMapping(value = "post/forum_list.do", produces = "text/plain;charset=utf-8")
+	public String forum_list(String page) {
+		String result = "";
+		try {
+			if (page == null)
+				page = "1";
+			int curpage = Integer.parseInt(page);
+			Map map = new HashMap();
+			int rowSize = 10;
+			int start = (rowSize * curpage) - (rowSize - 1);
+			int end = rowSize * curpage;
+			map.put("start", start);
+			map.put("end", end);
+
+			List<ForumVO> list = dao.forumListData(map);
+			int totalpage = dao.forumTotalPage();
+
+			JSONArray arr = new JSONArray();
+			int k = 0;
+			for (ForumVO vo : list) {
+				JSONObject obj = new JSONObject();
+				obj.put("f_no", vo.getF_no());
+				obj.put("title", vo.getTitle());
+				obj.put("content", vo.getContent());
+				obj.put("id", vo.getId());
+				obj.put("dbday", vo.getDbday());
+				obj.put("hit", vo.getHit());
+
+				if (k == 0) {
+					obj.put("curpage", curpage);
+					obj.put("totalpage", totalpage);
+				}
+				arr.add(obj);
+				k++;
+
+			}
+			result = arr.toJSONString();
+		} catch (Exception e) {
+		}
+		return result;
+	}
+
+	// forum detail
+	@GetMapping(value = "post/forum_detail.do", produces = "text/plain;charset=utf-8")
+	public String forum_detail(int f_no, HttpSession session) {
+		String result = "";
+		ForumVO vo = dao.forumDetailData(f_no);
+		JSONObject obj = new JSONObject();
+		String sid = (String) session.getAttribute("id");
+
+		obj.put("f_no", vo.getF_no());
+		obj.put("title", vo.getTitle());
+		obj.put("content", vo.getContent());
+		obj.put("id", vo.getId());
+		obj.put("dbday", vo.getDbday());
+		obj.put("hit", vo.getHit());
+		obj.put("etdate", vo.getEtdate());
+		obj.put("sid", sid);
+		result = obj.toJSONString();
+		return result;
+	}
+
+	@GetMapping(value = "post/forum_insert.do", produces = "text/plain;charset=utf-8")
+	public String post_forum_insert(ForumVO vo) {
+		dao.forumInsert(vo);
+		return "OK";
+	}
+	
+	// forum delete
+	@GetMapping(value = "post/forum_delete.do", produces = "text/plain;charset=utf-8")
+	public String forum_delete(int f_no) {
+		String result = dao.forumDeleteData(f_no);
+		return result;
+	}
+
+
+	/**************** forum reply ****************/
+	
+	public String reply_json_data(List<ReplyVO> list,String id)
+	{
+		/*
+		 * private int no,cno,type; private String id,name,msg,dbday;
+		 */
+		JSONArray arr = new JSONArray();
+		int k = 0;
+		for (ReplyVO rvo : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("f_no", rvo.getF_no());
+			obj.put("f_r_no", rvo.getF_r_no());
+			obj.put("content", rvo.getContent());
+			obj.put("id", rvo.getId());
+			obj.put("dbday", rvo.getDbday());
+			obj.put("group_id", rvo.getGroup_id());
+			obj.put("group_tab", rvo.getGroup_tab());
+			obj.put("group_step", rvo.getGroup_step());
+			obj.put("sessionId", id);
+			k++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
+	}
+	@GetMapping(value = "post/reply_list.do", produces = "text/plain;charset=utf-8")
+	public String reply_list(int f_no, HttpSession session) {
+		String sid=(String)session.getAttribute("id");
+		String result = "";
+		ReplyVO vo=new ReplyVO();
+		vo.setF_no(f_no);
+		List<ReplyVO> list = dao.replyListData(f_no);
+		result = reply_json_data(list, sid);
+		return result;
+	}
+	// forum edit
+	@GetMapping(value = "post/forum_edit.do", produces = "text/plain;charset=utf-8")
+	public String forum_edit(int f_no) {
+		String result = "";
+		ForumVO vo = dao.forumEditData(f_no);
+		JSONObject obj = new JSONObject();
+		obj.put("f_no", vo.getF_no());
+		obj.put("title", vo.getTitle());
+		obj.put("id", vo.getId());
+		obj.put("content", vo.getContent());
+		obj.put("hit", vo.getHit());
+		obj.put("dbday", vo.getDbday());
+		result = obj.toJSONString();
+		return result;
+	}
+
+	@GetMapping(value = "post/forum_edit_vue.do", produces = "text/plain;charset=utf8")
+	public String forum_edit_vue(ForumVO vo) {
+		String result = dao.forumEdit(vo);
+		return result;
+	}
+	
+}

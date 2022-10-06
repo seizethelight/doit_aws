@@ -1,0 +1,11 @@
+.dropdown:hover .dropdown-menu {
+  width: auto;
+  height: auto;
+  display: grid;
+  background-color: black;
+  text-align: center;
+}
+.dropdown-menu li{
+	margin-top: 10px;
+	margin-bottom:10px;
+}
