@@ -56,9 +56,9 @@ public interface PostMapper {
 	
 	//*********** 뉴스 ***********//
 	// news 리스트
-	@Select("SELECT n_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, num "
-			+ "FROM (SELECT n_no, title, content, regdate, id, hit, rownum as num "
-			+ "FROM (SELECT n_no, title, content, regdate, id, hit "
+	@Select("SELECT n_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, cate, hit, num "
+			+ "FROM (SELECT n_no, title, content, regdate, id, cate, hit, rownum as num "
+			+ "FROM (SELECT n_no, title, content, regdate, id, cate, hit "
 			+ "FROM T4_NEWS ORDER BY regdate DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<NewsVO> newsListData(Map map);
@@ -67,7 +67,7 @@ public interface PostMapper {
 	public int newsTotalPage();
 	
 	// news 디테일
-	@Select("SELECT n_no, hit, title, content, id, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, TO_CHAR(editeddate, 'YYYY-MM-DD hh:mm:ss') as etdate FROM T4_NEWS WHERE n_no=#{n_no}")
+	@Select("SELECT n_no, hit, title, content, id, cate, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, TO_CHAR(editeddate, 'YYYY-MM-DD hh:mm:ss') as etdate FROM T4_NEWS WHERE n_no=#{n_no}")
 	public NewsVO newsDetailData(int n_no);
 	
 	// news 디테일 조회수 증가
@@ -85,7 +85,7 @@ public interface PostMapper {
 	// news 추가
 	@SelectKey(keyProperty = "n_no", resultType = int.class, before = true,
 			statement = "SELECT NVL(MAX(n_no)+1,1) as n_no FROM T4_NEWS")
-	@Insert("INSERT INTO T4_NEWS VALUES(#{n_no}, #{title}, #{content} ,SYSDATE, 0, 0, 0, #{id}, SYSDATE)")
+	@Insert("INSERT INTO T4_NEWS VALUES(#{n_no}, #{title}, #{content} ,SYSDATE, 0, 0, 0, #{id}, SYSDATE, #{cate})")
 	public void newsInsertData(NewsVO vo);
 	
 	// news 삭제
@@ -101,9 +101,9 @@ public interface PostMapper {
 	
 	//*********** 블로그 ***********//
 	// blog 리스트
-	@Select("SELECT b_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, num "
-			+ "FROM (SELECT b_no, title, content, regdate, id, hit, rownum as num "
-			+ "FROM (SELECT b_no, title, content, regdate, id, hit "
+	@Select("SELECT b_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, cate, hit, num "
+			+ "FROM (SELECT b_no, title, content, regdate, id, cate, hit, rownum as num "
+			+ "FROM (SELECT b_no, title, content, regdate, id, cate, hit "
 			+ "FROM T4_BLOG ORDER BY regdate DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> blogListData(Map map);
@@ -112,7 +112,7 @@ public interface PostMapper {
 	public int blogTotalPage();
 	
 	// blog 디테일
-	@Select("SELECT b_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content FROM T4_BLOG WHERE b_no=#{b_no}")
+	@Select("SELECT b_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, cate FROM T4_BLOG WHERE b_no=#{b_no}")
 	public BlogVO blogDetailData(int b_no);
 	
 	// blog 디테일 조회수 증가

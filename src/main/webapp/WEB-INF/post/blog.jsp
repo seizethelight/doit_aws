@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${path }/resources/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${path }/resources/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${path }/resources/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${path }/resources/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
@@ -15,23 +20,27 @@
     <article class="row blog_item" v-for="vo in blog_list">
         <div class="col-md-3">
             <div class="blog_info text-right">
-                <div class="post_tag">
-                    <a href="#">Food,</a>
-                    <a class="active" href="#">Technology</a>
-                </div>
+                <!-- <div class="post_tag">
+                    <a href="#">{{vo.cate}}</a>
+                </div> -->
                 <ul class="blog_meta list">
+                 		<li>
+                        <a href="#">{{vo.cate}}
+                            <i class="lnr lnr-cate"></i>
+                        </a>
+                    </li>
                     <li>
                         <a href="#">{{vo.id}}
                             <i class="lnr lnr-user"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">12 Dec, 2017
+                        <a href="#">{{vo.dbday}}
                             <i class="lnr lnr-calendar-full"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">1.2M Views
+                        <a href="#">{{vo.hit}} Views
                             <i class="lnr lnr-eye"></i>
                         </a>
                     </li>
@@ -45,13 +54,25 @@
                     <a href="single-blog.html">
                         <h2>{{vo.title}}</h2>
                     </a>
-                    <p>{{vo.content}}</p>
-                    <a class="button button-blog" href="single-blog.html">View More</a>
+                    <p style="max-height : 70px; overflow : hidden;">{{vo.content}}</p>
+                    <a class="button button-blog" :href="'../post/blog_detail.do?b_no='+vo.b_no">View More</a>
                 </div>
             </div>
         </div>
     </article>
 
+		<nav class="blog-pagination justify-content-center d-flex">
+			<table class="table">
+				<tr>
+					<td class="pagination">
+						<button class="btn btn-sm btn-info" v-on:click="prev()">이전</button>
+						<div class="pagenumber"> {{curpage}} / {{totalpage}} </div>
+						<button class="btn btn-sm btn-info" v-on:click="next()">다음</button>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		
     <nav class="blog-pagination justify-content-center d-flex">
         <ul class="pagination">
             <li class="page-item">
@@ -142,6 +163,7 @@ new Vue(
 			}
 		}
 	})
+	
 </script>
 </body>
 </html>

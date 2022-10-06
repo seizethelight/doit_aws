@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class NewsVO {
 	private int n_no, hit, goodcount, badcount;
-	private String content, title, id, dbday, etdate;
+	private String content, title, id, dbday, etdate, cate;
 	private Date regdate, editeddate;
 }

@@ -21,17 +21,16 @@
 				<!-- /input-group -->
 				<div class="br"></div>
 			</aside>
+			<%-- <c:if test="${sessionScope.id!=null }"> --%>
 			<aside class="single_sidebar_widget author_widget">
-				<img class="author_img rounded-circle" src="img/blog/author.png"
-					alt="">
-				<h4>Charlie Barber</h4>
-				<p>Senior blog writer</p>
+				<img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+				<h4>글쓰기</h4>
+				<p>Share your experience</p>
 				<div class="social_icon">
-					<a href="#"> <i class="fab fa-facebook-f"></i>
-					</a> <a href="#"> <i class="fab fa-twitter"></i>
-					</a> <a href="#"> <i class="fab fa-github"></i>
-					</a> <a href="#"> <i class="fab fa-behance"></i>
-					</a>
+					<a class="button-blog" href="../post/forum_insert.do">포럼</a>
+					<a class="button-blog" href="../post/qna_insert.do">문의</a>
+					<a class="button-blog" href="../post/news_insert.do">뉴스</a>
+					<a class="button-blog" href="../post/blog_insert.do">블로그</a>
 				</div>
 				<p>Boot camps have its supporters andit sdetractors. Some people
 					do not understand why you should have to spend money on boot camp
@@ -39,13 +38,14 @@
 				</p>
 				<div class="br"></div>
 			</aside>
+			<%-- </c:if> --%>
 			
 			
 			<aside class="single_sidebar_widget popular_post_widget">
 				<h3 class="widget_title">Popular Posts</h3>
 				<div class="media post_item" v-for="fvo in news_top">
 					<div class="media-body">
-						<a href="blog-details.html">
+						<a :href="'../post/news_detail.do?n_no='+fvo.n_no">
 							<h3>{{fvo.title}}</h3>
 						</a>
 						<p>{{fvo.hit}} Clicks</p>
@@ -149,18 +149,11 @@
 			<aside class="single-sidebar-widget tag_cloud_widget">
 				<h4 class="widget_title">Tag Clouds</h4>
 				<ul class="list">
-					<li><a href="#">Technology</a></li>
-					<li><a href="#">Fashion</a></li>
-					<li><a href="#">Architecture</a></li>
-					<li><a href="#">Fashion</a></li>
 					<li><a href="#">Food</a></li>
-					<li><a href="#">Technology</a></li>
+					<li><a href="#">Diet</a></li>
+					<li><a href="#">Workout</a></li>
+					<li><a href="#">Health</a></li>
 					<li><a href="#">Lifestyle</a></li>
-					<li><a href="#">Art</a></li>
-					<li><a href="#">Adventure</a></li>
-					<li><a href="#">Food</a></li>
-					<li><a href="#">Lifestyle</a></li>
-					<li><a href="#">Adventure</a></li>
 				</ul>
 			</aside>
 		</div>

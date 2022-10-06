@@ -41,10 +41,12 @@
 		<div class="col-lg-3  col-md-3">
 			<div class="blog_info text-right">
 				<div class="post_tag">
-					<a href="#">Food,</a> <a class="active" href="#">Technology,</a> <a
-						href="#">Politics,</a> <a href="#">Lifestyle</a>
+					<a href="#">{{vo.cate}}</a>
 				</div>
 				<ul class="blog_meta list">
+					<li>
+						<a href="#">{{vo.cate}}</a>
+					</li>
 					<li>
 						<a href="#">{{vo.id}}<i class="lnr lnr-user"></i></a>
 					</li>
@@ -53,17 +55,15 @@
 					</li>
 					<li><a href="#">{{vo.hit}} Views <i class="lnr lnr-eye"></i>
 					</a></li>
-					<li><a href="#">06 Comments <i class="lnr lnr-bubble"></i>
-					</a></li>
 				</ul>
 				<ul class="social-links">
-					<li><a href="#"> <i class="fab fa-facebook-f"></i>
+					<li><a href="http://facebook.com"> <i class="fab fa-facebook-f"></i>
 					</a></li>
-					<li><a href="#"> <i class="fab fa-twitter"></i>
+					<li><a href="http://twitter.com"> <i class="fab fa-twitter"></i>
 					</a></li>
-					<li><a href="#"> <i class="fab fa-github"></i>
+					<li><a href="http://github.com"> <i class="fab fa-github"></i>
 					</a></li>
-					<li><a href="#"> <i class="fab fa-behance"></i>
+					<li><a href="http://behance.net"> <i class="fab fa-behance"></i>
 					</a></li>
 				</ul>
 			</div>
@@ -141,25 +141,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="comment-list left-padding">
-			<div class="single-comment justify-content-between d-flex">
-				<div class="user justify-content-between d-flex">
-					<div class="thumb">
-						<img src="img/blog/c2.jpg" alt="">
-					</div>
-					<div class="desc">
-						<h5>
-							<a href="#">Elsie Cunningham</a>
-						</h5>
-						<p class="date">December 4, 2017 at 3:12 pm</p>
-						<p class="comment">Never say goodbye till the end comes!</p>
-					</div>
-				</div>
-				<div class="reply-btn">
-					<a href="#" class="btn-reply text-uppercase">reply</a>
-				</div>
-			</div>
-		</div>
+		<!--================ 대댓글 =================-->
 		<div class="comment-list left-padding">
 			<div class="single-comment justify-content-between d-flex">
 				<div class="user justify-content-between d-flex">
@@ -179,25 +161,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="comment-list">
-			<div class="single-comment justify-content-between d-flex">
-				<div class="user justify-content-between d-flex">
-					<div class="thumb">
-						<img src="img/blog/c4.jpg" alt="">
-					</div>
-					<div class="desc">
-						<h5>
-							<a href="#">Maria Luna</a>
-						</h5>
-						<p class="date">December 4, 2017 at 3:12 pm</p>
-						<p class="comment">Never say goodbye till the end comes!</p>
-					</div>
-				</div>
-				<div class="reply-btn">
-					<a href="#" class="btn-reply text-uppercase">reply</a>
-				</div>
-			</div>
-		</div>
+		
+		
 		<div class="comment-list">
 			<div class="single-comment justify-content-between d-flex">
 				<div class="user justify-content-between d-flex">
@@ -227,19 +192,14 @@
 			<div class="form-group form-inline">
 				<div class="form-group col-lg-6 col-md-6 name">
 					<input type="text" class="form-control" id="name"
-						placeholder="Enter Name" onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Enter Name'">
+						placeholder="Name" onfocus="this.placeholder = ''"
+						onblur="this.placeholder = 'Name'">
 				</div>
-				<div class="form-group col-lg-6 col-md-6 email">
-					<input type="email" class="form-control" id="email"
-						placeholder="Enter email address" onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Enter email address'">
+				<div class="form-group col-lg-6 col-md-6 password">
+					<input type="password" class="form-control" id="password"
+						placeholder="Account Password" onfocus="this.placeholder = ''"
+						onblur="this.placeholder = 'Account Password'">
 				</div>
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" id="subject"
-					placeholder="Subject" onfocus="this.placeholder = ''"
-					onblur="this.placeholder = 'Subject'">
 			</div>
 			<div class="form-group">
 				<textarea class="form-control mb-10" rows="5" name="message"
@@ -267,6 +227,7 @@
    			}
    		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
    		}).then(function(result){
+   			console.log(result.data);
    			_this.vo=result.data;
    		})
    	}

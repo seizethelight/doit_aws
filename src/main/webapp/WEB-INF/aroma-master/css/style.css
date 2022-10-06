@@ -1630,7 +1630,7 @@ a {
 }
 
 .blog_info .post_tag {
-  padding-bottom: 20px
+  padding-top: 20px
 }
 
 .blog_info .post_tag a {
@@ -2026,11 +2026,13 @@ a {
 }
 
 .single-post-area .blog_details {
-  padding-top: 26px
+  padding-top: 26px;
+  max-height : 70px;
+  overflow : hidden;
 }
 
 .single-post-area .blog_details p {
-  margin-bottom: 10px
+  margin-bottom: 10px;
 }
 
 .single-post-area .quotes {
@@ -2061,7 +2063,10 @@ a {
 .single-post-area .navigation-area {
   border-top: 1px solid #eee;
   padding-top: 30px;
-  margin-top: 60px
+  margin-top: 60px;
+  max-height : 70px;
+  overflow : hidden;
+  
 }
 
 .single-post-area .navigation-area p {

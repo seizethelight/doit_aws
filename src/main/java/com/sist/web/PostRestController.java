@@ -33,7 +33,7 @@ public class PostRestController {
 	/**************** qna ****************/
 	// qna 리스트
 	@GetMapping(value = "post/qna_list.do", produces = "text/plain;charset=utf-8")
-	public String qna_list(String page) {
+	public String qna_list(String page, HttpServletRequest request) {
 		String result = "";
 		try {
 			if (page == null)
@@ -48,7 +48,13 @@ public class PostRestController {
 
 			List<QnaVO> list = dao.qnaListData(map);
 			int totalpage = dao.qnaTotalPage();
-
+			final int BLOCK=5;
+			int startPage=((curpage-1)/BLOCK*BLOCK)+1;
+			int endPage=((curpage-1)/BLOCK*BLOCK)+BLOCK;
+			
+			if(endPage>totalpage)
+					endPage=totalpage;
+			
 			JSONArray arr = new JSONArray();
 			int k = 0;
 			for (QnaVO vo : list) {
@@ -163,6 +169,7 @@ public class PostRestController {
 				obj.put("id", vo.getId());
 				obj.put("dbday", vo.getDbday());
 				obj.put("hit", vo.getHit());
+				obj.put("cate", vo.getCate());
 
 				if (k == 0) {
 					obj.put("curpage", curpage);
@@ -211,6 +218,7 @@ public class PostRestController {
 		obj.put("dbday", vo.getDbday());
 		obj.put("hit", vo.getHit());
 		obj.put("etdate", vo.getEtdate());
+		obj.put("cate", vo.getCate());
 
 		result = obj.toJSONString();
 		return result;
@@ -298,6 +306,7 @@ public class PostRestController {
 				obj.put("id", vo.getId());
 				obj.put("dbday", vo.getDbday());
 				obj.put("hit", vo.getHit());
+				obj.put("cate", vo.getCate());
 
 				if (k == 0) {
 					obj.put("curpage", curpage);
@@ -326,6 +335,8 @@ public class PostRestController {
 		obj.put("id", vo.getId());
 		obj.put("dbday", vo.getDbday());
 		obj.put("hit", vo.getHit());
+		obj.put("cate", vo.getCate());
+		
 		result = obj.toJSONString();
 		return result;
 	}

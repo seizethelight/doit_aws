@@ -19,40 +19,45 @@
 		<div class='body'>
 			<div class='main'>
 				<div class='main__content'>
-					<h1 class='h1 title'>
-						<i class='fas fa-home'></i> 
-						<span>News</span>
+					<h1 class='h1 title'> 
+						<i class='fas fa-home'></i> <span>News</span>
 					</h1>
-					<div class='table-card'>
-						<div>
-							<h2>새로운 기사</h2>
+					<div class='insert-table-card'>
 							<table class='table'>
 								<thead>
 									<tr>
-										<td id='tour-table'>TITLE</td>
-										<td><input type="text" v-model="title" ref="title" placeholder="기사 제목을 입력하세요"></td>
+										<td class='insert_head'>Title</td>
+										<td><input class="insert_body" type="text" v-model="title" ref="title" placeholder="기사 제목을 입력하세요"></td>
 									</tr>
 									<tr>
-										<td id='tour-table'>ID</td>
+										<td class='insert_head'>ID</td>
 										<td>
-											<input type="text" v-model="id" ref="<%= (String)session.getAttribute("id") %>" 
-												placeholder='<%=(String)session.getAttribute("id")%>' readonly>
+											<input class="insert_body" type="text" v-model="id" ref="<%= (String)session.getAttribute("id") %>" 
+												placeholder='<%=(String)session.getAttribute("id")%>'>
 											<!-- <div><%= session.getId() %></div> --%>
 											<!-- 위의 방식대로하면 다운캐스팅 되지 않고 2ax834csdf 이런 식으로 구성된 세션의 주소가 뜬다 -->
 										</td>
 									</tr>
 									<tr>
-										<td id='tour-table'>Content</td>
-										<td><textarea rows="10" cols="70" v-model="content" ref="content" placeholder="기사 내용을 작성하세요"></textarea></td>
+										<div>
+											<input type="radio" v-model="cate" value="HEALTH" checked>HEALTH
+											<input type="radio" v-model="cate" value="FOOD">FOOD
+											<input type="radio" v-model="cate" value="WORKOUT">WORKOUT
+											<input type="radio" v-model="cate" value="DIET">DIET
+										</div>
+									</tr>
+									<tr>
+										<td class='insert_head'>Content</td>
+										<td><textarea class="insert_body" style="height:200px;"rows="10" cols="70" v-model="content" ref="content" placeholder="기사 내용을 작성하세요"></textarea></td>
 									</tr>
 								</thead>
 							</table>
+							
 							<div class='insert-button'>
 								<input type="button" value="글쓰기" v-on:click="newsInsertData()">
 								<input type="button" value="취소"
 									onclick="javascript:history.back()">
 							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -66,6 +71,7 @@
 				id : '<%= (String)session.getAttribute("id") %>',
 				title : '',
 				content : '',
+				cate : ''
 			},
 			mounted:function(){
 				let _this=this;
@@ -93,7 +99,8 @@
 								params : {
 									id : this.id,
 									title : this.title,
-									content : this.content
+									content : this.content,
+									cate : this.cate
 								}
 							}).then(function(result) {
 						location.href = "../post/news.do";
