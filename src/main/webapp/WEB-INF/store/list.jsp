@@ -150,8 +150,6 @@
           <!-- Start Best Seller -->
           <section class="lattest-product-area pb-40 category-list">
              <div class="card text-center card-product" v-for="vo in store_list">
-                <div class="row">
-                  <div class="col-md-6 col-lg-4">
                   <div class="card-product__img">
                    <a :href="'../store/detail_before.do?s_no='+vo.s_no+'&c_no='+type">
                     <img class="card-img" :src="vo.poster" alt="Lights"></a>
@@ -166,9 +164,6 @@
                     <p class="card-product__price" style="text-decoration: line-through; color: gray;">{{vo.price}}</p>
                     <p class="card-product__price" style="color: black;">{{vo.first_price}}</p> 
                   </div>
-                 
-                </div>
-              </div>
             </div>
             
             <div style="height: 20px;"></div>

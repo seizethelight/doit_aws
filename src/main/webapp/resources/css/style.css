@@ -835,7 +835,10 @@ a {
 
 .card-product {
   border: 0;
-  margin-bottom: 30px
+  margin-bottom: 30px;
+  width : 30%;
+  margin : 0 10px;
+  display : inline-flex;
 }
 
 .card-product p {
