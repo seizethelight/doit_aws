@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,7 @@
 			</aside>
 			<%-- <c:if test="${sessionScope.id!=null }"> --%>
 			<aside class="single_sidebar_widget author_widget">
-				<img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+				<img class="author_img rounded-circle" src="${path }/resources/img/blog/author.png" alt="">
 				<h4>글쓰기</h4>
 				<p>Share your experience</p>
 				<div class="social_icon">
@@ -88,7 +88,7 @@
 			
 			<aside class="single_sidebar_widget ads_widget">
 				<a href="#"> 
-				<img class="img-fluid" src="img/blog/add.jpg" alt="">
+				<img class="img-fluid" src="${path }/resources/img/blog/add.jpg" alt="">
 				</a>
 				<div class="br"></div>
 			</aside>

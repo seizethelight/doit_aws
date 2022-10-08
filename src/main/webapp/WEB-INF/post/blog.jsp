@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 <body>
 <!--================Blog Area =================-->
@@ -49,7 +50,7 @@
         </div>
         <div class="col-md-9">
             <div class="blog_post">
-                <img src="img/blog/main-blog/m-blog-1.jpg" alt="">
+                <img src="${path }/resources/img/blog/main-blog/m-blog-1.jpg" alt="">
                 <div class="blog_details">
                     <a href="single-blog.html">
                         <h2>{{vo.title}}</h2>

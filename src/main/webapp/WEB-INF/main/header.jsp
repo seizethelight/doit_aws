@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="${path}/resources/vendors/owl-carousel/owl.theme.default.min.css">
 <link rel="stylesheet" href="${path}/resources/vendors/owl-carousel/owl.carousel.min.css">
 <link rel="stylesheet" href="${path}/resources/css/style.css">
+<link rel="stylesheet" href="${path}/resources/css/post/poststyle.css" type="text/css"/>
 </head>
 <body>
 <!--================ Start Header Menu Area =================-->
@@ -49,11 +50,13 @@
               
               <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
+                  aria-expanded="false">Post</a>
                 <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="../post/forum.do">Forum</a></li>
                   <li class="nav-item"><a class="nav-link" href="../post/blog.do">Blog</a></li>
                   <li class="nav-item"><a class="nav-link" href="../post/news.do">News</a></li>
                   <li class="nav-item"><a class="nav-link" href="../post/qna.do">QnA</a></li>
+                  
                 </ul>
 							</li>
 							

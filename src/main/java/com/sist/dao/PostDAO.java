@@ -140,8 +140,10 @@ public class PostDAO {
 	}
 	// blog delete
 	public String blogDeleteData(int b_no)
-	{
-		return mapper.blogDeleteData(b_no);
+	{	
+		String result="yes";
+		mapper.blogDeleteData(b_no);
+		return result;
 	}
 	// blog edit
 	public BlogVO blogEditData(int b_no)
@@ -186,10 +188,12 @@ public class PostDAO {
 	{
 		return mapper.replyListData(f_no);
 	}
-	// blog delete
+	// forum delete
 	public String forumDeleteData(int f_no)
 	{
-		return mapper.forumDeleteData(f_no);
+		String result="yes";
+		mapper.forumDeleteData(f_no);
+		return result;
 	}
 	
 	// forum edit

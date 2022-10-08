@@ -2059,7 +2059,9 @@ blog_right_sidebar .frequently_ask_question_widget .post_item .media-body {
 }
 
 .single-post-area .blog_details p {
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  white-space : pre-line;
+  
 }
 
 .single-post-area .quotes {
@@ -2173,6 +2175,11 @@ blog_right_sidebar .frequently_ask_question_widget .post_item .media-body {
 
 .single-post-area .navigation-area .nav-right:hover .thumb img {
   opacity: .5
+}
+
+/**************** comment area  ****************/
+.comment-head {
+  display : flex;
 }
 
 @media ( max-width : 991px) {

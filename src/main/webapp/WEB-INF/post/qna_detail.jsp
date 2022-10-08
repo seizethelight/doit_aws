@@ -2,74 +2,126 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>QnA Insert</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css'>
-<link rel="stylesheet" href='${path}/resources/css/poststyle.css'>
+<title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-	<div class='app'>
-		<div class='body'>
-			<div class='main'>
-				<div class='container'>
-					<div class='main__content'>
-						<h1 class='h1 title'>
-							<i class='fas fa-home'></i> 
-							<span>QnA Detail</span>
-						</h1>
-						<div class='table-card'>
-								<table class='table'>
-									<thead class="container">
-										<tr>
-											<td width=20% class="tablehead">TITLE</td>
-											<td colspan="3" class="tabletitle">{{vo.title}}</td>
-										</tr>
-										<tr>
-											<td width=20% class="tablehead">Writer</td>
-											<td width=30% class="tablesub">{{vo.id}}</td>
-											<td width=20% class="tablehead">RegDate</td>
-											<td width=30% class="tablesub">{{vo.dbday}}</td>
-										</tr>
-										<tr>
-											<td width=20% class="tablehead">Content</td>
-											<td colspan="3" class="tablecontent">{{vo.content}}</td>
-										</tr>
-									</thead>
-								</table>
-								<div class='insert-button'>
-									<input type="button" value="삭제" v-on:click="qnaDelete()"> 
-									<a :href="'../post/qna_edit.do?q_no='+q_no"><input type="button" value="수정" ></a>
-									<input type="button" value="돌아가기" onclick="javascript:history.back()">
-								</div>	
-							<!--  다음/이전 게시글 넘어가기. rownum 이용해야 삭제한 게시글 뛰어넘을 수 있다. -->
-							<%-- 
-							<div id="article-neighbor-list">
-								<div>
-									<span class="indicator"><strong>▲윗글</strong></span> 
-									<a :href="'news_detail.do?n_no='+vo.n_no" class="subject">{{vo.title}}</a>
-								</div>
-								<div>
-									<span class="indicator"><strong>▼아랫글</strong></span>
-									<a href="../post/news_detail.do?n_no="${(vo.n_no)-1} class="subject">${vo.title }</a>
-								</div>
-							</div> 
-							--%>
-							
-						</div>
-					</div>
+
+
+	<!-- ================ start banner area ================= -->
+	<!-- 	<section class="blog-banner-area" id="blog">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Blog Details</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section> -->
+	<!-- ================ end banner area ================= -->
+
+	<!--================Blog Area =================-->
+	<div class="single-post row">
+		<div class="col-lg-12">
+			<div class="feature-img">
+				<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+			</div>
+		</div>
+		<div class="col-lg-3  col-md-3">
+			<div class="blog_info text-right">
+				<div class="post_tag">
+					<a href="#">{{vo.cate}}</a>
+				</div>
+				<ul class="blog_meta list">
+					<li>
+						<a href="#">{{vo.cate}}</a>
+					</li>
+					<li>
+						<a href="#">{{vo.id}}<i class="lnr lnr-user"></i></a>
+					</li>
+					<li>
+						<a href="#">{{vo.dbday}}<i class="lnr lnr-calendar-full"></i></a>
+					</li>
+					<li><a href="#">{{vo.hit}} Views <i class="lnr lnr-eye"></i>
+					</a></li>
+				</ul>
+				<ul class="social-links">
+					<li><a href="http://facebook.com"> <i class="fab fa-facebook-f"></i>
+					</a></li>
+					<li><a href="http://twitter.com"> <i class="fab fa-twitter"></i>
+					</a></li>
+					<li><a href="http://github.com"> <i class="fab fa-github"></i>
+					</a></li>
+					<li><a href="http://behance.net"> <i class="fab fa-behance"></i>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-lg-9 col-md-9 blog_details">
+			<h2>{{vo.title}}</h2>
+			<p class="excert">{{vo.content}}</p>
+		</div>
+	</div>
+	
+	
+	
+	<!--================ 페이지 이동 =================-->
+	<div class="navigation-area">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+				<div class="thumb">
+					<a href="#"> 
+					<img class="img-fluid" src="img/blog/prev.jpg" alt="">
+					</a>
+				</div>
+				<div class="arrow">
+					<a href="#"> 
+						<span class="lnr text-white lnr-arrow-left"></span>
+					</a>
+				</div>
+				<div class="detials">
+					<p>Prev Post</p>
+					<a href="#">
+						<h4>Space The Final Frontier</h4>
+					</a>
+				</div>
+			</div>
+			<div
+				class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+				<div class="detials">
+					<p>Next Post</p>
+					<a href="#">
+						<h4>Telescopes 101</h4>
+					</a>
+				</div>
+				<div class="arrow">
+					<a href="#"> <span class="lnr text-white lnr-arrow-right"></span>
+					</a>
+				</div>
+				<div class="thumb">
+					<a href="#"> <img class="img-fluid" src="img/blog/next.jpg"
+						alt="">
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 <!-- partial -->
 <script>
 new Vue({
-   	el:'.table',
+   	el:'.single-post',
    	data:{
    		vo:{},
    		q_no:${q_no}

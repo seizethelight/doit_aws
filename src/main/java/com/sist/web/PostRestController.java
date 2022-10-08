@@ -399,6 +399,7 @@ public class PostRestController {
 				obj.put("id", vo.getId());
 				obj.put("dbday", vo.getDbday());
 				obj.put("hit", vo.getHit());
+				obj.put("cate", vo.getCate());
 
 				if (k == 0) {
 					obj.put("curpage", curpage);
@@ -430,6 +431,7 @@ public class PostRestController {
 		obj.put("hit", vo.getHit());
 		obj.put("etdate", vo.getEtdate());
 		obj.put("sid", sid);
+		obj.put("cate", vo.getCate());
 		result = obj.toJSONString();
 		return result;
 	}

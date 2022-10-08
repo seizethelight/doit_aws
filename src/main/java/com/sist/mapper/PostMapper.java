@@ -121,7 +121,7 @@ public interface PostMapper {
 	
 	// blog 삭제
 	@Delete("DELETE FROM T4_BLOG WHERE b_no=#{b_no}")
-	public String blogDeleteData(int b_no);
+	public void blogDeleteData(int b_no);
 	
 	// blog 수정
 	@Update("UPDATE T4_BLOG SET title=#{title}, content=#{content} WHERE b_no=#{b_no}")
@@ -129,9 +129,9 @@ public interface PostMapper {
 	
 	//*********** 포럼 ***********//	
 	// forum 리스트
-	@Select("SELECT f_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, num "
-			+ "FROM (SELECT f_no, title, content, regdate, id, hit, rownum as num "
-			+ "FROM (SELECT f_no, title, content, regdate, id, hit "
+	@Select("SELECT f_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, cate, num "
+			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate, rownum as num "
+			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate "
 			+ "FROM T4_FORUM ORDER BY f_no DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ForumVO> forumListData(Map map);	
@@ -140,7 +140,7 @@ public interface PostMapper {
 	public int forumTotalPage();
 	
 	// forum 디테일
-	@Select("SELECT f_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, TO_CHAR(editeddate, 'YYYY-MM-DD hh:mm:ss') as etdate FROM T4_FORUM WHERE f_no=#{f_no}")
+	@Select("SELECT f_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, TO_CHAR(editeddate, 'YYYY-MM-DD hh:mm:ss') as etdate, cate FROM T4_FORUM WHERE f_no=#{f_no}")
 	public ForumVO forumDetailData(int f_no);
 	
 	// forum 디테일 조회수 증가
@@ -159,7 +159,7 @@ public interface PostMapper {
 
 	// forum 삭제
 	@Delete("DELETE FROM T4_FORUM WHERE f_no=#{f_no}")
-	public String forumDeleteData(int f_no);
+	public void forumDeleteData(int f_no);
 	
 	// forum 댓글
 	@Select("SELECT content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, f_no, f_r_no, group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no}")

@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
 </head>
 <body>
 <!--================Blog Area =================-->
@@ -25,7 +27,7 @@
                 </div> -->
                 <ul class="blog_meta list">
                  		<li>
-                        <a class="active" href="#"># {{vo.cate}}
+                        <a href="#">{{vo.cate}}
                             <i class="lnr lnr-cate"></i>
                         </a>
                     </li>
@@ -49,6 +51,7 @@
         </div>
         <div class="col-md-9">
             <div class="blog_post">
+                <img src="img/blog/main-blog/m-blog-1.jpg" alt="">
                 <div class="blog_details">
                     <a href="single-blog.html">
                         <h2>{{vo.title}}</h2>
@@ -107,67 +110,65 @@
     </nav>
 </div>
 <!--================Blog Area =================-->
-	<!-- partial -->
-	<script>
-		new Vue(
-						{
-							el : '.blog_left_sidebar',
-							data : {
-								news_list : [],
-								curpage : 1,
-								totalpage : 0
-							},
-							mounted : function() {
-								let _this = this;
-								axios
-										.get(
-												"http://localhost:8080/web/post/news_list.do",
-												{
-													params : {
-														page : _this.curpage
-													}
-												})
-										.then(
-												function(result) {
-													console.log(result.data);
-													_this.news_list = result.data;
-													_this.curpage = result.data[0].curpage;
-													_this.totalpage = result.data[0].totalpage;
-												})
-							},
-							methods : {
-								send : function() {
-									let _this = this;
-									axios
-											.get(
-													"http://localhost:8080/web/post/news_list.do",
-													{
-														params : {
-															page : _this.curpage
-														}
-													})
-											.then(
-													function(result) {
-														console.log(result);
-														_this.news_list = result.data;
-														_this.curpage = result.data[0].curpage;
-														_this.totalpage = result.data[0].totalpage;
-													})
-								},
-								prev : function() {
-									this.curpage = this.curpage > 1 ? this.curpage - 1
-											: this.curpage;
-									this.send()
-								},
-								next : function() {
-									this.curpage = this.curpage < this.totalpage ? this.curpage + 1
-											: this.curpage;
-									this.send()
+<!-- partial -->
+<script>
+new Vue(
+	{
+		el : '.blog_left_sidebar',
+		data : {
+			news_list : [],
+			curpage : 1,
+			totalpage : 0
+		},
+		mounted : function() {
+			let _this = this;
+			axios
+					.get(
+							"http://localhost:8080/web/post/news_list.do",
+							{
+								params : {
+									page : _this.curpage
 								}
-							}
-						})
-
-				
-	</script>
+							})
+					.then(
+							function(result) {
+								console.log(result.data);
+								_this.news_list = result.data;
+								_this.curpage = result.data[0].curpage;
+								_this.totalpage = result.data[0].totalpage;
+							})
+		},
+		methods : {
+			send : function() {
+				let _this = this;
+				axios
+						.get(
+								"http://localhost:8080/web/post/news_list.do",
+								{
+									params : {
+										page : _this.curpage
+									}
+								})
+						.then(
+								function(result) {
+									console.log(result);
+									_this.news_list = result.data;
+									_this.curpage = result.data[0].curpage;
+									_this.totalpage = result.data[0].totalpage;
+								})
+			},
+			prev : function() {
+				this.curpage = this.curpage > 1 ? this.curpage - 1
+						: this.curpage;
+				this.send()
+			},
+			next : function() {
+				this.curpage = this.curpage < this.totalpage ? this.curpage + 1
+						: this.curpage;
+				this.send()
+			}
+		}
+	})
+</script>
 </body>
 </html>
