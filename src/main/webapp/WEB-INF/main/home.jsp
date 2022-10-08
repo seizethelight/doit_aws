@@ -29,12 +29,12 @@
         <div class="row no-gutters align-items-center pt-60px">
           <div class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img class="img-fluid" src="${path}/resources/img/home/hero-banner.png" alt="">
+              <img class="img-fluid" src="${path}/resources/img/home/about-pic.jpg" alt="">
             </div>
           </div>
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
-              <h4>Shop is fun</h4>
+              <h4>Calculate BMI</h4>
               <h1>BMI지수 계산</h1>
               <p>체질량지수(BMI, Body Mass Index)로 키와 체중을 이용해서 간단하게 비만을 진단해보세요.</p>
               <a class="button button-hero" href="../doex/bmi_cal.do">BMI지수 계산하기</a>
