@@ -59,6 +59,21 @@
                   
                 </ul>
 							</li>
+			
+			<li class="nav-item submenu dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Exercise</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="../doex/howtoex_list.do">운동정보</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../doex/foodkcal_list.do">음식칼로리</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../doex/exkcal_list.do">운동칼로리</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../doex/howtoex_find.do">검색</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../doex/exkcal_list.do">운동칼로리</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../doex/bmi_cal.do">BMI지수</a></li>
+                  
+                </ul>
+              </li>
+			 
 							
 							<li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -71,6 +86,8 @@
               </li>
               
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              
+               <li class="nav-item"><a class="nav-link" href="../chat/chat.do">Chat</a></li>
             </ul>
 
             <ul class="nav-shop">

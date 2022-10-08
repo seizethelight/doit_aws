@@ -1,96 +1,185 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="${path }/resources/css/store_style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aroma Shop - Category</title>
+<link rel="icon" href="img/Fevicon.png" type="image/png">
+<link rel="stylesheet" href="../resources/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="../resources/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="../resources/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../resources/vendors/linericon/style.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="../resources/vendors/nice-select/nice-select.css">
+<link rel="stylesheet" href="../resources/vendors/nouislider/nouislider.min.css">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>	
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../resources/css/style.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="${path }/resources/css/ss_style.css">
-
-<style type="text/css">
-#s_name{/* 말줄임... */
-	overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;/* 보여질 줄 갯수  */
-    -webkit-box-orient: vertical;
-}
-.btn-success{
-color: white;
-border-color: none;
-background-color: #f67831;
-}
-.btn-warning{
-color: white;
-border-color: none;
-background-color: #eb3c5a;
-}
-</style>
 </head>
 <body>
-	 <div class='bg-container' style="margin-top:50px;">
-	    <div  id="store_list">
-	        <h1 class='heading'>Doit!&nbsp;<span style="color:orange"> STORE SHOP</h1>
-	       	 <p class="description">It doesn’t matter if you’re designing a brand new app from scratch, working on a new feature or creating a landing page</p>
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>STORE SHOP</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Doit!</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Shop Category</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
 
-				<div class="centerer">
-				   
-				    <div class="row" style="disply:flex;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;justify-content: space-evenly;">
-				      <div class="text-left" style="margin-top: 20px;margin-bottom: -10px;">
-				        <input type=button class="btn btn-lg btn-warning"style="background-color: black;color: white;" value="All" @click="storeChange(1)">
-				        <input type=button class="btn btn-lg btn-success" style="background-color:#e45d43;;color:black;" value="Woman" @click="storeChange(2)">
-				        <input type=button class="btn btn-lg btn-info"style="background-color: black;color: white ;" value="Man" v-on:click="storeChange(3)">
-				      </div>
-				    </div>
-				</div>
-				
-				<div class="card-container">
-				    <div class="shopping-card" v-for="vo in store_list">
-				        <div class="air-max-react-shoe-container">
-				            <a :href="'../store/detail_before.do?s_no='+vo.s_no+'&c_no='+type">
-				            <!--   <a :href="'../store/w_detail_before.do?s_no='+vo.s_no+'&c_no='+c_no">   -->
-				            <img :src="vo.poster" alt="Lights" style="width: 244px; height: 200px;"/>
-				
-				            <!-- <p class='trending-badge'>Trending</p> -->
-				             		</a>
-				        </div>
-				        <!--  shoe-heading-->
-				        <h4 id="s_name" style="font-size: 18px;
-    margin-top: 15px;">{{vo.name}}</h4>
-				        <div>
-				            <div class="price-bag-container">
-				                <p class="price" style="text-decoration: line-through; color: gray;">{{vo.price}}</p>
-				                <p style="text-align: right;">{{vo.first_price}}</p>
-				            </div>
-				
-				        </div>
-				    </div>
-				</div>
-		 </div>
-		<div style="height: 20px;"></div>
+	<!-- ================ category section start ================= -->		  
+  <section class="section-margin--small mb-5">
+    <div class="container">
+     <div class='bg-container' style="margin-top:50px;">
+      <div  id="store_list">
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+          <div class="sidebar-categories">
+            <div class="head">Doit!</div>
+            <ul class="main-categories">
+              <li class="common-filter">
+                <form action="#">
+                  <ul>
+                   <li class="filter-list">
+                   <input class="pixel-radio" type="radio" id="All" name="brand" value="All" @click="storeChange(1)"><label for="All">All<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="men" name="brand" value="Men" @click="storeChange(3)"><label for="men">Men<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="women" name="brand" value="Women" @click="storeChange(2)"><label for="women">Women<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="kids" name="brand" value="Kids" @click="storeChange(4)"><label for="accessories">Kids<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="new" name="brand" value="New" @click="storeChange(5)"><label for="footwear">New<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="items" name="brand" value="Items" @click="storeChange(6)"><label for="bayItem">Items<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="golf" name="brand" value="Golf" @click="storeChange(7)"><label for="electronics">Golf<span> (3600)</span></label></li>
+                    <li class="filter-list">
+                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">Food<span> (3600)</span></label></li>
+                  </ul>
+                </form>
+              </li>
+            </ul>
+          </div>
+          <div class="sidebar-filter">
+            <div class="top-filter-head">Product Filters</div>
+            <div class="common-filter">
+              <div class="head">Brands</div>
+              <form action="#">
+                <ul>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">Apple<span>(29)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="asus">Asus<span>(29)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="gionee">Gionee<span>(19)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="micromax">Micromax<span>(19)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"><label for="samsung">Samsung<span>(19)</span></label></li>
+                </ul>
+              </form>
+            </div>
+            <div class="common-filter">
+              <div class="head">Color</div>
+              <form action="#">
+                <ul>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Black
+                      Leather<span>(29)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">Black
+                      with red<span>(19)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
+                  <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
+                </ul>
+              </form>
+            </div>
+            <div class="common-filter">
+              <div class="head">Price</div>
+              <div class="price-range-area">
+                <div id="price-range"></div>
+                <div class="value-wrapper d-flex">
+                  <div class="price">Price:</div>
+                  <span>$</span>
+                  <div id="lower-value"></div>
+                  <div class="to">to</div>
+                  <span>$</span>
+                  <div id="upper-value"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+          <!-- Start Filter Bar -->
+          <div class="filter-bar d-flex flex-wrap align-items-center">
+            <div class="sorting">
+              <select>
+                <option value="1">Default sorting</option>
+                <option value="1">Default sorting</option>
+                <option value="1">Default sorting</option>
+              </select>
+            </div>
+            <div class="sorting mr-auto">
+              <select>
+                <option value="1">Show 12</option>
+                <option value="1">Show 12</option>
+                <option value="1">Show 12</option>
+              </select>
+            </div>
+            <div>
+              <div class="input-group filter-bar-search">
+                <input type="text" placeholder="Search">
+                <div class="input-group-append">
+                  <button type="button"><i class="ti-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Filter Bar -->
+          <!-- Start Best Seller -->
+          <section class="lattest-product-area pb-40 category-list">
+             <div class="card text-center card-product" v-for="vo in store_list">
+                <div class="row">
+                  <div class="col-md-6 col-lg-4">
+                  <div class="card-product__img">
+                   <a :href="'../store/detail_before.do?s_no='+vo.s_no+'&c_no='+type">
+                    <img class="card-img" :src="vo.poster" alt="Lights"></a>
+                    <ul class="card-product__imgOverlay">
+                      <li><button><i class="ti-search"></i></button></li>
+                      <li><button><i class="ti-shopping-cart"></i></button></li>
+                      <li><button><i class="ti-heart"></i></button></li>
+                    </ul>
+                  </div>
+                  <div class="card-body">
+                    <h4 class="card-product__title"><a href="#">{{vo.name}}</a></h4>
+                    <p class="card-product__price" style="text-decoration: line-through; color: gray;">{{vo.price}}</p>
+                    <p class="card-product__price" style="color: black;">{{vo.first_price}}</p> 
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            
+            <div style="height: 20px;"></div>
 			
 			<div class="text-center" style="text-align: center;">
-			    <input type="button" class="btn btn-lg btn-warning" value="이전"style="    background-color: black;
-    color: white;" @click="prev()" />
+			    <input type="button" class="btn btn-lg btn-warning" value="이전"style="background-color: black;color: white;" @click="prev()"/>
 			    {{curpage}} page / {{totalpage}} pages
-			    <input type="button" class="btn btn-lg btn-success" value="다음"style="    background-color: black;
-    color: white;" @click="next()" />
+			    <input type="button" class="btn btn-lg btn-success" value="다음"style="background-color: black;color: white;" @click="next()"/>
 			</div>
-		<!--  <div class="row" id="store_cookie">		
-	      <span v-for="i in cook_list">
-	        <img :src="i.poster" style="width:100px;height:100px;margin-left: 5px">
-	      </span>
-	      
-	    </div> -->
-	    <div class="row" id="cookie" style="display: inline; margin-top: 60px">
+			
+			  <div class="row" id="cookie" style="display: inline; margin-top: 60px">
 				<div style="font-size: 27px; font-weight: 600">최근에 본 상품
 					<a href="store_cookie_delete.do"><input type="button" class="btn btn-md btn-danger" value="쿠키삭제" style="margin-left: 20px;margin-bottom: 8px"></a>
 				</div>
@@ -100,8 +189,133 @@ background-color: #eb3c5a;
 				 <img :src="s.poster" style="width:120px; "></a>
 				 </span>
 			</div>
-	</div>
-				
+		
+          </section>
+          <!-- End Best Seller -->
+        </div>
+      </div>
+    </div>
+   </div>
+  </div> 
+  </section>
+	<!-- ================ category section end ================= -->		  
+
+	<!-- ================ top product area start ================= -->	
+	<section class="related-product-area">
+		<div class="container">
+			<div class="section-intro pb-60px">
+        <p>Popular Item in the market</p>
+        <h2>Top <span class="section-intro__style">Product</span></h2>
+      </div>
+			<div class="row mt-30">
+        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+          <div class="single-search-product-wrapper">
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-1.png" alt=""></a>
+              <div class="desc">
+                  <a href="#" class="title">Gray Coffee Cup</a>
+                  <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-2.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-3.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+          <div class="single-search-product-wrapper">
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-4.png" alt=""></a>
+              <div class="desc">
+                  <a href="#" class="title">Gray Coffee Cup</a>
+                  <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-5.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-6.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+          <div class="single-search-product-wrapper">
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-7.png" alt=""></a>
+              <div class="desc">
+                  <a href="#" class="title">Gray Coffee Cup</a>
+                  <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-8.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-9.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+          <div class="single-search-product-wrapper">
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-1.png" alt=""></a>
+              <div class="desc">
+                  <a href="#" class="title">Gray Coffee Cup</a>
+                  <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-2.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+            <div class="single-search-product d-flex">
+              <a href="#"><img src="img/product/product-sm-3.png" alt=""></a>
+              <div class="desc">
+                <a href="#" class="title">Gray Coffee Cup</a>
+                <div class="price">$170.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+		</div>
+	</section>
+	<!-- ================ top product area end ================= -->		
+
 <script>
     new Vue({
 		 el:'.bg-container',
@@ -159,9 +373,16 @@ background-color: #eb3c5a;
   
   
    </script>
-   <!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://s.codepen.io/assets/libs/modernizr.js'></script><script  src="${path }/resources/script.js"></script>
-   
+
+
+  <script src="../resources/vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../resources/vendors/skrollr.min.js"></script>
+  <script src="../resources/vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="../resources/vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="../resources/vendors/nouislider/nouislider.min.js"></script>
+  <script src="../resources/vendors/jquery.ajaxchimp.min.js"></script>
+  <script src="../resources/vendors/mail-script.js"></script>
+  <script src="../resources/js/main.js"></script>
 </body>
 </html>
