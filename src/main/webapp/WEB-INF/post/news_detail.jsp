@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -10,28 +9,11 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/post/poststyle.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
-
-	<!-- ================ start banner area ================= -->
-	<!-- 	<section class="blog-banner-area" id="blog">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Blog Details</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section> -->
-	<!-- ================ end banner area ================= -->
-
-	<!--================Blog Area =================-->
+<!--================ 뉴스 Area =================-->
 	<div class="single-post row">
 		<div class="col-lg-12">
 			<div class="feature-img">
@@ -73,7 +55,20 @@
 	<!--================ 뉴스 끝 =================-->
 	
 	
-	<!--================ 포스트 네비게이션 시작 =================-->
+	<!--================ 좋아요 =================-->
+<!-- 
+	<a style="cursor:pointer;" :href="'../post/news_like.do?n_no='+vo.n_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+ 	<a style="cursor:pointer;" :href="../main/main.do"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+-->  
+  <div class='lhbutton'>
+		<button id="like" class="selected">Like</button>
+		<button id="dislike">Dislike</button>
+	</div>
+	
+<!--================ 싫어요 =================-->
+	
+	
+<!--================ 포스트 네비게이션 시작 =================-->
 	<div class="post_navigation_area">
 		<div class="nav_container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -89,13 +84,13 @@
 			</ul>
 		</div>
 	</div>
-	<!--================ 포스트 네비게이션 끝 =================-->
+<!--================ 포스트 네비게이션 끝 =================-->
 	
 	
-	<!--================ 삭제 확인 모달 =================-->
+<!--================ 삭제 확인 모달 =================-->
 	
 
-	<!--================ 페이지 이동 =================-->
+<!--================ 페이지 이동 =================-->
 	<div class="navigation-area">
 		<div class="row">
 			<div
@@ -144,7 +139,8 @@ new Vue({
    	el:'.single-post',
    	data:{
    		vo:{},
-   		n_no:${n_no}
+   		n_no:${n_no},
+   		title:''
    	},
    	mounted:function(){
    		let _this=this;

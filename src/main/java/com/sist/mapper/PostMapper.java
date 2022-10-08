@@ -98,6 +98,21 @@ public interface PostMapper {
 	
 	// news 수정, 삭제를 위한 세션 비밀번호
 
+	// 뉴스 좋아요 확인
+	@Select("SELECT COUNT(*) FROM T4_NEWS_LIKE WHERE c_no=#{c_no} AND id=#{id}")
+	public int likeCheck(Map map);
+	
+	
+	// 뉴스 좋아요
+	@SelectKey(keyProperty = "l_no", resultType = int.class, before = true,
+	statement = "SELECT NVL(MAX(l_no)+1,1) as q_no FROM T4_NEWS_LIKE")
+	@Insert("INSERT INTO T4_NEWS_LIKE VALUES(#{l_no}, #{n_no}, #{id})")
+	public void newsLike(Map map);
+	
+	@Update("UPDATE T4_NEWS SET likecount = likecount+1 WHERE n_no=#{n_no}")
+	public void newsLikeIncrement(int n_no);
+	
+	
 	
 	//*********** 블로그 ***********//
 	// blog 리스트

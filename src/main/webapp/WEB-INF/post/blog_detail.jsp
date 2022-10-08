@@ -73,9 +73,25 @@
 		</div>
 	</div>
 	
+<!--================ 포스트 네비게이션 시작 =================-->
+	<div class="post_navigation_area">
+		<div class="nav_container">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+				<input type="button" class="nav-link active" value="Delete" v-on:click="blogDelete()">
+				</li>
+				<li class="nav-item">
+					<a :href="'../post/blog_edit.do?b_no='+b_no"><input type="button" value="Edit" ></a>
+				</li>
+				<li class="nav-item">
+					<a :href="../post/blog.do"><input type="button" class="nav-link active" value="Back"></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+<!--================ 포스트 네비게이션 끝 =================-->	
 	
-	
-	<!--================ 페이지 이동 =================-->
+<!--================ 페이지 이동 =================-->
 	<div class="navigation-area">
 		<div class="row">
 			<div
@@ -117,6 +133,7 @@
 			</div>
 		</div>
 	</div>
+	
 	
 	<!--================ 댓글보기 시작 =================-->
 	<div class="comments-area">
@@ -209,30 +226,30 @@
 				Comment</a>
 		</form>
 	</div>
-	<!--================ 댓글달기 끝 =================-->
-	<script>
-	new Vue({
-   	el:'.single-post',
-   	data:{
-   		vo:{},
-   		b_no:${b_no}
-   	},
-   	mounted:function(){
-   		let _this=this;
-   		// 요청 
-   		axios.get("http://localhost:8080/web/post/blog_detail.do",{
-   			params:{
-   				b_no:_this.b_no
-   			}
-   		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
-   		}).then(function(result){
-   			console.log(result.data);
-   			_this.vo=result.data;
-   		})
-   	}
-})
+<!--================ 댓글달기 끝 =================-->
+<script>
 new Vue({
-	el:'.insert-button',
+ 	el:'.single-post',
+ 	data:{
+ 		vo:{},
+ 		b_no:${b_no}
+ 	},
+ 	mounted:function(){
+ 		let _this=this;
+ 		// 요청 
+ 		axios.get("http://localhost:8080/web/post/blog_detail.do",{
+ 			params:{
+ 				b_no:_this.b_no
+ 			}
+ 		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
+ 		}).then(function(result){
+ 			console.log(result.data);
+ 			_this.vo=result.data;
+ 		})
+ 	}
+}),
+new Vue({
+	el:'.post_navigation_area',
 	data:{
 		b_no:${b_no}
 	},

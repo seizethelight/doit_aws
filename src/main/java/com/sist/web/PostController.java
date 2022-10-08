@@ -1,15 +1,23 @@
 package com.sist.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.sist.dao.PostDAO;
 import com.sist.vo.NewsVO;
 
 @Controller
 public class PostController {
+	@Autowired
+	private PostDAO dao;
+
 	@GetMapping("post/post.do")
 	public String post_post()
 	{
@@ -54,9 +62,18 @@ public class PostController {
 	}
 	
 	@GetMapping("post/news_detail.do")
-	public String post_news_detail(int n_no, Model model)
-	{
+	public String post_news_detail(int n_no, Model model, HttpSession session)
+	{	
+//		String sid=(String)session.getAttribute("id");
+//		Map map=new HashMap();
+//		NewsVO vo=dao.newsDetailData(n_no);
+//		int l_no=dao.likeCheck(map);
+//		
+//		map.put("n_no", n_no);
+//		map.put("sid", sid);
+//		model.addAttribute("l_no", l_no);
 		model.addAttribute("n_no", n_no);
+		
 		return "post/news_detail";
 	}
 	
@@ -67,14 +84,13 @@ public class PostController {
 		return "post/news_insert";
 	}
 	
-	//news edit
+	// news edit
 	@GetMapping("post/news_edit.do")
 	public String news_edit(int n_no, Model model)
 	{
 		model.addAttribute("n_no", n_no);
 		return "post/news_edit";
 	}
-	
 	
 	//********	블로그 ********//
 	@GetMapping("post/blog.do")

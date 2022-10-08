@@ -29,7 +29,7 @@ import javax.servlet.http.HttpSession;
 public class PostRestController {
 	@Autowired
 	private PostDAO dao;
-
+	
 	/**************** qna ****************/
 	// qna 리스트
 	@GetMapping(value = "post/qna_list.do", produces = "text/plain;charset=utf-8")
@@ -194,23 +194,13 @@ public class PostRestController {
 
 	// news detail
 	@GetMapping(value = "post/news_detail.do", produces = "text/plain;charset=utf-8")
-	public String news_detail(int n_no) {
+	public String news_detail(int n_no, Model model, HttpSession session) {
 		String result = "";
 		NewsVO vo = dao.newsDetailData(n_no);
 		JSONObject obj = new JSONObject();
-
-//    	 if(list!=null) {
-//				listsize = list.size();
-//				for(CartVO vo:list) {
-//					//상품 이름 자르기 
-//					String goods = vo.getName();
-//					if(goods.length()>20) {
-//						goods = goods.substring(0,20)+"..";
-//					}
-//					vo.setName(goods);
-//					
-//				}
-//			}    	 
+		String sid=(String)session.getAttribute("id");
+		
+		obj.put("sid", sid);
 		obj.put("n_no", vo.getN_no());
 		obj.put("title", vo.getTitle());
 		obj.put("id", vo.getId());
@@ -275,6 +265,19 @@ public class PostRestController {
 	public String news_delete(int n_no) {
 		String result = dao.newsDeleteData(n_no);
 		return result;
+	}
+	
+	// news like
+	@GetMapping("post/news_like.do")
+	public String news_like_insert(int n_no, HttpSession session)
+	{
+		String sid=(String)session.getAttribute("id");
+		Map map=new HashMap();
+		map.put("n_no", n_no);
+		map.put("sid", sid);
+		dao.newsLike(n_no, map);
+		return "redirect:../post/news_detail.do?n_no="+n_no;
+		
 	}
 
 	/**************** blog ****************/

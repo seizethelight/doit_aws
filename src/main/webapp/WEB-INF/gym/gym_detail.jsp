@@ -62,14 +62,14 @@ app{
           <td colspan="2"><h2 style="text-align: center">{{gym_detail.store}}&nbsp;</h2></td>
           <td style="padding: 20px;">
           <c:if test="${sessionScope.id==null }">
-		  <i class="fa fa-heart-o" style="font-size:30px"></i>
-		 </c:if>
-		 <c:if test="${sessionScope.id!=null && lcount==0 }">
-			 <a :href="'../gym/LikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
-		 </c:if>
-		 <c:if test="${sessionScope.id!=null && lcount!=0 }">
-		  <a :href="'../gym/DisLikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart" style="font-size:30px; color: red;"></i></a>
-		  </c:if>
+					  <i class="fa fa-heart-o" style="font-size:30px"></i>
+					 </c:if>
+					 <c:if test="${sessionScope.id!=null && lcount==0 }">
+							 <a :href="'../gym/LikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+					 </c:if>
+					 <c:if test="${sessionScope.id!=null && lcount!=0 }">
+						  <a :href="'../gym/DisLikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart" style="font-size:30px; color: red;"></i></a>
+			  	</c:if>
           </td>
         </tr>
         <tr>

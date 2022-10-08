@@ -118,6 +118,17 @@ public class PostDAO {
 		mapper.newsEdit(vo);
 		return result;
 	}
+	// news like count
+	public int likeCheck(Map map)
+	{
+		return mapper.likeCheck(map);
+	}
+	// news like
+	public void newsLike(int n_no, Map map)
+	{
+		mapper.newsLikeIncrement(n_no);
+		mapper.newsLike(map);
+	}
 	
 	//*********** 블로그 ***********//	
 	// blog list
