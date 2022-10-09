@@ -17,9 +17,9 @@ public class GymDAO {
 		return mapper.gymListData(map);
 	}
 	
-	public int gymTotalPage()
+	public int gymTotalPage(String search)
 	{
-		return mapper.gymTotalPage();
+		return mapper.gymTotalPage(search);
 	}
 	
 	public GymVO gymDetailData(int g_no)

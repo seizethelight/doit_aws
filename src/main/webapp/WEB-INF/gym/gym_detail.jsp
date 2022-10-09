@@ -7,12 +7,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
- 
-  <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="icon" href="img/Fevicon.png" type="image/png">
+<link rel="stylesheet" href="../resources/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="../resources/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="../resources/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../resources/vendors/linericon/style.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="../resources/vendors/nice-select/nice-select.css">
+<link rel="stylesheet" href="../resources/vendors/nouislider/nouislider.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+ <link rel="stylesheet" href="../resources/css/style.css" > 
   
 <script type="text/javascript">
 
@@ -25,7 +37,7 @@ $(function(){
 		$('#goods_account').val(count);
 	})
 })
- $('#cartBtn').click(function(){
+  $('#cartBtn').click(function(){
 	 let id = '${sessionScope.id}';
 	 console.log(id);
 	 if(id.trim()==''){
@@ -33,99 +45,352 @@ $(function(){
 		 
 		 return;
 	 }
- })
+ }) 
 </script>
 <style>
 app{
-	background-color: #eee;
 	font-family: 'Noto Sans KR', sans-serif !important;
 }
 </style>
 </head>
 
 <body>
-	<div class="container" style="background-color: #f6f6f6;">
-	<div class="app">
-    <div class="row">
-      <table class="table">
-        <tr>
-          <td class="text-center">
-            <img :src="gym_detail.poster" style="width: 500px;height: 350px; margin-right: 80px; margin-top: 100px;">
-          </td>
-        </tr>
-      </table>
+	
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>GYM LIST</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Doit!</a></li>
+              <li class="breadcrumb-item active" aria-current="page">GYM Category</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
     </div>
-    <div style="height: 10px"></div>
-    <div class="col-sm-8" style="text-align: -webkit-center;margin-left: 170px;"> 
-      <table class="table">
-        <tr>
-          <td colspan="2"><h2 style="text-align: center">{{gym_detail.store}}&nbsp;</h2></td>
-          <td style="padding: 20px;">
-          <c:if test="${sessionScope.id==null }">
-					  <i class="fa fa-heart-o" style="font-size:30px"></i>
-					 </c:if>
-					 <c:if test="${sessionScope.id!=null && lcount==0 }">
-							 <a :href="'../gym/LikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
-					 </c:if>
-					 <c:if test="${sessionScope.id!=null && lcount!=0 }">
-						  <a :href="'../gym/DisLikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart" style="font-size:30px; color: red;"></i></a>
-			  	</c:if>
-          </td>
-        </tr>
-        <tr>
-         <th class="default" width=25%><h5>운영시간,<br>전화번호 :</h5></th>
-         <td width="75%"><h5>&nbsp;{{gym_detail.time}}</h5></td>
-        </tr>
-        <tr>
-         <th class="default" width=25%><h5>주소 :</h5></th>
-         <td width="75%"><h5>{{gym_detail.addr}}</h5></td>
-        </tr>
-        <tr>
-         <th class="default" width=25%><h5>가격 :</h5></th>
-         <td width="75%">
-			<h5>{{gym_detail.price | currency }} 원/개월</h5>
-         </td>
-        </tr>
-        <tr>
-         <th class="default" width=25%><h5>#태그 :</h5></th>
-         <td width="75%"><h5>{{gym_detail.type}}</h5></td>
-        </tr>
-        <tr>
-         <th class="default" width=25%></th>
-         <td width="75%"><h5>{{gym_detail.type1}}</h5></td>
-        </tr>
-        <tr>
-         <th class="default" width=25%></th>
-         <td width="75%"><h5>{{gym_detail.type2}}</h5></td>
-        </tr>
-        <tr>
-         <th class="default" width=25%></th>
-         <td width="75%"><h5>{{gym_detail.type3}}</h5></td>
-        </tr>
-      </table>
+	</section>
+	<!-- ================ end banner area ================= -->
 
-     	 
-		                 
-      <form method="post" action="../cart/cart_insert.do">
-        <input type="hidden" name="no" :value="g_no">
-        <input type="hidden" name="cate" value="1">
+	<div class="container">
+		<div class="app">
+		<div class="product_image_area">
+		<div class="container">
+		  <div id="store_detail">
+				<div class="row s_product_inner">
+				<div class="col-lg-6">
+					<div class="owl-carousel owl-theme s_Product_carousel">
+						<div class="single-prd-item">
+							<img :src="gym_detail.poster" class="img-fluid">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-5 offset-lg-1">
+					<div class="s_product_text">
+						<h3>{{gym_detail.store}}</h3>
+						<h2>{{gym_detail.price | currency }} 원/개월</h2>
+						<ul class="list">
+							<li><a class="active" href="#"><span>주소 :</span> {{gym_detail.addr}}</a></li>
+							<li><a href="#"><span>#태그 :</span>{{gym_detail.type}}</a></li>
+							<li><a href="#"><span></span>{{gym_detail.type1}}</a></li>
+							<li><a href="#"><span></span>{{gym_detail.type2}}</a></li>
+							<li><a href="#"><span></span>{{gym_detail.type3}}</a></li>
+						</ul>
+						<p>운영시간, 전화번호:<br>{{gym_detail.time}}</p>
+						
+						
+						<div class="product_count">
+              
+              			 <c:if test="${sessionScope.id==null }">
+						  <i class="fa fa-heart-o" style="font-size:30px"></i>
+						 </c:if>
+						 <c:if test="${sessionScope.id!=null && lcount==0 }">
+								 <a :href="'../gym/LikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+						 </c:if>
+						 <c:if test="${sessionScope.id!=null && lcount!=0 }">
+							  <a :href="'../gym/DisLikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart" style="font-size:30px; color: red;"></i></a>
+				  		 </c:if>
+              
+			               <form method="post" action="../cart/cart_insert.do">
+					        <input type="hidden" name="no" :value="g_no">
+					        <input type="hidden" name="cate" value="1">
+					
+					             <div style="text-align: left; font-size: 16px;"> 개월 수 :&nbsp;&nbsp; <input type=number id="account" name="account" :value="account" max="10" min="1"
+					                 data-price="${vo.price }">&nbsp; 총 금액 :&nbsp;&nbsp;<span style="color:blue;" id="total"><fmt:formatNumber value="${vo.price}" pattern="#,###"/> </span> 원  </div><br><br>
+					         <div style="margin-left: 50px;">     
+					         <input type="button" onclick="location.href='../gym/gym_list.do'" value="목록" class="button primary-btn" style="width:42%;border: 1px solid #384aeb;
+					         border-radius: 30px;font-weight: bold;padding: 12px 50px;">&nbsp;
+					         <input type="submit"  value="장바구니" class="button primary-btn" style="width:50%;border: 1px solid #384aeb;
+					         border-radius: 30px;font-weight: bold;padding: 12px 50px;" id="cartBtn">
+					        <!--  <input type="submit" value="회원권 결제하기" class="btn btn-lg btn-success" style="margin-bottom: 20px"> -->
+					         </div>
+					      </form>
+										            
+						</div>
+						<div class="card_area d-flex align-items-center">
+							   <c:if test="${sessionScope.id==null }">
+								  <i class="fa fa-heart-o" style="font-size:30px"></i>
+								 </c:if>
+								 <c:if test="${sessionScope.id!=null && lcount==0 }">
+										 <a :href="'../gym/LikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+								 </c:if>
+								 <c:if test="${sessionScope.id!=null && lcount!=0 }">
+									  <a :href="'../gym/DisLikeInsert.do?g_no='+gym_detail.g_no"><i class="fa fa-heart" style="font-size:30px; color: red;"></i></a>
+						    	</c:if>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--================Map Area =================-->
+			  <div class="col-sm-4">
+			    <div class="none" style="margin-top: 30px;"></div>
+			      <div id="map" style="width:700px;height:350px; margin-bottom: 30px; margin-left: 150px" :data="gym_detail.store"></div>
+									
+			    </div>
+			<!--================Product Description Area =================-->
+	<section class="product_description_area">
+		<div class="container">
 
-             <div style="text-align: left; font-size: 16px;"> 개월 수 :&nbsp;&nbsp; <input type=number id="account" name="account" :value="account" max="10" min="1"
-                 data-price="${vo.price }">&nbsp; 총 금액 :&nbsp;&nbsp;<span style="color:blue;" id="total"><fmt:formatNumber value="${vo.price}" pattern="#,###"/> </span> 원  </div><br><br>
-         <div style="margin-left: 140px;">     
-         <input type="button" onclick="location.href='../gym/gym_list.do'" value="목록" class="btn btn-md btn-info" style="margin-bottom: 20px;margin-left: -200px">&nbsp;
-         <input type="submit"  value="장바구니" class="btn btn-md btn-primary" style="margin-bottom: 20px"id="cartBtn">
-        <!--  <input type="submit" value="회원권 결제하기" class="btn btn-lg btn-success" style="margin-bottom: 20px"> -->
-         </div>
-      </form>
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Description</a>
+				</li>
+				
+				<li class="nav-item">
+					<a class="nav-link active" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					 aria-selected="false">Reviews</a>
+				</li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab"style="">
+					<!--  <div class="col-sm-4">
+					    <div class="none" style="margin-top: 30px;"></div>
+					      <div id="map" style="width:700px;height:350px; margin-bottom: 30px; margin-left: 150px" :data="gym_detail.store"></div>
+											
+					    </div> -->
+				</div>
+			
+				<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="comment_list">
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-1.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<h5>12th Feb, 2018 at 05:56 pm</h5>
+											<a class="reply_btn" href="#">Reply</a>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+								<div class="review_item reply">
+									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-2.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<h5>12th Feb, 2018 at 05:56 pm</h5>
+											<a class="reply_btn" href="#">Reply</a>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-3.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<h5>12th Feb, 2018 at 05:56 pm</h5>
+											<a class="reply_btn" href="#">Reply</a>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="review_box">
+								<h4>Post a comment</h4>
+								<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" name="name" placeholder="Your Full name">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="number" name="number" placeholder="Phone Number">
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="form-control" name="message" id="message" rows="1" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 text-right">
+										<button type="submit" value="submit" class="btn primary-btn">Submit Now</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="row total_rate">
+								<div class="col-6">
+									<div class="box_total">
+										<h5>Overall</h5>
+										<h4>4.0</h4>
+										<h6>(03 Reviews)</h6>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="rating_list">
+										<h3>Based on 3 Reviews</h3>
+										<ul class="list">
+											<li><a href="#">5 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+											<li><a href="#">4 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+											<li><a href="#">3 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+											<li><a href="#">2 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+											<li><a href="#">1 Star <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+													 class="fa fa-star"></i><i class="fa fa-star"></i> 01</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="review_list">
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-1.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-2.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="img/product/review-3.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="review_box">
+								<h4>Add a Review</h4>
+								<p>Your Rating:</p>
+								<ul class="list">
+									<li><a href="#"><i class="fa fa-star"></i></a></li>
+									<li><a href="#"><i class="fa fa-star"></i></a></li>
+									<li><a href="#"><i class="fa fa-star"></i></a></li>
+									<li><a href="#"><i class="fa fa-star"></i></a></li>
+									<li><a href="#"><i class="fa fa-star"></i></a></li>
+								</ul>
+								<p>Outstanding</p>
+                <form action="#/" class="form-contact form-review mt-3">
+                  <div class="form-group">
+                    <input class="form-control" name="name" type="text" placeholder="Enter your name" required>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" name="email" type="email" placeholder="Enter email address" required>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" name="subject" type="text" placeholder="Enter Subject">
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control different-control w-100" name="textarea" id="textarea" cols="30" rows="5" placeholder="Enter Message"></textarea>
+                  </div>
+                  <div class="form-group text-center text-md-right mt-3">
+                    <button type="submit" class="button button--active button-review">Submit Now</button>
+                  </div>
+                </form>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Product Description Area =================-->
+		</div>
+	</div>
+	<!-- =============================================================== -->
+	
+	
+     	                  
+    
       
      <!-- 따로... -->
         
-    <div class="col-sm-4">
-    <div class="none" style="margin-top: 30px;"></div>
-      <div id="map" style="width:700px;height:350px; margin-bottom: 30px; margin-left: -250px" :data="gym_detail.store"></div>
-						
-    </div>
+  
   </div>
   </div>
  </div>
@@ -177,7 +442,7 @@ app{
 			      
 			      /* global kakao*/
 			        script.onload = () => kakao.maps.load(this.initMap);
-			        script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=b18319530b6d6d62d5c86a8807893413&libraries=services';
+			        script.src = 'http://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=f89d586e6dc50a9d7aef7d33a6324e3a&libraries=services';
 			        document.head.appendChild(script);
 			        console.log(this.gym_detail.store+"=>1") 
 			    },
@@ -213,7 +478,7 @@ app{
 				
 				        // 인포윈도우로 장소에 대한 설명을 표시합니다
 				        var infowindow = new kakao.maps.InfoWindow({
-				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+$('#map').attr("data")+'</div>'
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.store}</div>'  //>'+$('#map').attr("data")+'
 				        });
 				        infowindow.open(map, marker);
 				

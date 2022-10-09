@@ -21,13 +21,17 @@ public class GymRestController {
 	private GymDAO dao;
 	
 	 @GetMapping(value = "gym/gym_list_vue.do",produces = "text/plain;charset=UTF-8")
-	    public String gym_list(String page)
+	    public String gym_list(String page,String search)
 	    {
 	    	String result="";
 	    	try
 	    	{
 	    		if(page==null)
 	    			page="1";
+	    		if(search==null)
+				 {
+					 search="";
+				 }
 	    		int curpage=Integer.parseInt(page);
 	    		Map map=new HashMap();
 	    		int rowSize=9;
@@ -35,9 +39,10 @@ public class GymRestController {
 	    		int end=(rowSize*curpage);
 	    		map.put("start", start);
 	    		map.put("end", end);
+	    		map.put("addr", search);
 	    		
 	    		List<GymVO> list=dao.gymListData(map);
-	    		int totalpage=dao.gymTotalPage();
+	    		int totalpage=dao.gymTotalPage(search);
 	    		
 	    		JSONArray arr=new JSONArray(); 
 
