@@ -74,51 +74,22 @@
                   </ul>
                 </form>
               </li>
+              <li class="filter-list">
+               <div class="row" id="cookie" style="display: inline; margin-top: 60px">
+				<div style="font-size: 25px; font-weight: 600">최근에 본 상품
+				<span v-for="s in store_cookie" style="margin-left: 10px;">
+				<a :href="'detail.do?s_no='+s.s_no">
+				 <img :src="s.poster" style="width:120px; "></a>
+				 </span>
+					<a href="store_cookie_delete.do"><input type="button" class="btn btn-md btn-danger" value="쿠키삭제"
+					 style="margin-left: 20px;margin-top:10px;margin-bottom: 8px;background-color: #f1f6f7;border-color: #384aeb;color: #384aeb;"></a>
+				</div>
+
+				
+				</div></li>
             </ul>
           </div>
-          <div class="sidebar-filter">
-            <div class="top-filter-head">Product Filters</div>
-            <div class="common-filter">
-              <div class="head">Brands</div>
-              <form action="#">
-                <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">Apple<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="asus">Asus<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="gionee">Gionee<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="micromax">Micromax<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"><label for="samsung">Samsung<span>(19)</span></label></li>
-                </ul>
-              </form>
-            </div>
-            <div class="common-filter">
-              <div class="head">Color</div>
-              <form action="#">
-                <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Black
-                      Leather<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">Black
-                      with red<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
-                </ul>
-              </form>
-            </div>
-            <div class="common-filter">
-              <div class="head">Price</div>
-              <div class="price-range-area">
-                <div id="price-range"></div>
-                <div class="value-wrapper d-flex">
-                  <div class="price">Price:</div>
-                  <span>$</span>
-                  <div id="lower-value"></div>
-                  <div class="to">to</div>
-                  <span>$</span>
-                  <div id="upper-value"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
           <!-- Start Filter Bar -->
@@ -166,7 +137,7 @@
                   </div>
             </div>
             
-            <div style="height: 20px;"></div>
+            <div style="height: 20px;margin-top: 40px;"></div>
 			
 				<div class="text-center" style="text-align: center;">
 				    <input type="button" class="btn btn-lg btn-warning" value="이전"style="background-color: #f1f6f7;color: #384aeb;height: 40px;
@@ -176,29 +147,16 @@
     					border-color: #384aeb;" @click="next()"/>
 				</div>
 			
-			  <div class="row" id="cookie" style="display: inline; margin-top: 60px">
-				<div style="font-size: 27px; font-weight: 600">최근에 본 상품
-					<a href="store_cookie_delete.do"><input type="button" class="btn btn-md btn-danger" value="쿠키삭제" style="margin-left: 20px;margin-bottom: 8px"></a>
-				</div>
-
-				<span v-for="s in store_cookie" style="margin-left: 10px;">
-				<a :href="'detail.do?s_no='+s.s_no">
-				 <img :src="s.poster" style="width:120px; "></a>
-				 </span>
-			</div>
-		
           </section>
           <!-- End Best Seller -->
         </div>
       </div>
     </div>
-   </div>
-  </div> 
-  </section>
-	<!-- ================ category section end ================= -->		  
-
-	<!-- ================ top product area start ================= -->	
+     
+	
+	<!-- ================ top product area start ================= -->
 	<section class="related-product-area">
+	<div style="margin-top: 50px;"></div>		
 		<div class="container">
 			<div class="section-intro pb-60px">
         <p>Popular Item in the market</p>
@@ -311,7 +269,24 @@
       </div>
 		</div>
 	</section>
-	<!-- ================ top product area end ================= -->		
+	<!-- ================ top product area end ================= -->	
+	<div style="margin-top: 40px;"></div>
+	<!--  <div class="row" id="cookie" style="display: inline; margin-top: 60px">
+				<div style="font-size: 27px; font-weight: 600">최근에 본 상품
+					<a href="store_cookie_delete.do"><input type="button" class="btn btn-md btn-danger" value="쿠키삭제"
+					 style="margin-left: 20px;margin-bottom: 8px;background-color: #f1f6f7;border-color: #384aeb;color: #384aeb;"></a>
+				</div>
+
+				<span v-for="s in store_cookie" style="margin-left: 10px;">
+				<a :href="'detail.do?s_no='+s.s_no">
+				 <img :src="s.poster" style="width:120px; "></a>
+				 </span>
+	</div> -->
+   </div>
+  </div> 
+  </section>
+	<!-- ================ category section end ================= -->		  
+
 
 <script>
     new Vue({

@@ -9,128 +9,228 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
- <link rel="stylesheet" href='${path}/resources/css/cartstyle.css'>
-
-<!-- JS start -->
-
-
-<style>
-body{
-	padding: 0px;
-	
-}
-.shopping-cart{
-	margin: -45px 150px 45px 150px;
-}
-h1{
-	margin-left: 100px;
-	font-weight: 600;
-}
-</style>
+<link rel="stylesheet" href="../resource/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="../resource/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="../resource/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../resource/vendors/linericon/style.css">
+<link rel="stylesheet" href="../resource/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="../resource/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="../resource/vendors/nice-select/nice-select.css">
+<link rel="stylesheet" href="../resource/vendors/nouislider/nouislider.min.css">
 </head>
 
-	<body style="margin-top: 130px;">
-	<!-- partial:index.partial.html -->
-	<h2 style="margin-left: 155px;margin-bottom: 25px;">장바구니</h2>
-	 
-	<div class="shopping-cart" >
+	<body>
 	
-	  <div class="column-labels">
-	    <label class="product-image">이미지</label>
-	    <label class="product-details">상품</label>
-	    <label class="product-price">가격</label>
-	    <label class="product-quantity">수량</label>
-	  <!--   <label class="product-removal">취소</label> -->
-	    <label class="product-line-price" >합계</label>
-	  </div>
-	  
-	  <c:if test="${listsize==0 }">
-	        <table class="table">
-	          <tr style="height:500px">
-	            <td class="text-center" style="vertical-align:middle">
-	                <img src="http://1004towel.com/SG/img/cart_img_empty.gif" style="display: flex;margin-left: 600px;width: 500px;"><br>
-						 <a href="../main/main.do"><button class="checkout" style="margin-right: 150px">메인으로 가기</button></a>             
-	            </td>
-	          </tr>
-	        </table>
-	      </c:if>
-	<form action="../payment/pay_form.do" name="pay_frm" id="pay_frm" method="post">
-	 <c:if test="${listsize!=0 }">
-	  <h3 style="border-bottom: 7px solid #eee;margin-bottom: 29px;margin-top: 40px;">헬스장</h3>
-	  <c:forEach var="vo" items="${list }">
-	  <c:if test="${vo.cate==1 }">
-	  <div class="product">
-	    <div class="product-image">
-	      <img src="${vo.poster}">
-	    </div>
-	    <div class="product-details">
-	      <div class="product-title">${vo.name}</div>
-	    </div>
-	    <div class="product-quantity" data-price="${ vo.price}">${vo.price}</div>
-	    <!-- <div class="product-quantity">
-	      <input type="number" value="1" min="1">
-	    </div> -->
-	    <div class="product-quantity">&nbsp;${vo.account}</div> 
-	    <%-- <div class="product-quantity">${gvo.account} 개월 </div>  --%>
-	    <div class="product-removal">
-	   
-	     <a href="../cart/cart_cancel.do?no=${vo.no }"  style="margin: -2px 0px 0px 120px; width: 50px"class="btn btn-sm btn-danger">삭제</a>
-	       <div class="product-quantity" id="total2">${vo.total}</div>
-	    </div>
-	    
-	    
-	  <%--   <div class="product-line-price">${gvo.account}</div> --%>
-	  </div>
-	  </c:if>
-	  </c:forEach>
-	  <h3 style="border-bottom: 7px solid #eee;margin-bottom: 29px;margin-top: 40px;">쇼핑몰</h3>
-	  <c:forEach var="vo" items="${list }">
-	  <c:if test="${vo.cate==2 }">
-	  <div class="product">
-	    <div class="product-image">
-	      <img src="${vo.poster}">
-	    </div>
-	    <div class="product-details">
-	      <div class="product-title">${vo.name}</div>
-	    </div>
-	    <div class="product-quantity" data-price="${ vo.price}">${vo.price}</div>
-	    <!-- <div class="product-quantity">
-	      <input type="number" value="1" min="1">
-	    </div> -->
-	    <div class="product-quantity">&nbsp;${vo.account}</div> 
-	    <%-- <div class="product-quantity">${gvo.account} 개월 </div>  --%>
-	    <div class="product-removal">
-	     <div class="product-quantity" id="total2">${vo.total}</div>
-	    
-	     <a href="../cart/cart_cancel.do?no=${vo.no }"  style="margin: -2px 0px 0px 120px; width: 50px"class="btn btn-sm btn-danger">삭제</a>
-	      
-	    </div>
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>장바구니</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
+  
+  <!--================Cart Area =================-->
+  <section class="cart_area">
+      <div class="container"style="max-width: 1300px;">
+          <div class="cart_inner">
+              <div class="table-responsive">
+                  <table class="table">
+                      <c:if test="${listsize==0 }">
+				        <table class="table">
+				          <tr style="height:500px">
+				            <td class="text-center" style="vertical-align:middle">
+				                <img src="http://1004towel.com/SG/img/cart_img_empty.gif" style="display: flex;margin-left: 600px;width: 500px;"><br>
+									 <a href="../main/main.do"><button class="checkout" style="margin-right: 150px">메인으로 가기</button></a>             
+				            </td>
+				          </tr>
+				        </table>
+				      </c:if>
+                      <thead>
+                          <tr>
+                              <th scope="col">상품</th>
+                              <th scope="col">가격</th>
+                              <th scope="col">수량</th>
+                              <th scope="col">합계</th>
+                          	  <th scope="col">상태</th> 
+                          </tr>
+                      </thead>
+                      <form action="../payment/pay_form.do" name="pay_frm" id="pay_frm" method="post">
+                       <c:if test="${listsize!=0 }">
+                        <h3 style="border-bottom: 7px solid #eee;margin-bottom: 29px;margin-top: 40px;">헬스장</h3>
+						 <c:forEach var="vo" items="${list }">
+							 <c:if test="${vo.cate==1 }">
+		                      <tbody>
+		                          <tr>
+		                              <td>
+		                                  <div class="media">
+		                                      <div class="d-flex">
+		                                             <img src="${vo.poster}" alt="" style=" width: 100px;">
+		                                      </div>
+		                                      <div class="media-body">
+		                                          <p>${vo.name}</p>
+		                                      </div>
+		                                  </div>
+		                              </td>
+		                              <td>
+		                                  <h5 data-price="${ vo.price}">${vo.price}</h5>
+		                              </td>
+		                              <td>
+		                                  <div class="product_count">
+		                                    <!--   <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+		                                          class="input-text qty"> -->
+		                                      <div class="product-quantity">&nbsp;${vo.account}</div> 
+		                                  </div>
+		                              </td>
+		                              <td>
+		                                  <h5>${vo.total}</h5>
+		                              </td>
+		                          </tr>
+		                          </c:if>
+	 						 </c:forEach>
+	 						 
+	 						 <h3 style="border-bottom: 7px solid #eee;margin-bottom: 29px;margin-top: 40px;">쇼핑몰</h3>
+	 						  <c:forEach var="vo" items="${list }">
+								  <c:if test="${vo.cate==2 }">
+								   <tr>
+		                              <td>
+		                                  <div class="media">
+		                                      <div class="d-flex">
+		                                             <img src="${vo.poster}" alt="">
+		                                      </div>
+		                                      <div class="media-body">
+		                                          <p>${vo.name}</p>
+		                                      </div>
+		                                  </div>
+		                              </td>
+		                              <td>
+		                                  <h5 data-price="${ vo.price}">${vo.price}</h5>
+		                              </td>
+		                              <td>
+		                                  <div class="product_count">
+		                                    <!--   <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+		                                          class="input-text qty"> -->
+		                                      <div class="product-quantity">&nbsp;${vo.account}</div> 
+		                                  </div>
+		                              </td>
+		                              <td>
+		                                  <h5>${vo.total}</h5>
+		                              </td>
+		                          </tr>
+		                    	  </c:if>
+		                     </c:forEach>
+		                          <tr class="bottom_button">
+		                              <td>
+		                                  <a class="button" href="#">Update Cart</a>
+		                              </td>
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		                                  <div class="cupon_text d-flex align-items-center">
+		                                      <input type="text" placeholder="Coupon Code">
+		                                      <a class="primary-btn" href="#">Apply</a>
+		                                      <a class="button" href="#">Have a Coupon?</a>
+		                                  </div>
+		                              </td>
+		                          </tr>
+		                          <tr>
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		                                  <h5>최종 결제 금액</h5>
+		                              </td>
+		                              <td>
+		                                  <h5>${sum+sum1 }원</h5>
+		                              </td>
+		                          </tr>
+		                          <tr class="shipping_area">
+		                              <td class="d-none d-md-block">
+		
+		                              </td>
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		                                  <h5>Shipping</h5>
+		                              </td>
+		                              <td>
+		                                  <div class="shipping_box">
+		                                      <ul class="list">
+		                                          <li><a href="#">Flat Rate: $5.00</a></li>
+		                                          <li><a href="#">Free Shipping</a></li>
+		                                          <li><a href="#">Flat Rate: $10.00</a></li>
+		                                          <li class="active"><a href="#">Local Delivery: $2.00</a></li>
+		                                      </ul>
+		                                      <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
+		                                      <select class="shipping_select">
+		                                          <option value="1">Bangladesh</option>
+		                                          <option value="2">India</option>
+		                                          <option value="4">Pakistan</option>
+		                                      </select>
+		                                      <select class="shipping_select">
+		                                          <option value="1">Select a State</option>
+		                                          <option value="2">Select a State</option>
+		                                          <option value="4">Select a State</option>
+		                                      </select>
+		                                      <input type="text" placeholder="Postcode/Zipcode">
+		                                      <a class="gray_btn" href="#">Update Details</a>
+		                                  </div>
+		                              </td>
+		                          </tr>
+		                          <tr class="out_button_area">
+		                              <td class="d-none-l">
+		
+		                              </td>
+		                              <td class="">
+		
+		                              </td>
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		                                  <div class="checkout_btn_inner d-flex align-items-center">
+		                                      <a class="gray_btn" href="#">Continue Shopping</a>
+		                                      <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+		                                  </div>
+		                              </td>
+		                          </tr>
+		                         
+		                    	  </tbody>
+		                    	
+		                    	</c:if>
+	                      </from> 
+                  </table>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--================End Cart Area =================-->
 	
-	  </div>
-	  </c:if>
-	  </c:forEach>
-	
-	<c:forEach var="vo" items="${cList }">
-	  <div class="totals">
-	    
-	   
-	  </div>
-	</c:forEach>
-	 <div class="totals-item totals-item-total" style="display: flex;flex-direction: row;justify-content: flex-end;">
-	      <label>최종 결제 금액</label>
-			 <div class="totals" id="total" name="total"><span style="margin-left: 114px;">${sum+sum1 }원</span></div>
-	    </div>
-	      </c:if>
-		 <input type="hidden" name="no" value="${vo.no }">
-		  <c:if test="${listsize!=0 }">
-		 	<input type="submit" class="checkout" id="payBtn" value="결제하기">
-		 </c:if>
-		   <input type="button" class="backtolist" onclick="javascript:history.back()" value="목록으로">
-	    	   
-	</div>
-	 </form>
-	
+
+  <script src="../resource/vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../resource/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="../resource/vendors/skrollr.min.js"></script>
+  <script src="../resource/vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="../resource/vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="../resource/vendors/jquery.ajaxchimp.min.js"></script>
+  <script src="../resource/vendors/mail-script.js"></script>
+  <script src="../resource/js/main.js"></script>
 	</body>
 </html>
 

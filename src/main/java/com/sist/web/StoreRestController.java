@@ -48,7 +48,7 @@ public class StoreRestController {
  	   
  		  int curpage=Integer.parseInt(page);
 	 	   Map map=new HashMap();
-	 	   int rowSize=9;
+	 	   int rowSize=12;
 	 	   
 	 	   if(cate==3)
 	 	   {
@@ -153,7 +153,7 @@ public class StoreRestController {
 	 	  
 	    	try
 	    	{
-	    		 String[] c_no={"","a","w","m"};
+	    		 String[] c_no={"","a","w","m","k","n","i","g","f"};
 	    		//String[] table_name={"","seoul_location","seoul_nature","seoul_shop"};
 	    		Map map=new HashMap();
 	    		map.put("s_no", s_no);
