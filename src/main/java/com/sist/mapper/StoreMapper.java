@@ -38,11 +38,11 @@ public interface StoreMapper {
 		public List<StoreVO> storeaListData(Map map);
 		
 		// 총페이지
-		@Select("SELECT CEIL(COUNT(*)/45.0) FROM t4_s_all "
+		@Select("SELECT CEIL(COUNT(*)/9.0) FROM t4_s_all "
 				+ "WHERE c_no=#{c_no}")
 		public int storeTotalPage(Map map);
 		
-		@Select("SELECT CEIL(COUNT(*)/45.0) FROM t4_s_all")
+		@Select("SELECT CEIL(COUNT(*)/9.0) FROM t4_s_all")
 		public int storeaTotalPage(Map map);
 		
 		//디테일 

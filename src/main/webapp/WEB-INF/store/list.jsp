@@ -168,11 +168,13 @@
             
             <div style="height: 20px;"></div>
 			
-			<div class="text-center" style="text-align: center;">
-			    <input type="button" class="btn btn-lg btn-warning" value="이전"style="background-color: black;color: white;" @click="prev()"/>
-			    {{curpage}} page / {{totalpage}} pages
-			    <input type="button" class="btn btn-lg btn-success" value="다음"style="background-color: black;color: white;" @click="next()"/>
-			</div>
+				<div class="text-center" style="text-align: center;">
+				    <input type="button" class="btn btn-lg btn-warning" value="이전"style="background-color: #f1f6f7;color: #384aeb;height: 40px;
+    					border-color: #384aeb;" @click="prev()"/>
+				    {{curpage}} page / {{totalpage}} pages
+				    <input type="button" class="btn btn-lg btn-success" value="다음"style="background-color: #f1f6f7;color: #384aeb;height: 40px;
+    					border-color: #384aeb;" @click="next()"/>
+				</div>
 			
 			  <div class="row" id="cookie" style="display: inline; margin-top: 60px">
 				<div style="font-size: 27px; font-weight: 600">최근에 본 상품
