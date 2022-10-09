@@ -92,6 +92,7 @@ public class PostController {
 		return "post/news_edit";
 	}
 	
+	
 	//********	블로그 ********//
 	@GetMapping("post/blog.do")
 	public String post_blog(String b_no, Model model)
@@ -103,6 +104,11 @@ public class PostController {
 	{
 		model.addAttribute("b_no", b_no);
 		return "post/blog_detail";
+	}
+	@GetMapping("post/blog_insert.do")
+	public String post_blog_insert()
+	{
+		return "post/blog_insert";
 	}
 	
 	@GetMapping("post/blog_edit.do")

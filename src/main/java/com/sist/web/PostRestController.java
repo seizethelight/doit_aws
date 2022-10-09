@@ -17,6 +17,7 @@ import com.sist.dao.PostDAO;
 import com.sist.vo.BlogVO;
 import com.sist.vo.CartVO;
 import com.sist.vo.ForumVO;
+import com.sist.vo.NewsLikeVO;
 import com.sist.vo.NewsVO;
 import com.sist.vo.QnaVO;
 import com.sist.vo.ReplyVO;
@@ -117,6 +118,7 @@ public class PostRestController {
 		String result = "";
 		QnaVO vo = dao.qnaEditData(q_no);
 		JSONObject obj = new JSONObject();
+		
 		obj.put("q_no", vo.getQ_no());
 		obj.put("title", vo.getTitle());
 		obj.put("id", vo.getId());
@@ -268,16 +270,12 @@ public class PostRestController {
 	}
 	
 	// news like
-	@GetMapping("post/news_like.do")
-	public String news_like_insert(int n_no, HttpSession session)
+	@GetMapping(value = "post/news_like.do", produces = "text/plain;charset=utf-8")
+	public String post_news_like(NewsLikeVO vo, HttpSession session) 
 	{
 		String sid=(String)session.getAttribute("id");
-		Map map=new HashMap();
-		map.put("n_no", n_no);
-		map.put("sid", sid);
-		dao.newsLike(n_no, map);
-		return "redirect:../post/news_detail.do?n_no="+n_no;
-		
+		dao.newsLike(vo);
+		return "OK";
 	}
 
 	/**************** blog ****************/
@@ -310,6 +308,7 @@ public class PostRestController {
 				obj.put("dbday", vo.getDbday());
 				obj.put("hit", vo.getHit());
 				obj.put("cate", vo.getCate());
+				obj.put("img", vo.getImg());
 
 				if (k == 0) {
 					obj.put("curpage", curpage);
@@ -339,11 +338,18 @@ public class PostRestController {
 		obj.put("dbday", vo.getDbday());
 		obj.put("hit", vo.getHit());
 		obj.put("cate", vo.getCate());
+		obj.put("img", vo.getImg());
 		
 		result = obj.toJSONString();
 		return result;
 	}
-
+	
+	// blog_insert
+	@GetMapping(value = "post/blog_insert.do", produces = "text/plain;charset=utf-8")
+	public String post_blog_insert(BlogVO vo) {
+		dao.blogInsertData(vo);
+		return "OK";
+	}
 	// blog delete
 	@GetMapping(value = "post/blog_delete.do", produces = "text/plain;charset=utf-8")
 	public String blog_delete(int b_no) {
@@ -425,7 +431,7 @@ public class PostRestController {
 		ForumVO vo = dao.forumDetailData(f_no);
 		JSONObject obj = new JSONObject();
 		String sid = (String) session.getAttribute("id");
-
+		
 		obj.put("f_no", vo.getF_no());
 		obj.put("title", vo.getTitle());
 		obj.put("content", vo.getContent());

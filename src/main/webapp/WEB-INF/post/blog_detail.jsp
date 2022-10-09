@@ -34,7 +34,7 @@
 	<div class="single-post row">
 		<div class="col-lg-12">
 			<div class="feature-img">
-				<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
+				<img class="img-fluid" :src="vo.img" alt="">
 			</div>
 		</div>
 		<div class="col-lg-3  col-md-3">
@@ -84,7 +84,7 @@
 					<a :href="'../post/blog_edit.do?b_no='+b_no"><input type="button" value="Edit" ></a>
 				</li>
 				<li class="nav-item">
-					<a :href="../post/blog.do"><input type="button" class="nav-link active" value="Back"></a>
+					<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
 				</li>
 			</ul>
 		</div>
@@ -262,7 +262,7 @@ new Vue({
 	   			}
 	   		}).then(function(result){
 	   			console.log( "삭제 완료");
-	   			alert("삭제 완료")
+	   			alert("삭제 완료");
 	   			location.href="../post/blog.do"
 	   		})
 		}

@@ -21,6 +21,7 @@
 			<div class='main'>
 				<div class='main__content'>
 					<h1 class='h1 title'>
+						<i class='fas fa-home'></i> <span>BLOG</span>
 					</h1>
 					<div class='table-card'>
 						<div class="qnainsert_container">
@@ -53,13 +54,13 @@
 									<tr>
 										<td id='tour-table'>Content</td>
 										<td>
-											<textarea class="insert_body" rows="15" cols="70" v-model="content" ref="content" placeholder="포럼 내용을 작성하세요"></textarea>
+											<textarea class="insert_body" rows="15" cols="70" v-model="content" ref="content" placeholder="블로그 내용을 작성하세요"></textarea>
 										</td>
 									</tr>
 								</thead>
 							</table>
 							<div class='insert-button'>
-								<input type="button" value="글쓰기" v-on:click="forumInsert()">
+								<input type="button" value="글쓰기" v-on:click="blogInsert()">
 								<input type="button" value="취소"
 									onclick="javascript:history.back()">
 							</div>
@@ -80,7 +81,7 @@ new Vue({
 		cate:''
 	},
 	methods:{
-		forumInsert:function(){
+		blogInsert:function(){
 			// 유효성 검사 
 			if(this.title.trim()=="")
 			{
@@ -94,7 +95,7 @@ new Vue({
 			}
 			
 			// 전송  => ?name=
-			axios.get("http://localhost:8080/web/post/forum_insert.do",{
+			axios.get("http://localhost:8080/web/post/blog_insert.do",{
 				params:{
 					id:this.id,
 					title:this.title,
@@ -102,25 +103,9 @@ new Vue({
 					cate:this.cate
 				}
 			}).then(function(result){
-				location.href="../post/forum.do";
+				location.href="../post/blog.do";
 			})
 		}
-	}
-})
-new Vue({
-	el : '.tableid',
-	data : {
-		id:${id}
-	},
-	mounted : function(){
-		let _this=this;
-		axios.get("http://localhost:8080/web/post/forum_insert.do", {
-			params : {
-				id : _this.id
-			}
-		}).then(function(result){
-			_this.vo=result.data;
-		})
 	}
 })
 </script>

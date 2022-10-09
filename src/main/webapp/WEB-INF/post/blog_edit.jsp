@@ -38,15 +38,15 @@
 											<td width=30% class="tablesub"></td>
 										</tr>
 										<tr>
-											<td id='tour-table'>TITLE</td>
-											<td colspan="3">
+											<td id='tour-table'>Title</td>
+											<td colspan="3" class="edittitle">
 												<input type="text" v-model="title" ref="title" placeholder="변경할 제목을 입력하세요">
 												<p class="beforeedit-data" colspan="3">{{vo.title}}</p>
 											</td>
 										</tr>
 										<tr>
 											<td id='tour-table'>Content</td>
-											<td colspan="3">
+											<td colspan="3" class="editcontent">
 												<textarea rows="10" cols="70" v-model="content" ref="content" placeholder="변경할 블로그 내용을 작성하세요"></textarea>
 												<p class="beforeedit-data" colspan="4">{{vo.content}}</p>
 											</td>
@@ -54,10 +54,20 @@
 										
 									</thead>
 								</table>
-								<div class='insert-button'>
-									<input type="button" value="수정" v-on:click="blogEdit()">
-									<input type="button" value="돌아가기" onclick="javascript:history.back()">
-								</div>
+								<!--================ 수정 네비게이션 시작 =================-->
+									<div class="post_navigation_area">
+										<div class="nav_container">
+											<ul class="nav nav-tabs" id="myTab" role="tablist">
+												<li class="nav-item">
+													<input type="button" value="수정" v-on:click="blogEdit()">
+												</li>
+												<li class="nav-item">
+													<input type="button" value="돌아가기" onclick="javascript:history.back()">
+												</li>
+											</ul>
+										</div>
+									</div>
+								<!--================ 수정 네비게이션 끝 =================-->
 						</div>
 					</div>
 				</div>

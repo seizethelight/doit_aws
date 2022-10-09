@@ -42,16 +42,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">{{vo.hit}} Views
-                            <i class="lnr lnr-eye"></i>
-                        </a>
+                       <a href="#">{{vo.hit}} Views
+                           <i class="lnr lnr-eye"></i>
+                       </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="col-md-9">
             <div class="blog_post">
-                <img src="img/blog/main-blog/m-blog-1.jpg" alt="">
+                <!-- <img src="img/blog/main-blog/m-blog-1.jpg" alt=""> -->
                 <div class="blog_details">
                     <a href="single-blog.html">
                         <h2>{{vo.title}}</h2>

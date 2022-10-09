@@ -39,24 +39,24 @@
 										</td>
 									</tr>
 									<tr>
-										<div>
-											<input type="radio" v-model="cate" value="HEALTH" checked>HEALTH
+										<td>Category</td>
+										<td>
+											<input type="radio" v-model="cate" value="HEALTH">HEALTH
 											<input type="radio" v-model="cate" value="FOOD">FOOD
 											<input type="radio" v-model="cate" value="WORKOUT">WORKOUT
 											<input type="radio" v-model="cate" value="DIET">DIET
-										</div>
+										</td>
 									</tr>
 									<tr>
 										<td class='insert_head'>Content</td>
-										<td><textarea class="insert_body" style="height:200px;"rows="10" cols="70" v-model="content" ref="content" placeholder="기사 내용을 작성하세요"></textarea></td>
+										<td><textarea class="insert_body" rows="15" cols="70" v-model="content" ref="content" placeholder="기사 내용을 작성하세요"></textarea></td>
 									</tr>
 								</thead>
 							</table>
 							
 							<div class='insert-button'>
-								<input type="button" value="글쓰기" v-on:click="newsInsertData()">
-								<input type="button" value="취소"
-									onclick="javascript:history.back()">
+								<input type="button" value="글쓰기" v-on:click="newsInsert()">
+								<input type="button" value="취소" onclick="javascript:history.back()">
 							</div>
 					</div>
 				</div>
@@ -66,24 +66,15 @@
 	<!-- partial -->
 	<script>
 		new Vue({
-			el : '.main',
+			el : '.main__content',
 			data : {
 				id : '<%= (String)session.getAttribute("id") %>',
 				title : '',
 				content : '',
 				cate : ''
 			},
-			mounted:function(){
-				let _this=this;
-				axios.get("http://localhost:8080/web/post/news_insert.do",{
-					params:{
-					}
-				}).then(function(result){
-					_this.vo=result.data;
-				})
-			},
 			methods : {
-				newsInsertData : function() {
+				newsInsert : function() {
 					// 유효성 검사 
 					if (this.title.trim() == "") {
 						this.$refs.title.focus();
@@ -94,15 +85,14 @@
 						return;
 					}
 
-					axios.get("http://localhost:8080/web/post/news_insert.do",
-							{
-								params : {
-									id : this.id,
-									title : this.title,
-									content : this.content,
-									cate : this.cate
-								}
-							}).then(function(result) {
+					axios.get("http://localhost:8080/web/post/news_insert.do",{
+						params : {
+							id : this.id,
+							title : this.title,
+							content : this.content,
+							cate : this.cate
+						}
+					}).then(function(result) {
 						location.href = "../post/news.do";
 					})
 				}

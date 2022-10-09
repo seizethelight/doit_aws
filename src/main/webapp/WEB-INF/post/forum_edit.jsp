@@ -18,10 +18,6 @@
 			<div class='main'>
 				<div class='container'>
 					<div class='main__content'>
-						<h1 class='h1 title'>
-							<i class='fas fa-home'></i> 
-							<span>Blog</span>
-						</h1>
 						<div class='table-card'>
 								<table class='table'>
 									<thead class='container'>
@@ -35,29 +31,42 @@
 											<td width=20% class="tablehead">RegDate</td>
 											<td width=30% class="tablesub">{{vo.dbday}}</td>
 											<td width=20% class="tablehead">Recent Edit</td>
-											<td width=30% class="tablesub"></td>
+											<td width=30% class="tablesub">{{vo.etdate}}</td>
 										</tr>
 										<tr>
-											<td id='tour-table'>TITLE</td>
-											<td colspan="3">
-												<input type="text" v-model="title" ref="title" placeholder="변경할 제목을 입력하세요">
+											<td id='tour-table'>Title</td>
+											<td colspan="3" class="edittitle">
+												<input type="text" v-model="title" ref="title" 
+													placeholder="변경할 제목을 입력하세요"  style="border:0">
 												<p class="beforeedit-data" colspan="3">{{vo.title}}</p>
 											</td>
 										</tr>
 										<tr>
 											<td id='tour-table'>Content</td>
-											<td colspan="3">
-												<textarea rows="10" cols="70" v-model="content" ref="content" placeholder="변경할 포럼 내용을 작성하세요"></textarea>
+											<td colspan="3" class="editcontent">
+												<textarea rows="15" cols="70" v-model="content" ref="content" 
+													placeholder="변경할 포럼 내용을 작성하세요" style="border:0"></textarea>
 												<p class="beforeedit-data" colspan="4">{{vo.content}}</p>
 											</td>
 										</tr>
 										
 									</thead>
 								</table>
-								<div class='insert-button'>
-									<input type="button" value="수정" v-on:click="forumEdit()">
-									<input type="button" value="돌아가기" onclick="javascript:history.back()">
-								</div>
+								<!--================ 수정 네비게이션 시작 =================-->
+									<div class="post_navigation_area">
+										<div class="nav_container">
+											<ul class="nav nav-tabs" id="myTab" role="tablist">
+												<li class="nav-item">
+													<input type="button" value="수정" v-on:click="forumEdit()">
+												</li>
+												<li class="nav-item">
+													<input type="button" value="돌아가기" onclick="javascript:history.back()">
+												</li>
+											</ul>
+										</div>
+									</div>
+								<!--================ 수정 네비게이션 끝 =================-->
+								
 						</div>
 					</div>
 				</div>

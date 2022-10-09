@@ -23,8 +23,8 @@
 			</aside>
 			<%-- <c:if test="${sessionScope.id!=null }"> --%>
 			<aside class="single_sidebar_widget author_widget">
-				<img class="author_img rounded-circle" src="${path }/resources/img/blog/author.png" alt="">
-				<h4>글쓰기</h4>
+				<img class="author_img rounded-circle" src="https://cdn.pixabay.com/photo/2014/02/13/07/28/wordpress-265132_960_720.jpg" alt="">
+				<h3>글쓰기</h3>
 				<p>Share your experience</p>
 				<div class="social_icon">
 					<a class="button-blog" href="../post/forum_insert.do">포럼</a>

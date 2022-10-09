@@ -11,25 +11,6 @@
 </head>
 <body>
 
-
-	<!-- ================ start banner area ================= -->
-	<!-- 	<section class="blog-banner-area" id="blog">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Blog Details</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section> -->
-	<!-- ================ end banner area ================= -->
-
 	<!--================Blog Area =================-->
 	<div class="single-post row">
 		<div class="col-lg-12">
@@ -73,9 +54,26 @@
 		</div>
 	</div>
 	
+	<!--================ 포스트 네비게이션 시작 =================-->
+	<div class="post_navigation_area">
+		<div class="nav_container">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+				<input type="button" class="nav-link active" value="Delete" id='vdelete' v-on:click="qnaDelete()">
+				</li>
+				<li class="nav-item">
+					<a :href="'../post/qna_edit.do?q_no='+q_no">
+					<input type="button" value="Edit" ></a>
+				</li>
+				<li class="nav-item">
+					<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
+				</li>
+			</ul>
+		</div>
+	</div>
+<!--================ 포스트 네비게이션 끝 =================-->
 	
-	
-	<!--================ 페이지 이동 =================-->
+<!--================ 페이지 이동 =================-->
 	<div class="navigation-area">
 		<div class="row">
 			<div
@@ -140,9 +138,9 @@ new Vue({
    	}
 }),
 new Vue({
-	el:'.insert-button',
+	el:'.post_navigation_area',
 	data:{
-		q_no:${q_no}
+		q_no:${q_no},
 	},
 	methods:{
 		qnaDelete:function(){
@@ -153,7 +151,7 @@ new Vue({
 	   			}
 	   		}).then(function(result){
 	   			console.log( "삭제 완료");
-	   			alert("삭제 완료")
+	   			alert("삭제 완료");
 	   			location.href="../post/qna.do"
 	   		})
 		}

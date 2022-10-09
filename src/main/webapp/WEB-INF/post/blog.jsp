@@ -50,14 +50,14 @@
         </div>
         <div class="col-md-9">
             <div class="blog_post">
-                <img src="${path }/resources/img/blog/main-blog/m-blog-1.jpg" alt="">
-                <div class="blog_details">
-                    <a href="single-blog.html">
-                        <h2>{{vo.title}}</h2>
-                    </a>
-                    <p style="max-height : 70px; overflow : hidden;">{{vo.content}}</p>
-                    <a class="button button-blog" :href="'../post/blog_detail.do?b_no='+vo.b_no">View More</a>
-                </div>
+	            <img :src="vo.img" alt="">
+	            <div class="blog_details">
+	                <a href="single-blog.html">
+	                    <h2>{{vo.title}}</h2>
+	                </a>
+	                <p style="max-height : 70px; overflow : hidden;">{{vo.content}}</p>
+	                <a class="button button-blog" :href="'../post/blog_detail.do?b_no='+vo.b_no">View More</a>
+	            </div>
             </div>
         </div>
     </article>
@@ -116,7 +116,8 @@ new Vue(
 		data : {
 			blog_list : [],
 			curpage : 1,
-			totalpage : 0
+			totalpage : 0,
+			img : ''
 		},
 		mounted : function() {
 			let _this = this;

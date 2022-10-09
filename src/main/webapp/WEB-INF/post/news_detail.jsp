@@ -56,12 +56,12 @@
 	
 	
 	<!--================ 좋아요 =================-->
-<!-- 
+
 	<a style="cursor:pointer;" :href="'../post/news_like.do?n_no='+vo.n_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
  	<a style="cursor:pointer;" :href="../main/main.do"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
--->  
+ 
   <div class='lhbutton'>
-		<button id="like" class="selected">Like</button>
+		<button id="like" class="selected" v-on:click="newsLike()">Like</button>
 		<button id="dislike">Dislike</button>
 	</div>
 	
@@ -79,7 +79,7 @@
 					<a :href="'../post/news_edit.do?n_no='+n_no"><input type="button" value="Edit" ></a>
 				</li>
 				<li class="nav-item">
-					<a :href="../post/news.do"><input type="button" class="nav-link active" value="Back"></a>
+					<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
 				</li>
 			</ul>
 		</div>
@@ -152,11 +152,11 @@ new Vue({
    			_this.vo=result.data;
    		})
    	}
-})
+}),
 new Vue({
 	el:'.post_navigation_area',
 	data:{
-		n_no:${n_no}
+		n_no:${n_no},
 	},
 	methods:{
 		newsDelete:function(){
@@ -167,26 +167,32 @@ new Vue({
 	   			}
 	   		}).then(function(result){
 	   			console.log( "삭제 완료");
-	   			alert("삭제 완료")
+	   			alert("삭제 완료");
 	   			location.href="../post/news.do"
 	   		})
 		}
 	}
-})
-new Vue ({
-	el: ".modalcard",
-	data:{
-			openModal : false
+}),
+new Vue({
+	el:'.lhbutton',
+	data : {
+		n_no : ${n_no},
+		sid : '<%= (String)session.getAttribute("id") %>',
+		l_no: ''
 	},
-	methods: {
-		close:function(event){
-			if(event.target.classList.contains('black-bg') || event.target.classList.contains('close')){
-				this.openModal = false;
-			} else if (event.target.classList.contains('white-bg')){
-				this.openModal = true;
-			}
+	methods : {
+		newsLike : function(){
+			let _this=this;
+			axios.get("http://localhost:8080/web/post/news_like.do",{
+				params : {
+					
+				}
+			}).then(function(result){
+				console.log(result.data);
+				this.lvo=result.data;
+			})
 		}
-	},
+	}
 })
 </script>
 </body>

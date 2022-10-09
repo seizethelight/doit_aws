@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class BlogVO {
 	private int b_no, hit;
-	private String id, title, content, dbday, cate;
+	private String id, title, content, dbday, cate, img;
 	private Date regdate;
 }

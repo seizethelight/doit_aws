@@ -51,7 +51,7 @@
     </div>
   </section>
   <!-- ================ end banner area ================= -->
-		<section class="blog_area single-post-area py-80px section-margin--small" style="margin-top:0px;">
+		<section class="blog_area single-post-area py-80px section-margin--small" style="margin-top:30px;">
 			<div class="container">
 					<div class="row">
 						<div class="col-lg-8 posts-list">

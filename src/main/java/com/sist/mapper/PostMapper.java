@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.BlogVO;
 import com.sist.vo.ForumVO;
+import com.sist.vo.NewsLikeVO;
 import com.sist.vo.NewsVO;
 import com.sist.vo.QnaVO;
 import com.sist.vo.ReplyVO;
@@ -74,10 +75,10 @@ public interface PostMapper {
 	@Update("UPDATE T4_NEWS SET hit=hit+1 WHERE n_no=#{n_no}")
 	public void newsHitIncrement(int n_no);
 
-	// news 좋아요 +
-	@Update("UPDATE T4_NEWS SET goodcount=goodcount+1 WHERE n_no=#{n_no}")
-	public void newsGoodcountIncrement(int n_no);
-	
+//	// news 좋아요 +
+//	@Update("UPDATE T4_NEWS SET goodcount=goodcount+1 WHERE n_no=#{n_no}")
+//	public void newsGoodcountIncrement(int n_no);
+//	
 	// news top
 	@Select("SELECT * FROM ( SELECT * FROM T4_NEWS ORDER BY hit DESC) WHERE rownum <= 3")
 	public List<NewsVO> newsTop();
@@ -85,7 +86,7 @@ public interface PostMapper {
 	// news 추가
 	@SelectKey(keyProperty = "n_no", resultType = int.class, before = true,
 			statement = "SELECT NVL(MAX(n_no)+1,1) as n_no FROM T4_NEWS")
-	@Insert("INSERT INTO T4_NEWS VALUES(#{n_no}, #{title}, #{content} ,SYSDATE, 0, 0, 0, #{id}, SYSDATE, #{cate})")
+	@Insert("INSERT INTO T4_NEWS VALUES(#{n_no}, #{title}, #{content} ,SYSDATE, 0, 0, 0, #{id}, SYSDATE, #{cate}, 0)")
 	public void newsInsertData(NewsVO vo);
 	
 	// news 삭제
@@ -105,9 +106,9 @@ public interface PostMapper {
 	
 	// 뉴스 좋아요
 	@SelectKey(keyProperty = "l_no", resultType = int.class, before = true,
-	statement = "SELECT NVL(MAX(l_no)+1,1) as q_no FROM T4_NEWS_LIKE")
+			statement = "SELECT NVL(MAX(l_no)+1,1) as q_no FROM T4_NEWS_LIKE")
 	@Insert("INSERT INTO T4_NEWS_LIKE VALUES(#{l_no}, #{n_no}, #{id})")
-	public void newsLike(Map map);
+	public void newsLike(NewsLikeVO vo);
 	
 	@Update("UPDATE T4_NEWS SET likecount = likecount+1 WHERE n_no=#{n_no}")
 	public void newsLikeIncrement(int n_no);
@@ -116,9 +117,9 @@ public interface PostMapper {
 	
 	//*********** 블로그 ***********//
 	// blog 리스트
-	@Select("SELECT b_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, cate, hit, num "
-			+ "FROM (SELECT b_no, title, content, regdate, id, cate, hit, rownum as num "
-			+ "FROM (SELECT b_no, title, content, regdate, id, cate, hit "
+	@Select("SELECT b_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, cate, img, hit, num "
+			+ "FROM (SELECT b_no, title, content, regdate, id, cate, img, hit, rownum as num "
+			+ "FROM (SELECT b_no, title, content, regdate, id, cate, img, hit "
 			+ "FROM T4_BLOG ORDER BY regdate DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<BlogVO> blogListData(Map map);
@@ -127,12 +128,18 @@ public interface PostMapper {
 	public int blogTotalPage();
 	
 	// blog 디테일
-	@Select("SELECT b_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, cate FROM T4_BLOG WHERE b_no=#{b_no}")
+	@Select("SELECT b_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, cate, img FROM T4_BLOG WHERE b_no=#{b_no}")
 	public BlogVO blogDetailData(int b_no);
 	
 	// blog 디테일 조회수 증가
 	@Update("UPDATE T4_BLOG SET hit=hit+1 WHERE b_no=#{b_no}")
 	public void blogHitIncrement(int b_no);
+	
+	// forum 인서트
+	@SelectKey(keyProperty = "b_no", resultType = int.class, before = true,
+	statement = "SELECT NVL(MAX(b_no)+1,1) as q_no FROM T4_BLOG")
+	@Insert("INSERT INTO T4_BLOG VALUES(#{id}, #{title}, #{content}, SYSDATE, #{b_no}, 0,#{cate}, 0)")
+	public void blogInsertData(BlogVO vo);
 	
 	// blog 삭제
 	@Delete("DELETE FROM T4_BLOG WHERE b_no=#{b_no}")
@@ -169,7 +176,7 @@ public interface PostMapper {
 	// forum 인서트
 	@SelectKey(keyProperty = "f_no", resultType = int.class, before = true,
 	statement = "SELECT NVL(MAX(f_no)+1,1) as q_no FROM T4_FORUM")
-	@Insert("INSERT INTO T4_FORUM VALUES(#{f_no}, #{title}, #{content}, SYSDATE, 0, SYSDATE, #{id} )")
+	@Insert("INSERT INTO T4_FORUM VALUES(#{f_no}, #{title}, #{content}, SYSDATE, 0, SYSDATE, #{id}, #{cate}  )")
 	public void forumInsert(ForumVO vo);
 
 	// forum 삭제

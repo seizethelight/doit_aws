@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.sist.mapper.PostMapper;
 import com.sist.vo.BlogVO;
 import com.sist.vo.ForumVO;
+import com.sist.vo.NewsLikeVO;
 import com.sist.vo.NewsVO;
 import com.sist.vo.QnaVO;
 import com.sist.vo.ReplyVO;
@@ -124,10 +125,9 @@ public class PostDAO {
 		return mapper.likeCheck(map);
 	}
 	// news like
-	public void newsLike(int n_no, Map map)
+	public void newsLike(NewsLikeVO vo)
 	{
-		mapper.newsLikeIncrement(n_no);
-		mapper.newsLike(map);
+		mapper.newsLike(vo);
 	}
 	
 	//*********** 블로그 ***********//	
@@ -142,7 +142,11 @@ public class PostDAO {
 		return mapper.blogTotalPage();
 	}
 	
-	
+	// blog insert
+	public void blogInsertData(BlogVO vo)
+	{
+		mapper.blogInsertData(vo);
+	}
 	// blog detail
 	public BlogVO blogDetailData(int b_no)
 	{
