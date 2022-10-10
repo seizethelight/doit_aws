@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path }/resources/css/admin/userinfo.css" type="text/css">
-<link rel="stylesheet" href="css/admin_community.css">
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
@@ -37,38 +36,15 @@ main {
     margin-bottom: 15px;
 }
 #wrapper{
-	margin-top: 100px;
+	margin-top: 20px;
 	width: 100%;
 	margin-left:auto;
 	margin-right:auto;
 }
 #keywords thead tr th {
-    background-color: black;
-}
-.pagination li a {
-    transition: all 100ms ease-in-out 0s;
-    background-color: #FFFFFF;
-    border-radius: 5px 5px 5px 5px;
-    color: #69696E;
-    display: block;
-    height: 30px;
-    margin: 0 3px;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    width: 30px;
-}
-.pagination li a:hover {
-    background-color: #F34100;
-    color: #FFFFFF;
-}
-.pagination li.active a {
-    background-color: #F34100;
-    color: #FFFFFF;
-}
-.pagination li.active a:hover {
-    color: #F34100;
+    background-color: white;
+    border-bottom: 2px solid #f1f6f7;
+    color: #384aeb;
 }
 input[type="button"],input[type="submit"] {
 	box-sizing: border-box;
@@ -76,21 +52,12 @@ input[type="button"],input[type="submit"] {
 	height: 32px;
 }
 input[type="button"]{
-	background-color: #f67831;
-	border: 2px solid transparent;
+	background-color: #384aeb;
+	color: #ffffff;
 }
 input[type="button"]:hover{
 	background-color: #ffffff;
-	border: 2px solid #f67831;
-	color: black;
-}
-input[type="submit"] {
-	background-color: #eb3c5a;
-	border: 2px solid transparent;
-}
-input[type="submit"]:hover {
- 	background-color: #ffffff;
-	border: 2px solid #eb3c5a;
+	border: 2px solid #384aeb;
 	color: black;
 }
 </style>

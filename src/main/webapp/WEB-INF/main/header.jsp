@@ -77,10 +77,10 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">MyPage</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="../mypage/myinfo.do">내 정보</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../mypage/payment.do">구매내역</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../cart/cart_list.do">장바구니내역</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../mypage/mylike.do">좋아요내역</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/myinfo.do">MyInfo</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/payment.do">Payment</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../cart/cart_list.do">Cart</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/mylike.do">MyLike</a></li>
                 </ul>
               </li>
 			  <c:if test="${sessionScope.admin=='admin'}">	
@@ -88,7 +88,7 @@
                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Admin</a>
                <ul class="dropdown-menu">
-                <li class="nav-item"><a class="nav-link" href="../admin/userinfo.do">회원정보 관리</a></li>
+                <li class="nav-item"><a class="nav-link" href="../admin/userinfo.do">UserInfo</a></li>
                </ul>
               </li>
               </c:if>

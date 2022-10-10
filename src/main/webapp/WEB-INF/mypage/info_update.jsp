@@ -120,6 +120,9 @@
   input[type="text"]:read-only{
   	background-color: white;
   }
+  .login_form_inner h3 {
+  	margin-bottom: 40px;
+  }
   </style>
 </head>
 <body>
@@ -128,11 +131,11 @@
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>Register</h1>
+					<h1>Mypage</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Register</li>
+              <li class="breadcrumb-item"><a href="#">Mypage</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Changing Information</li>
             </ol>
           </nav>
 				</div>
@@ -145,58 +148,39 @@
 	<section class="login_box_area section-margin">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6">
-					<div class="login_box_img">
-						<div class="hover">
-							<h4>Already have an account?</h4>
-							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
-							<a class="button button-account" href="login.html">Login Now</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="login_form_inner register_form_inner">
-						<h3>Create an account</h3>
-						<form class="row login_form" method="post" action="../member/join_ok.do" id="register_form" >
-							<div class="col-md-9 form-group">
-								<input type="text" class="form-control" id="myid" name="id" placeholder="UserID" readonly onblur="this.placeholder = 'UserID'">
+						<h3>Edit Your Information</h3>
+						<form class="row login_form" method="post" action="../mypage/info_update_ok.do" id="register_form" >
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="myid" name="id" placeholder="UserID" value="${vo.id }" readonly onblur="this.placeholder = 'UserID'">
 							</div>
-								<input type="button" class="col-md-2 button button-ck" id="idcheck" name="idcheck" value="중복체크">
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="pw" name="pw" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-              				</div>
-							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" value="${vo.name }" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
               				</div>
 							<div class="col-md-6 form-group">
-								<input type=date name="birth" size=20 style="text-align: left">
+								<input type=date name="birth" value="${vo.birth }" size=20 style="text-align: left">
 							</div>
 							<span class="sexCk">
-								<label><input type=radio name="sex" value="남자" checked="checked">남자&nbsp;</label>
-								<label><input type=radio name="sex" value="여자">여자</label>
+								<label><input type=radio name="sex" value="남자" checked="checked" ${vo.sex=='남자'?"checked":"" }>남자</label>
+								<label><input type=radio name="sex" value="여자" ${vo.sex=='여자'?"checked":"" }>여자</label>
 							</span>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+								<input type="text" class="form-control" value="${vo.email }" id="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
               				</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
+								<input type="text" class="form-control" value="${vo.phone }" id="phone" name="phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'">
               				</div>
               				<div class="col-md-9 form-group">
-								<input type="text" class="form-control" id="post" name="zipcode" placeholder="Zipcode" readonly onblur="this.placeholder = 'Zipcode'">
+								<input type="text" class="form-control" value="${vo.zipcode }" id="post" name="zipcode" placeholder="Zipcode" readonly onblur="this.placeholder = 'Zipcode'">
 							</div>
 								<input type="button" class="col-md-2 button button-ck" id="postBtn" value="우편검색">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="addr1" name="addr1" placeholder="Address1" readonly onblur="this.placeholder = 'Address1'">
+								<input type="text" class="form-control" value="${vo.addr1 }" id="addr1" name="addr1" placeholder="Address1" readonly onblur="this.placeholder = 'Address1'">
               				</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="addr2" name="addr2" placeholder="Address2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address2'">
+								<input type="text" class="form-control" value="${vo.addr2 }" id="addr2" name="addr2" placeholder="Address2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address2'">
               				</div>
-							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Allow Doit to use your information</label>
-								</div>
-							</div>
 							<div class="col-md-12 form-group">
 								<button type="submit" value="submit" class="button button-register w-100">Register</button>
 							</div>
