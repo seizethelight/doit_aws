@@ -72,25 +72,42 @@
               </li>
 			 
 							
-							<li class="nav-item submenu dropdown">
+				<c:if test="${sessionScope.id!=null }">	
+				<li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
+                  aria-expanded="false">MyPage</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="../member/login.do">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/myinfo.do">내 정보</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/payment.do">구매내역</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../cart/cart_list.do">장바구니내역</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/mylike.do">좋아요내역</a></li>
                 </ul>
               </li>
+			  <c:if test="${sessionScope.admin=='admin'}">	
+			   <li class="nav-item submenu dropdown">
+               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Admin</a>
+               <ul class="dropdown-menu">
+                <li class="nav-item"><a class="nav-link" href="../admin/userinfo.do">회원정보 관리</a></li>
+               </ul>
+              </li>
+              </c:if>
+              </c:if>
               
               <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
               
                <li class="nav-item"><a class="nav-link" href="../chat/chat.do">Chat</a></li>
             </ul>
 
-            <ul class="nav-shop">
+           <ul class="nav-shop">
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
               <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+              <c:if test="${sessionScope.id!=null }">
+              	<li class="nav-item"><a class="button button-header" href="../member/logout.do">Logout</a></li>
+			  </c:if>
+			  <c:if test="${sessionScope.id==null }">
+				<li class="nav-item"><a class="button button-header" href="../member/login.do">Login</a></li>
+			  </c:if>
             </ul>
           </div>
         </div>
