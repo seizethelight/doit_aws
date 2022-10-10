@@ -143,55 +143,55 @@ img {
                <form action="#">
                   <ul>
                    <li class="filter-list">
-                   <input class="pixel-radio" type="radio" id="All" name="brand" value="All" @click="storeChange(1)"><label for="All">강남구<span> (3600)</span></label></li>
+                   <input class="pixel-checkbox" type="checkbox" id="aaa" name="addrs" value="강남구" ><label for="aaa">&nbsp;강남구<span> </span></label></li>
                    <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">강북구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="bbb" name="addrs" value="강북구" ><label for="bbb">&nbsp;강북구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">강동구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="ccc" name="addrs" value="강동구" ><label for="ccc">&nbsp;강동구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">강서구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="ddd" name="addrs" value="강서구" ><label for="ddd">&nbsp;강서구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="items" name="brand" value="Items" @click="storeChange(6)"><label for="bayItem">관악구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="eee" name="addrs" value="관악구" ><label for="eee">&nbsp;관악구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="items" name="brand" value="Items" @click="storeChange(6)"><label for="bayItem">광진구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="fff" name="addrs" value="광진구" ><label for="fff">&nbsp;광진구<span> </span></label></li>
                      <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">구로구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="ggg" name="addrs" value="구로구" ><label for="ggg">&nbsp;구로구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">금천구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="hhh" name="addrs" value="금천구" ><label for="hhh">&nbsp;금천구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="golf" name="brand" value="Golf" @click="storeChange(7)"><label for="electronics">노원구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="iii" name="addrs" value="노원구" ><label for="iii">&nbsp;노원구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">도봉구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="jjj" name="addrs" value="도봉구" ><label for="jjj">&nbsp;도봉구<span> </span></label></li>
                      <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">동대문구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="kkk" name="addrs" value="동대문구" ><label for="kkk">&nbsp;동대문구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="kids" name="brand" value="Kids" @click="storeChange(4)"><label for="accessories">동작구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="lll" name="addrs" value="동작구" ><label for="lll">&nbsp;동작구<span> </span></label></li>
                      <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="women" name="brand" value="Women" @click="storeChange(2)"><label for="women">마포구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="mmm" name="addrs" value="마포구" ><label for="mmm">&nbsp;마포구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">서대문구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="nnn" name="addrs" value="서대문구" ><label for="nnn">&nbsp;서대문구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="new" name="brand" value="New" @click="storeChange(5)"><label for="footwear">서초구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="ooo" name="addrs" value="서초구" ><label for="ooo">&nbsp;서초구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">성동구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="ppp" name="addrs" value="성동구" ><label for="ppp">&nbsp;성동구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="men" name="brand" value="Men" @click="storeChange(3)"><label for="men">성북구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="qqq" name="addrs" value="성북구" ><label for="qqq">&nbsp;성북구<span> </span></label></li>
                      <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">송파구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="rrr" name="addrs" value="송파구" ><label for="rrr">&nbsp;송파구<span> </span></label></li>
                      <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">양천구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="sss" name="addrs" value="양천구" ><label for="sss">&nbsp;양천구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">영등포구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="ttt" name="addrs" value="영등포구" ><label for="ttt">&nbsp;영등포구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">용산구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="uuu" name="addrs" value="용산구" ><label for="uuu">&nbsp;용산구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">은평구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="vvv" name="addrs" value="은평구" ><label for="vvv">&nbsp;은평구<span> </span></label></li>
                      <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">종로구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="www" name="addrs" value="종로구" ><label for="www">&nbsp;종로구<span> </span></label></li>
                     <li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">중구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="xxx" name="addrs" value="중구" ><label for="xxx">&nbsp;중구<span> </span></label></li>
                   	<li class="filter-list">
-                    <input class="pixel-radio" type="radio" id="food" name="brand" value="Food" @click="storeChange(8)"><label for="food">중랑구<span> (3600)</span></label></li>
+                    <input class="pixel-checkbox" type="checkbox" id="yyy" name="addrs" value="중랑구" ><label for="yyy">&nbsp;중랑구<span> </span></label></li>
                      </ul>
                 </form>
               </li>

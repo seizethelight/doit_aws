@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -48,30 +49,32 @@
 				        <table class="table">
 				          <tr style="height:500px">
 				            <td class="text-center" style="vertical-align:middle">
-				                <img src="http://1004towel.com/SG/img/cart_img_empty.gif" style="display: flex;margin-left: 600px;width: 500px;"><br>
+				                <img src="http://1004towel.com/SG/img/cart_img_empty.gif" style="display: flex;margin-left: 350px;width: 500px;"><br>
 									 <a href="../main/main.do"><button class="checkout" style="margin-right: 150px">메인으로 가기</button></a>             
 				            </td>
 				          </tr>
 				        </table>
 				      </c:if>
-                      <thead>
+                     
+                      <form action="../payment/pay_form.do" name="pay_frm" id="pay_frm" method="post">
+                      
+                       <c:if test="${listsize!=0 }">
+                        <thead>
                           <tr>
                               <th scope="col">상품</th>
                               <th scope="col">가격</th>
                               <th scope="col">수량</th>
                               <th scope="col">합계</th>
-                          	  <th scope="col">상태</th> 
+                          	  <th scope="col"></th> 
                           </tr>
                       </thead>
-                      <form action="../payment/pay_form.do" name="pay_frm" id="pay_frm" method="post">
-                       <c:if test="${listsize!=0 }">
                         <h3 style="border-bottom: 7px solid #eee;margin-bottom: 29px;margin-top: 40px;">헬스장</h3>
 						 <c:forEach var="vo" items="${list }">
 							 <c:if test="${vo.cate==1 }">
-		                      <tbody>
+		                     
 		                          <tr>
 		                              <td>
-		                                  <div class="media">
+		                                  <div class="media" style="width: 365px;">
 		                                      <div class="d-flex">
 		                                             <img src="${vo.poster}" alt="" style=" width: 100px;">
 		                                      </div>
@@ -81,7 +84,7 @@
 		                                  </div>
 		                              </td>
 		                              <td>
-		                                  <h5 data-price="${ vo.price}">${vo.price}</h5>
+		                                  <h5 data-price="${ vo.price}"><fmt:formatNumber value="${vo.price }" pattern="#,###"/>원</h5>
 		                              </td>
 		                              <td>
 		                                  <div class="product_count">
@@ -90,21 +93,38 @@
 		                                      <div class="product-quantity">&nbsp;${vo.account}</div> 
 		                                  </div>
 		                              </td>
+		                             
 		                              <td>
-		                                  <h5>${vo.total}</h5>
+		                                  <h5><fmt:formatNumber value="${vo.total }" pattern="#,###"/>원</h5>
 		                              </td>
+		                              
+		                               <td>
+		                               <a href="../cart/cart_cancel.do?no=${vo.no }"  style="width: 50px"class="btn btn-sm btn-danger">삭제</a>
+		                              </td>
+		                             
 		                          </tr>
 		                          </c:if>
 	 						 </c:forEach>
-	 						 
+	 						</table> 
+	 						<table class="table">
+	 						  <thead>
+		                          <tr>
+		                              <th scope="col">상품</th>
+		                              <th scope="col">가격</th>
+		                              <th scope="col">수량</th>
+		                              <th scope="col">합계</th>
+		                          	  <th scope="col"></th> 
+		                          </tr>
+		                      </thead>
 	 						 <h3 style="border-bottom: 7px solid #eee;margin-bottom: 29px;margin-top: 40px;">쇼핑몰</h3>
+	 						
 	 						  <c:forEach var="vo" items="${list }">
 								  <c:if test="${vo.cate==2 }">
 								   <tr>
 		                              <td>
 		                                  <div class="media">
 		                                      <div class="d-flex">
-		                                             <img src="${vo.poster}" alt="">
+		                                             <img src="${vo.poster}" alt="" style="width: 100px;">
 		                                      </div>
 		                                      <div class="media-body">
 		                                          <p>${vo.name}</p>
@@ -112,7 +132,7 @@
 		                                  </div>
 		                              </td>
 		                              <td>
-		                                  <h5 data-price="${ vo.price}">${vo.price}</h5>
+		                                  <h5 data-price="${ vo.price}"><fmt:formatNumber value="${vo.price }" pattern="#,###"/>원</h5>
 		                              </td>
 		                              <td>
 		                                  <div class="product_count">
@@ -122,100 +142,73 @@
 		                                  </div>
 		                              </td>
 		                              <td>
-		                                  <h5>${vo.total}</h5>
+		                                  <h5><fmt:formatNumber value="${vo.total }" pattern="#,###"/>원</h5>
 		                              </td>
+		                              <td>
+		                               <a href="../cart/cart_cancel.do?no=${vo.no }"  style="width: 50px"class="btn btn-sm btn-danger">삭제</a>
+		                              </td>
+		                              
 		                          </tr>
 		                    	  </c:if>
 		                     </c:forEach>
+		                     </table>
+		                     
 		                          <tr class="bottom_button">
-		                              <td>
-		                                  <a class="button" href="#">Update Cart</a>
-		                              </td>
-		                              <td>
-		
-		                              </td>
-		                              <td>
-		
-		                              </td>
-		                              <td>
-		                                  <div class="cupon_text d-flex align-items-center">
-		                                      <input type="text" placeholder="Coupon Code">
-		                                      <a class="primary-btn" href="#">Apply</a>
-		                                      <a class="button" href="#">Have a Coupon?</a>
-		                                  </div>
-		                              </td>
+		                              <td></td>
+		                              <td></td>
+		                              <td></td>
+		                           	  <td></td>
+		                           	  <td></td>
+		                              
 		                          </tr>
+		                          <table class="table"> 
 		                          <tr>
-		                              <td>
-		
-		                              </td>
-		                              <td>
-		
-		                              </td>
-		                              <td>
-		                                  <h5>최종 결제 금액</h5>
-		                              </td>
-		                              <td>
-		                                  <h5>${sum+sum1 }원</h5>
-		                              </td>
-		                          </tr>
-		                          <tr class="shipping_area">
-		                              <td class="d-none d-md-block">
-		
-		                              </td>
-		                              <td>
-		
-		                              </td>
-		                              <td>
-		                                  <h5>Shipping</h5>
-		                              </td>
-		                              <td>
-		                                  <div class="shipping_box">
-		                                      <ul class="list">
-		                                          <li><a href="#">Flat Rate: $5.00</a></li>
-		                                          <li><a href="#">Free Shipping</a></li>
-		                                          <li><a href="#">Flat Rate: $10.00</a></li>
-		                                          <li class="active"><a href="#">Local Delivery: $2.00</a></li>
-		                                      </ul>
-		                                      <h6>Calculate Shipping <i class="fa fa-caret-down" aria-hidden="true"></i></h6>
-		                                      <select class="shipping_select">
-		                                          <option value="1">Bangladesh</option>
-		                                          <option value="2">India</option>
-		                                          <option value="4">Pakistan</option>
-		                                      </select>
-		                                      <select class="shipping_select">
-		                                          <option value="1">Select a State</option>
-		                                          <option value="2">Select a State</option>
-		                                          <option value="4">Select a State</option>
-		                                      </select>
-		                                      <input type="text" placeholder="Postcode/Zipcode">
-		                                      <a class="gray_btn" href="#">Update Details</a>
+		                           
+		                              <td></td>
+		                              <td></td>
+		                              <td></td>
+		                               <td></td>
+		                               <td></td>
+		                              <td></td>
+		                              <td></td>
+		                               <td></td>
+		                              <td style="width: 280px;">
+		                              		<div style="display: flex; font-size: 16px;font-weight: bold">최종 결제 금액 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                                  <div class="totals" id="total" name="total" style="color: #384aeb"><fmt:formatNumber value="${sum+sum1 }" pattern="#,###"/>원</div>
 		                                  </div>
 		                              </td>
+		                              
 		                          </tr>
+		                       
 		                          <tr class="out_button_area">
-		                              <td class="d-none-l">
-		
-		                              </td>
-		                              <td class="">
-		
-		                              </td>
+		                             <td></td>
+		                              <td></td>
+		                               <td></td>
+		                              <td></td>
+		                              <td></td>
+		                             
+		                              <td></td>
 		                              <td>
-		
-		                              </td>
-		                              <td>
-		                                  <div class="checkout_btn_inner d-flex align-items-center">
-		                                      <a class="gray_btn" href="#">Continue Shopping</a>
-		                                      <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+										<div class="checkout_btn_inner d-flex align-items-center" style="margin-left: 1px;">
+										  <input type="hidden" name="no" value="${vo.no }">
+										   <c:if test="${listsize!=0 }">
+											 	<input type="submit" class="primary-btn ml-2" id="payBtn" value="결제하기">
+											 </c:if>
+											   <input type="button" class="gray_btn" onclick="javascript:history.back()" value="목록으로">
 		                                  </div>
 		                              </td>
+		                              
+		                              <td>
+		
+		                              </td>
+		                              <td>
+		                                  
+		                              </td>
 		                          </tr>
-		                         
-		                    	  </tbody>
 		                    	
 		                    	</c:if>
-	                      </from> 
-                  </table>
+	                      </form> 
+                    </table>
               </div>
           </div>
       </div>
