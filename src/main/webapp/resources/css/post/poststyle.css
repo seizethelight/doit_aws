@@ -150,3 +150,20 @@
 .insert_body textarea{
   height : 200px;
 }
+.insert-button {
+  text-align-last : center;
+}
+.insert-button input[type=button] {
+  padding: 0px;
+  border: none;
+  line-height: 38px;
+  background: #fff;
+  border: 1px solid #eeeeee;
+  border-radius: 30px;
+  padding: 0px 30px;
+  color: #222;
+  font-size: 14px;
+  font-weight: normal;
+  cursor : pointer;
+  margin : 10px 5px;
+}

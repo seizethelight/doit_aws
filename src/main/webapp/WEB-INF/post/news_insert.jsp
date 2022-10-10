@@ -20,7 +20,7 @@
 			<div class='main'>
 				<div class='main__content'>
 					<h1 class='h1 title'> 
-						<i class='fas fa-home'></i> <span>News</span>
+						&nbsp;<i class='fas fa-newspaper'></i> <span>&nbsp;News</span>
 					</h1>
 					<div class='insert-table-card'>
 							<table class='table'>
@@ -41,10 +41,10 @@
 									<tr>
 										<td>Category</td>
 										<td>
-											<input type="radio" v-model="cate" value="HEALTH">HEALTH
-											<input type="radio" v-model="cate" value="FOOD">FOOD
-											<input type="radio" v-model="cate" value="WORKOUT">WORKOUT
-											<input type="radio" v-model="cate" value="DIET">DIET
+											<input type="radio" v-model="cate" value="HEALTH"> HEALTH &nbsp;
+											<input type="radio" v-model="cate" value="FOOD"> FOOD &nbsp;
+											<input type="radio" v-model="cate" value="WORKOUT"> WORKOUT &nbsp;
+											<input type="radio" v-model="cate" value="DIET"> DIET &nbsp;
 										</td>
 									</tr>
 									<tr>

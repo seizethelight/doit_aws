@@ -1170,7 +1170,24 @@ a {
     font-size: 15px
   }
 }
-
+/* postsidebar의 글 추가하기 버튼 */
+.insert-all-button {
+  margin : 10px 0;
+}
+.insert-all-button .button-blog {
+  padding: 5px 31px;
+  font-size: 14px;
+  background: #384aeb;
+  border-color: #EEEEEE;
+  border-radius: 20px;
+  color: #fff;
+  width : 100px;
+  margin : 5px;
+}
+.insert-all-button .button-blog:hover {
+  background : #f9f9ff ! important;
+  color: #222 !important;
+}
 .button-blog {
   padding: 5px 31px;
   font-size: 14px;

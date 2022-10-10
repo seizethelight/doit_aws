@@ -18,8 +18,7 @@
     <div class='main'>
       <div class='main__content'>
         <h1 class='h1 title'>
-          <i class='fas fa-home'></i>
-          <span>QnA</span>
+          <i class='fas fa-question'></i> <span> &nbsp; QnA</span>
         </h1>
         <div class='table-card'>
         <div class="qnainsert_container">
@@ -29,22 +28,22 @@
               <tr>
                 <td id='tour-table'>TITLE</td>
                 <td>
-                	<input type="text" v-model="title" ref="title" placeholder="제목을 입력하세요">
+                	<input class="insert_body" type="text" v-model="title" ref="title" placeholder="제목을 입력하세요">
                 </td>
               </tr>
               <tr>
                 <td id='tour-table'>ID</td>
                 <td>
-					<input type="text" v-model="id" ref="<%= (String)session.getAttribute("id") %>" 
-						placeholder='<%=(String)session.getAttribute("id")%>' readonly>
-					<%-- <div><%= session.getId() %></div> --%>
-					<!-- 위의 방식대로하면 다운캐스팅 되지 않고 2ax834csdf 이런 식으로 구성된 세션의 주소가 뜬다 -->
-				</td>
+									<input class="insert_body" type="text" v-model="id" ref="<%= (String)session.getAttribute("id") %>" 
+										placeholder='<%=(String)session.getAttribute("id")%>' readonly>
+									<%-- <div><%= session.getId() %></div> --%>
+									<!-- 위의 방식대로하면 다운캐스팅 되지 않고 2ax834csdf 이런 식으로 구성된 세션의 주소가 뜬다 -->
+								</td>
               </tr>
               <tr>
                 <td id='tour-table'>Content</td>
                 <td>
-		           <textarea rows="10" cols="70" v-model="content" ref="content" placeholder="문의 내용을 작성하세요"></textarea>
+		           <textarea class="insert_body" rows="15" cols="70" v-model="content" ref="content" placeholder="문의 내용을 작성하세요"></textarea>
                 </td>
               </tr>
             </thead>

@@ -24,12 +24,12 @@
   <main class="site-main">
     
     <!--================ Hero banner start =================-->
-    <section class="hero-banner">
+    <section class="hero-banner" style="height : 562px;">
       <div class="container">
         <div class="row no-gutters align-items-center pt-60px">
           <div class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img class="img-fluid" src="${path}/resources/img/home/about-pic.jpg" alt="">
+              <img class="img-fluid" src="${path}/resources/img/home/about-pic.jpg" style="height:500px;"alt="">
             </div>
           </div>
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">

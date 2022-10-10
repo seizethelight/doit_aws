@@ -21,7 +21,7 @@
 			<div class='main'>
 				<div class='main__content'>
 					<h1 class='h1 title'>
-						<i class='fas fa-home'></i> <span>BLOG</span>
+						<i class='fas fa-pen-alt'></i><span> &nbsp; BLOG</span>
 					</h1>
 					<div class='table-card'>
 						<div class="qnainsert_container">
@@ -45,10 +45,10 @@
 									<tr>
 										<td>Category</td>
 										<td>
-											<input type="radio" v-model="cate" value="HEALTH">HEALTH
-											<input type="radio" v-model="cate" value="FOOD">FOOD
-											<input type="radio" v-model="cate" value="WORKOUT">WORKOUT
-											<input type="radio" v-model="cate" value="DIET">DIET
+											<input type="radio" v-model="cate" value="HEALTH"> HEALTH &nbsp;
+											<input type="radio" v-model="cate" value="FOOD"> FOOD &nbsp;
+											<input type="radio" v-model="cate" value="WORKOUT"> WORKOUT &nbsp;
+											<input type="radio" v-model="cate" value="DIET"> DIET &nbsp;
 										</td>									
 									</tr>
 									<tr>
