@@ -62,7 +62,6 @@
         </div>
     </article>
 
-
 		<nav class="blog-pagination justify-content-center d-flex">
 			<table class="table">
 				<tr>
