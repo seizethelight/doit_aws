@@ -167,3 +167,29 @@
   cursor : pointer;
   margin : 10px 5px;
 }
+
+/* 댓글 */
+.comments-list {
+  margin : 20px 0;
+}
+.comment-main-level {
+  display : flex;
+}
+
+.comment-main-level .comment-avatar img{
+  height : 50px;
+  width : 50px;
+}
+.comment-main-level .comment-box {
+  width : 100%;
+}
+.comment-main-level .comment-box .comment-content {
+  color : #222;
+}
+.comment-main-level .comment-box .comment-name {
+  margin-left : 10px;
+}
+.comment-main-level .comment-box .comment-date {
+  width : 100%;
+  text-align-last : right;
+}

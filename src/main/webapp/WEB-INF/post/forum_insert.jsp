@@ -107,22 +107,6 @@ new Vue({
 		}
 	}
 })
-new Vue({
-	el : '.tableid',
-	data : {
-		id:${id}
-	},
-	mounted : function(){
-		let _this=this;
-		axios.get("http://localhost:8080/web/post/forum_insert.do", {
-			params : {
-				id : _this.id
-			}
-		}).then(function(result){
-			_this.vo=result.data;
-		})
-	}
-})
 </script>
 </body>
 </html>

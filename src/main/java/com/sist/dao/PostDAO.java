@@ -19,7 +19,7 @@ import com.sist.vo.ForumVO;
 import com.sist.vo.NewsLikeVO;
 import com.sist.vo.NewsVO;
 import com.sist.vo.QnaVO;
-import com.sist.vo.ReplyVO;
+import com.sist.vo.ForumReplyVO;
 
 @Repository
 public class PostDAO {
@@ -199,7 +199,7 @@ public class PostDAO {
 	}
 	
 	// forum reply list
-	public List<ReplyVO> replyListData(int f_no)
+	public List<ForumReplyVO> replyListData(int f_no)
 	{
 		return mapper.replyListData(f_no);
 	}
@@ -222,6 +222,12 @@ public class PostDAO {
 		String result="yes";
 		mapper.forumEdit(vo);
 		return result;
+	}
+	
+	//*********** 자유게시판 댓글 ***********//	
+	public void forumReplyInsert(ForumReplyVO vo)
+	{
+		mapper.forumReplyInsert(vo);
 	}
 	
 	//*********** 개인 로그 ***********//		

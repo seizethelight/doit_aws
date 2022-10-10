@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class ForumVO {
 	private int f_no, hit;
-	private String title, content, id, dbday, etdate, sid, cate;
+	private String title, content, id, dbday, etdate, sid, cate, img;
 	private Date regdate, editeddate;
 }

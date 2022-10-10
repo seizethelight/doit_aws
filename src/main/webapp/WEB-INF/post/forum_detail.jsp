@@ -16,7 +16,7 @@
 	<div class="single-post row">
 		<div class="col-lg-12">
 			<div class="feature-img">
-				<img class="img-fluid" src="${path}/resources/img/blog/feature-img1.jpg" alt="">
+				<img class="img-fluid" :src="vo.img" alt="">
 			</div>
 		</div>
 		<div class="col-lg-3  col-md-3">
@@ -91,7 +91,7 @@
 									<a href="http://creaticode.com/blog">{{rvo.id}}</a>
 								</h6>
 								
-								<div>
+								<div class="comment-date">
 									<span>{{rvo.dbday}}</span> <i class="fa fa-reply"></i>
 									<i class="fa fa-heart"></i>
 								</div>
@@ -100,61 +100,15 @@
 							<div class="comment-content">{{rvo.content}}</div>
 						</div>
 					</div> 
-					<!-- Respuestas de los comentarios -->
-					<!-- 답답글 -->
-					<!-- <ul class="comments-list reply-list">
-						<li>
-							Avatar
-							<div class="comment-avatar">
-								<img
-									src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg"
-									alt="">
-							</div> Contenedor del Comentario
-							<div class="comment-box">
-								<div class="comment-head">
-									<h6 class="comment-name">
-										<a href="http://creaticode.com/blog">Lorena Rojero</a>
-									</h6>
-									<span>hace 10 minutos</span> <i class="fa fa-reply"></i>
-									<i class="fa fa-heart"></i>
-								</div>
-								<div class="comment-content">Lorem ipsum dolor sit
-									amet, consectetur adipisicing elit. Velit omnis animi et
-									iure laudantium vitae, praesentium optio, sapiente
-									distinctio illo?</div>
-							</div>
-						</li>
-	
-						<li>
-							Avatar
-							<div class="comment-avatar">
-								<img
-									src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg"
-									alt="">
-							</div> Contenedor del Comentario
-							<div class="comment-box">
-								<div class="comment-head">
-									<h6 class="comment-name by-author">
-										<a href="http://creaticode.com/blog">Agustin Ortiz</a>
-									</h6>
-									<span>hace 10 minutos</span> <i class="fa fa-reply"></i>
-									<i class="fa fa-heart"></i>
-								</div>
-								<div class="comment-content">Lorem ipsum dolor sit
-									amet, consectetur adipisicing elit. Velit omnis animi et
-									iure laudantium vitae, praesentium optio, sapiente
-									distinctio illo?</div>
-							</div>
-						</li>
-					</ul> -->
 				</li>
 			</ul>
 			<c:if test="${sessionScope.id!=null }">
-			<table class="table">
+			<table class="comment-apply">
 				<tr>
 					<td>
 						<textarea rows="4" cols="78" ref="content" style="float: left" v-model="content"></textarea> 
-						<input type=button value="댓글쓰기" class="btn btn-sm btn-primary" style="height: 105px; margin-left:30px; background-color:#D75A43; border:solid 0px; border-radius:15px;" @click="replyWrite()">
+						<input type=button value="댓글쓰기" class="btn btn-sm btn-primary" @click="replyInsert()"
+						style="height: 105px; margin-left:30px; background-color:#D75A43; border:solid 0px; border-radius:15px;">
 					</td>
 				</tr>
 			</table>
@@ -258,7 +212,7 @@ new Vue({
    	el:'.comment',
    	data:{
     	f_no:${f_no},
-    	sid:'',
+    	id:'<%=(String) session.getAttribute("id")%>',
 	 		reply : [],
 	 		content:''
    	},
@@ -269,35 +223,31 @@ new Vue({
    				f_no:_this.f_no,
    			}
    		}).then(function(result){
-   			console.log(result.data)
    			_this.reply=result.data;
-   			_this.sid=result.data[0].sid
-   			console.log(result.data[0].sid)
+   			console.log(_this.reply);
    		})
    	},
    	methods:{
-			replyWrite:function(){
+			replyInsert:function(){
 				if(this.content==="")
 				{
 					this.$refs.content.focus();
 					return;
 				}
 				let _this=this;
-				axios.get("http://localhost:8080/web/seoul/reply_insert.do",{
+				axios.get("http://localhost:8080/web/post/reply_insert.do",{
 	    			params:{
-	    				cno:_this.cno,
-	    				type:_this.type,
-	    				msg:_this.msg
+	    				f_no : this.f_no,
+	    				content : this.content,
+	    				id : this.id
 	    			}
 	    		}).then(function(result){
-	    			_this.msg="";
+	    			_this.reply=result.data;
 	    			console.log(result.data)
-	    			_this.reply_list=result.data;
-	    			_this.sessionId=result.data[0].sessionId
-	    		})
+	    			this.reply.push(reply);
+    		})
 			}
    	}
-   	
 })
 </script>
 </body>

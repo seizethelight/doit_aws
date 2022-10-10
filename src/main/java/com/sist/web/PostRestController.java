@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sist.dao.PostDAO;
 import com.sist.vo.BlogVO;
 import com.sist.vo.CartVO;
+import com.sist.vo.ForumReplyVO;
 import com.sist.vo.ForumVO;
 import com.sist.vo.NewsLikeVO;
 import com.sist.vo.NewsVO;
 import com.sist.vo.QnaVO;
-import com.sist.vo.ReplyVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -409,6 +409,7 @@ public class PostRestController {
 				obj.put("dbday", vo.getDbday());
 				obj.put("hit", vo.getHit());
 				obj.put("cate", vo.getCate());
+				obj.put("img", vo.getImg());
 
 				if (k == 0) {
 					obj.put("curpage", curpage);
@@ -441,6 +442,8 @@ public class PostRestController {
 		obj.put("etdate", vo.getEtdate());
 		obj.put("sid", sid);
 		obj.put("cate", vo.getCate());
+		obj.put("img", vo.getImg());
+
 		result = obj.toJSONString();
 		return result;
 	}
@@ -455,43 +458,6 @@ public class PostRestController {
 	@GetMapping(value = "post/forum_delete.do", produces = "text/plain;charset=utf-8")
 	public String forum_delete(int f_no) {
 		String result = dao.forumDeleteData(f_no);
-		return result;
-	}
-
-
-	/**************** forum reply ****************/
-	
-	public String reply_json_data(List<ReplyVO> list,String id)
-	{
-		/*
-		 * private int no,cno,type; private String id,name,msg,dbday;
-		 */
-		JSONArray arr = new JSONArray();
-		int k = 0;
-		for (ReplyVO rvo : list) {
-			JSONObject obj = new JSONObject();
-			obj.put("f_no", rvo.getF_no());
-			obj.put("f_r_no", rvo.getF_r_no());
-			obj.put("content", rvo.getContent());
-			obj.put("id", rvo.getId());
-			obj.put("dbday", rvo.getDbday());
-			obj.put("group_id", rvo.getGroup_id());
-			obj.put("group_tab", rvo.getGroup_tab());
-			obj.put("group_step", rvo.getGroup_step());
-			obj.put("sessionId", id);
-			k++;
-			arr.add(obj);
-		}
-		return arr.toJSONString();
-	}
-	@GetMapping(value = "post/reply_list.do", produces = "text/plain;charset=utf-8")
-	public String reply_list(int f_no, HttpSession session) {
-		String sid=(String)session.getAttribute("id");
-		String result = "";
-		ReplyVO vo=new ReplyVO();
-		vo.setF_no(f_no);
-		List<ReplyVO> list = dao.replyListData(f_no);
-		result = reply_json_data(list, sid);
 		return result;
 	}
 	// forum edit
@@ -513,6 +479,49 @@ public class PostRestController {
 	@GetMapping(value = "post/forum_edit_vue.do", produces = "text/plain;charset=utf8")
 	public String forum_edit_vue(ForumVO vo) {
 		String result = dao.forumEdit(vo);
+		return result;
+	}
+	
+	/**************** forum reply ****************/
+	public String reply_json_data(List<ForumReplyVO> list,String id)
+	{
+		/*
+		 * private int no,cno,type; private String id,name,msg,dbday;
+		 */
+		JSONArray arr = new JSONArray();
+		int k = 0;
+		for (ForumReplyVO rvo : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("f_no", rvo.getF_no());
+			obj.put("f_r_no", rvo.getF_r_no());
+			obj.put("content", rvo.getContent());
+			obj.put("id", rvo.getId());
+			obj.put("dbday", rvo.getDbday());
+			obj.put("group_id", rvo.getGroup_id());
+			obj.put("group_tab", rvo.getGroup_tab());
+			obj.put("group_step", rvo.getGroup_step());
+			obj.put("sessionId", id);
+			k++;
+			arr.add(obj);
+		}
+		return arr.toJSONString();
+	}
+	@GetMapping(value="post/reply_insert.do", produces = "text/plain;charset=utf-8")
+	public String reply_insert(ForumReplyVO vo, HttpSession session)
+	{
+	   dao.forumReplyInsert(vo);
+	   return "OK";
+	   
+	}
+			
+	@GetMapping(value = "post/reply_list.do", produces = "text/plain;charset=utf-8")
+	public String reply_list(int f_no, HttpSession session) {
+		String sid=(String)session.getAttribute("id");
+		String result = "";
+		ForumReplyVO vo=new ForumReplyVO();
+		vo.setF_no(f_no);
+		List<ForumReplyVO> list = dao.replyListData(f_no);
+		result = reply_json_data(list, sid);
 		return result;
 	}
 	

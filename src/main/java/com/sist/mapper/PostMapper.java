@@ -14,7 +14,7 @@ import com.sist.vo.ForumVO;
 import com.sist.vo.NewsLikeVO;
 import com.sist.vo.NewsVO;
 import com.sist.vo.QnaVO;
-import com.sist.vo.ReplyVO;
+import com.sist.vo.ForumReplyVO;
 
 import lombok.Delegate;
 import oracle.net.aso.f;
@@ -151,9 +151,9 @@ public interface PostMapper {
 	
 	//*********** 포럼 ***********//	
 	// forum 리스트
-	@Select("SELECT f_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, cate, num "
-			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate, rownum as num "
-			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate "
+	@Select("SELECT f_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, cate, img, num "
+			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate, img, rownum as num "
+			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate, img "
 			+ "FROM T4_FORUM ORDER BY f_no DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ForumVO> forumListData(Map map);	
@@ -162,7 +162,7 @@ public interface PostMapper {
 	public int forumTotalPage();
 	
 	// forum 디테일
-	@Select("SELECT f_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, TO_CHAR(editeddate, 'YYYY-MM-DD hh:mm:ss') as etdate, cate FROM T4_FORUM WHERE f_no=#{f_no}")
+	@Select("SELECT f_no, hit, title, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, content, TO_CHAR(editeddate, 'YYYY-MM-DD hh:mm:ss') as etdate, cate, img FROM T4_FORUM WHERE f_no=#{f_no}")
 	public ForumVO forumDetailData(int f_no);
 	
 	// forum 디테일 조회수 증가
@@ -175,17 +175,26 @@ public interface PostMapper {
 	
 	// forum 인서트
 	@SelectKey(keyProperty = "f_no", resultType = int.class, before = true,
-	statement = "SELECT NVL(MAX(f_no)+1,1) as q_no FROM T4_FORUM")
-	@Insert("INSERT INTO T4_FORUM VALUES(#{f_no}, #{title}, #{content}, SYSDATE, 0, SYSDATE, #{id}, #{cate}  )")
+	statement = "SELECT NVL(MAX(f_no)+1,1) as f_no FROM T4_FORUM")
+	@Insert("INSERT INTO T4_FORUM VALUES(#{f_no}, #{title}, #{content}, SYSDATE, 0, SYSDATE, #{id}, #{cate}, 0  )")
 	public void forumInsert(ForumVO vo);
 
 	// forum 삭제
 	@Delete("DELETE FROM T4_FORUM WHERE f_no=#{f_no}")
 	public void forumDeleteData(int f_no);
 	
-	// forum 댓글
-	@Select("SELECT content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, f_no, f_r_no, group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no}")
-	public List<ReplyVO> replyListData(int f_no);
+	//*********** 포럼 댓글 ***********//	
+
+	// forum 댓글 인서트
+	@SelectKey(keyProperty = "f_r_no", resultType = int.class, before = true,
+	statement = "SELECT NVL(MAX(f_r_no)+1,1) as f_r_no FROM T4_FORUM_REPLY")
+	@Insert("INSERT INTO T4_FORUM_REPLY VALUES(#{f_r_no}, #{content}, SYSDATE, #{f_no}, 1, 1, 1, #{id}  )")
+	public void forumReplyInsert(ForumReplyVO vo);
+
+	
+	// forum 댓글 리스트
+	@Select("SELECT content, TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as dbday, f_no, f_r_no, group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no} ")
+	public List<ForumReplyVO> replyListData(int f_no);
 	
 
 		
