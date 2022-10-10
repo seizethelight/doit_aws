@@ -27,23 +27,6 @@
 </script>
 </head>
 <body>
-	<!-- ================ start banner area ================= -->	
-	<section class="blog-banner-area" id="blog">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Shop Single</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shop Single</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section>
-	<!-- ================ end banner area ================= -->
 
 
   <!--================Single Product Area =================-->
@@ -69,8 +52,8 @@
 				   <div id="store_detail">
 					<div class="s_product_text">
 						<h3>{{store_detail.name}}</h3>
-						<h2 style="text-decoration: line-through; color: gray;">{{store_detail.price}}&nbsp;&nbsp;&nbsp;&nbsp;
-						<span  style="font-size: 32px;font-color:blue;text-decoration:none">{{store_detail.first_price}}</span></h2>
+						<h2 style="color: gray;display: flex;justify-content: space-between;margin-right: -275px;">소비자가 :&nbsp; <span style="text-decoration: line-through; color: gray;">{{store_detail.price}}</span>&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+						<h2 style="display: flex;justify-content: space-between;">판매가 :&nbsp;<span style=" ">{{store_detail.first_price}}</span></h2>
 						
 						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
 							something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
