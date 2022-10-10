@@ -39,6 +39,7 @@ public class StoreController {
 	public String store_list(String s_no, Model model)
 	{
 		
+		
 		return "store/list";
 	}
 		 @GetMapping("store/detail_before.do")
