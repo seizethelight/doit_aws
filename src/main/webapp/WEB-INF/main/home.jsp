@@ -77,143 +77,111 @@
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
+          <p>가장 핫한 헬스장을 만나보세요!</p>
           <h2>Trending <span class="section-intro__style">Product</span></h2>
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card text-center card-product">
               <div class="card-product__img">
-                <img class="card-img" src="img/product/product1.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
+              <a href="../gym/gym_detail.do?g_no=132"> 
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/e5fa73b4142042c0748026a585c3fd2192998.jpg?t=1663086739" style="width: 220px">
               </div>
-              <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                <p class="card-product__price">$150.00</p>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">나비드짐 </h4></a>
+                <p class="card-product__price">269,000원</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+              <a href="../gym/gym_detail.do?g_no=20">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/cb5d5032c99c39021e41d4871f0d5c8838686.jpg?t=1663086688" style="width: 220px">
+              </div>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">더바른케어  </a></h4>
+                <p class="card-product__price">206,000원</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+              <a href="../gym/gym_detail.do?g_no=187">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/64c47d6ea145f553678ba82e095d794e58098.jpg?t=1663086765" style="width: 220px">
+              </div>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">휴메이크휘트니스 논현점  </a></h4>
+                <p class="card-product__price">249,000원</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+              <a href="../gym/gym_detail.do?g_no=139">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/94679e17f761e06f2596b75c83c75b9a93628.jpg?t=1663086742" style="width: 220px">
+              </div>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">스포애니 논현역점  </a></h4>
+                <p class="card-product__price">244,000원</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+              <a href="../gym/gym_detail.do?g_no=169">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/5556463c06288b3b69df54f357420ae753162.jpg?t=1663086757" style="width: 220px">
+              </div>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">퍼스트휘트니스   </a></h4>
+                <p class="card-product__price">185,000원</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+              <a href="../gym/gym_detail.do?g_no=66">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/ebcaeebf48e19e32d8661071c8abe56496062.jpg?t=1663086709" style="width: 220px">
+              </div>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">에이블짐 신방화역점  </a></h4>
+                <p class="card-product__price">177,000원</p>
+              </div>
+            </div>
+          </div>
+           <div class="col-md-6 col-lg-4 col-xl-3">
+            <div class="card text-center card-product">
+              <div class="card-product__img">
+              <a href="../gym/gym_detail.do?g_no=206">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/bb160270ea2d990a1a9ab03c8472ea0f64454.jpg?t=1663086775" style="width: 220px">
+              </div>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">JY휘트니스 까치산점 </a></h4>
+                <p class="card-product__price">196,000원</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card text-center card-product">
               <div class="card-product__img">
-                <img class="card-img" src="img/product/product2.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
+              <a href="../gym/gym_detail.do?g_no=105">
+                <img class="card-img" src="http://newimg.soonwidot.co.kr/data/rank/26126/7691013ee745973c227a09e13f72ecee42834.jpg?t=1663086727" style="width: 220px">
               </div>
-              <div class="card-body">
-                <p>Beauty</p>
-                <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="img/product/product3.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Decor</p>
-                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="img/product/product4.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Decor</p>
-                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="img/product/product5.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Man Office Bag</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="img/product/product6.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Kids Toy</p>
-                <h4 class="card-product__title"><a href="single-product.html">Charging Car</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="img/product/product7.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Blutooth Speaker</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div> 
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="img/product/product8.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Kids Toy</p>
-                <h4 class="card-product__title"><a href="#">Charging Car</a></h4>
-                <p class="card-product__price">$150.00</p>
+              <div class="card-body" style="width: 200px">
+                <p>GYM</p>
+                <h4 class="card-product__title">제임스킬짐  </a></h4>
+                <p class="card-product__price">226,000원</p>
               </div>
             </div>
           </div>

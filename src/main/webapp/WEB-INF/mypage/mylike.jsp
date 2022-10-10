@@ -18,17 +18,32 @@ h1,h2,h3,h4,h5,h6 {
 </head>
 
 <body>
+<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>MY LIKE</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Doit!</a></li>
+              <li class="breadcrumb-item active" aria-current="page">LIKE LIST</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+
 	<section>
-  <h2 class="section-title" style="margin-top: 20px">나의 좋아요 내역</h2>
   <h3>GYM</h3><br>
      <div class="row">
        <c:forEach var="vo" items="${list }">
         
          <div class="thumbnail">
          
-	        <a class="card" href="../gym/gym_detail.do?g_no=${vo.g_no }" style="width:300px;height:300px;margin: 0px 40px 40px 0px;">
+	        <a class="card" href="../gym/gym_detail.do?g_no=${vo.g_no }" style="width:300px;height:300px;margin: 0px 60px 45px 40px;">
 	            <p class="card-category" style="font-size: 17px;color: black;font-weight: bold;">${vo.store }</p>
-	            <h3 class="card-title"><fmt:formatNumber value="${vo.price}" pattern="#,###"/>원</h3>
+	            <h3 class="card-title" style="font-size: 29px;"><fmt:formatNumber value="${vo.price}" pattern="#,###"/>원</h3>
 	            
 	            <div class="card-img-cont">
 	            <img src="${vo.poster }"
