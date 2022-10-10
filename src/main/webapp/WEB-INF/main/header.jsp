@@ -41,7 +41,6 @@
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="../store/list.do">Shop Category</a></li>
-                  <li class="nav-item"><a class="nav-link" href="../cart/cart_list.do">Shopping Cart</a></li>
                 </ul>
 							</li>
               

@@ -223,16 +223,17 @@
     <!-- ================ trending product section end ================= -->  
 
 
-    <!-- ================ offer section start ================= --> 
+
+      <!-- ================ offer section start ================= --> 
     <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
       <div class="container">
         <div class="row">
           <div class="col-xl-5">
             <div class="offer__content text-center">
-              <h3>Up To 50% Off</h3>
-              <h4>Winter Sale</h4>
-              <p>Him she'd let them sixth saw light</p>
-              <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
+              <h3>Up To 60% Off</h3>
+              <h4>파격 겨울 할인!!!</h4>
+              <p>다가오는 겨울 따뜻하게 맞이하자!</p>
+              <a class="button button--active mt-3 mt-xl-4" href="../store/list.do">쇼핑하러 가기</a>
             </div>
           </div>
         </div>
@@ -244,135 +245,96 @@
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
+          <p>가장 인기많은 상품</p>
           <h2>Best <span class="section-intro__style">Sellers</span></h2>
         </div>
         <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+              <a href="../store/detail.do?s_no=8&c_no=1"><img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0060020007522.jpg?1631238724" alt=""></a>
+              
             </div>
             <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title">
+              <a href="single-product.html">블랙라벨 시그니처 360N 더블플러피 기모 레깅스 1+1</a></h4>
+              <p class="card-product__price">58,000원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product" style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+              <a href="../store/detail.do?s_no=4&c_no=1"><img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0060030001492.jpg?1620027118" alt=""></a>
+             
             </div>
             <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="single-product.html">블랙라벨 시그니처 360N 8.5부 레깅스 1+1</a></h4>
+              <p class="card-product__price">49,800원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+                <a href="../store/detail.do?s_no=10&c_no=1"><img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0060020007522.jpg?1631238724" alt=""></a>
+              
             </div>
             <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="">블랙라벨 시그니처 360N 더블플러피 기모 레깅스 1+1 </a></h4>
+              <p class="card-product__price">58,000원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+               <a href="../store/detail.do?s_no=12&c_no=1"> <img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0060020007092.jpg?1653975647" alt=""></a>
+              
             </div>
             <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="">블랙라벨 시그니처 380N 레깅스 1+1 </a></h4>
+              <p class="card-product__price">59,800원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+               <a href="../store/detail.do?s_no=6&c_no=1"> <img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0060020008042.jpg?1643164367" alt=""></a>
+              
             </div>
             <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="single-product.html">블랙라벨 시그니처 330N 레깅스 1+1</a></h4>
+              <p class="card-product__price">58,000원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+                <a href="../store/detail.do?s_no=9&c_no=1"><img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0060020006442.jpg?1611821319" alt=""></a>
+             
             </div>
             <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="single-product.html">블랙라벨 시그니처 360N 레깅스 1+1[10/5(수) 2PM까지 데일리특가!]</a></h4>
+              <p class="card-product__price">39,000원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+               <a href="../store/detail.do?s_no=7&c_no=1"> <img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0050050002842.jpg?1653974528" alt=""></a>
+              
             </div>
             <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="single-product.html">블랙라벨 시그니처 380N 서포트탑 1+1 XT4205F </a></h4>
+              <p class="card-product__price">58,800원</p>
             </div>
           </div>
 
-          <div class="card text-center card-product">
+          <div class="card text-center card-product"style="width: 166px;">
             <div class="card-product__img">
-              <img class="img-fluid" src="img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
+                <a href="../store/detail.do?s_no=11&c_no=1"><img class="img-fluid" src="http://www.xexymix.com/shopimages/xexymix/0050050002842.jpg?1653974528" alt=""></a>
+              
             </div>
             <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
+              <h4 class="card-product__title"><a href="single-product.html">블랙라벨 시그니처 380N 서포트탑 1+1 XT4205F</a></h4>
+              <p class="card-product__price">58,800원</p>
             </div>
           </div>
         </div>

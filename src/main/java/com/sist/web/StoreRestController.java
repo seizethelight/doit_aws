@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.dao.StoreDAO;
 import com.sist.vo.NewsVO;
@@ -100,8 +101,10 @@ public class StoreRestController {
 		 	   map.put("c_no", c_no[cate]);
 	 	   }
 	 	  
-	 	   
+	 	  
 	 	   List<StoreVO> list=new ArrayList<StoreVO>();
+	 
+//	 	   int cnt = dao.storeTotalProduct(map);
 	 	   int totalpage=0;
 	 			   
 	 			  if(cate==1)//전체 
@@ -109,13 +112,14 @@ public class StoreRestController {
 	 				  list=dao.storeaListData(map);
 	 				 totalpage=dao.storeaTotalPage(map);
 	 			  }
+	 			 
 	 			  else //여자,남자 (cate=2,3) 
 	 			  {
 	 				  list=dao.storeListData(map);
 	 				 totalpage=dao.storeTotalPage(map);
 	 			  }
 	 			 
-
+	 			  
 	 	   for(StoreVO vo:list)
 	 	   {
 	 		   JSONObject obj=new JSONObject();
@@ -132,12 +136,14 @@ public class StoreRestController {
 	 		   obj.put("poster", "http://"+vo.getPoster());
 	 		   obj.put("price", vo.getPrice());
 	 		   obj.put("first_price", vo.getFirst_price());
+	 		   obj.put("hit", vo.getHit());
 
 	 		   if(k==0)
 	 		   {
 	 			   obj.put("curpage", curpage);
 	 	 		   obj.put("totalpage", totalpage);
 	 	 		   obj.put("type", type);
+//	 	 		   obj.put("cnt", cnt);
 	 	 		   
 	 		   }
 	 		   
@@ -148,7 +154,7 @@ public class StoreRestController {
  	  
  	 }
 	
-	
+		
 	  @GetMapping(value="store/detail.do",produces = "text/plain;charset=utf-8")
 	    public String store_detail_vue(int s_no,int type)
 	    {
@@ -229,4 +235,58 @@ public class StoreRestController {
 	    	result=arr.toJSONString();
 	    	return result;
 	    }
+	    @GetMapping(value="store/store_hitbar.do" , produces = "text/plain;charset=utf-8")
+	    // text/html (Ajax) , text/xml (XML), text/plain (JSON)
+	    public String hlist(String type,RedirectAttributes red)
+	    {
+	    	String result="";  
+	    	if(type==null)
+		 		   type="1";
+		 	  int cate=Integer.parseInt(type);
+		 	   String[] c_no={"","a","w","m","k","n","i","g","f"};
+		//System.out.println("list_type="+type);
+		 	   JSONArray arr=new JSONArray();//[] => {no,poster,title,curpage,totalpage},{no,poster,title}.....
+		 	   int k=0;
+		 	   int s=235;//man 시작번호 
+		 	   int p=409;//kids
+		 	   int g=623;//new
+		 	   int f=1002;//item
+		 	   int c=790;//g
+			 	   Map map=new HashMap();
+			 	   int rowSize=12;
+			 	   List<StoreVO> hlist=new ArrayList<>();
+//			 	   int cnt = dao.storeTotalProduct(map);
+			 		hlist=dao.storeA_Hit_ListData(map);
+			 			  
+			 	   for(StoreVO vo:hlist)
+			 	   {
+			 		   JSONObject obj=new JSONObject();
+			 		   obj.put("s_no", vo.getS_no());
+			 		 
+					   String name = vo.getName();
+					   if(name.length()>20) {
+						name = name.substring(0,20)+"...";
+						vo.setName(name);
+					   }
+							
+					 obj.put("name", vo.getName());
+					
+			 		   obj.put("poster", "http://"+vo.getPoster());
+			 		   obj.put("price", vo.getPrice());
+			 		   obj.put("first_price", vo.getFirst_price());
+			 		   obj.put("hit", vo.getHit());
+
+			 		   if(k==0)
+			 		   {
+			 	 		   obj.put("type", type);
+			 	 		   
+			 		   }
+			 		   arr.add(obj);
+			 		   k++;
+			 	   }
+			 	  result=arr.toJSONString();
+		 	  return  result;
+		 	  
+	    }
+		
 }
