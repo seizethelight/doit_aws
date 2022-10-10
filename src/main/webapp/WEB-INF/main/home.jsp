@@ -471,6 +471,64 @@
 
     
 
+<script>
+    new Vue({
+		 el:'.bg-container',
+		 data:{
+			 curpage:1,
+			 totalpage:0,
+			 store_list:[],
+			 store_cookie:[],
+	         s_no:0,
+	         type:1
+		 },
+		 mounted:function(){
+			 this.send()
+		 },
+		 methods:{
+			 send:function(){
+				 let _this=this;
+				 axios.get("http://localhost:8080/web/store/list.do",{
+					 params:{
+						 page:_this.curpage,
+						 type:_this.type
+					 }
+				 }).then(function(result){
+					 console.log(result);
+					 _this.store_list=result.data;
+					 _this.curpage=result.data[0].curpage;
+					 _this.totalpage=result.data[0].totalpage;
+				 })
+				  axios.get("http://localhost:8080/web/store/store_cookie.do",{
+						params:{
+							s_no:_this.s_no
+						}
+		     		}).then(function(result){
+		     			console.log(result.data)
+		     			_this.store_cookie=result.data;
+		     		})
+			 },
+			 storeChange:function(c_no){
+				 
+	    			this.type=c_no;
+	    			this.curpage=1;
+	    			this.send();
+	    		},
+			 prev:function(){
+				 this.curpage=this.curpage>1?this.curpage-1:this.curpage;
+				 this.send()
+			 },
+			 next:function(){
+				 this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage;
+				 this.send()
+			 }
+			
+		 }
+   }) 
+  
+  
+   </script>
+
   </main>
 
 

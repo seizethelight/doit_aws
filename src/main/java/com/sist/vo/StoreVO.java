@@ -19,6 +19,6 @@ C_NO                 VARCHAR2(10)
 @Getter
 @Setter
 public class StoreVO {
-	private int s_no,store_price;
+	private int s_no,store_price,hit;
 	private String name ,price,first_price,poster,c_no,img1,img2,img3;
 }

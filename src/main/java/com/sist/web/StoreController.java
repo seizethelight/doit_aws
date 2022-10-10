@@ -27,9 +27,18 @@ public class StoreController {
 	@Autowired
 	private DoitLikeDAO ldao;
 	
+	
+
+	@GetMapping("store/store.do")
+	public String store_store()
+	{
+		return "storemain";
+	}
+	
 	@GetMapping("store/list.do")
 	public String store_list(String s_no, Model model)
 	{
+		
 		return "store/list";
 	}
 		 @GetMapping("store/detail_before.do")
@@ -77,54 +86,8 @@ public class StoreController {
 		   model.addAttribute("vo",vo);
 		   model.addAttribute("s_no", s_no);
 		   model.addAttribute("c_no",c_no);
-//		   
-//		   String id=(String)session.getAttribute("id");
-//		  
-//	 	   String[] c_no_={"","g_no","s_no"};
-//			Map map=new HashMap();
-//			
-//			if(id!=null) {
-//				map.put("s_no",c_no_[no_type]);
-//				map.put("id", id);
-//				int lcount=ldao.likeCheck(map);
-//				model.addAttribute("lcount",lcount);
-//			}	else {
-//				 map.put("s_no", s_no);
-//				 map.put("c_no", c_no);
-//			}
-//			
-//			StoreVO vo=dao.storeDetailData(map);
-//			vo.setStore_price(Integer.parseInt(vo.getFirst_price().replaceAll("[^0-9]", "").trim()));
-//			
-//			model.addAttribute("vo", vo);
-//			model.addAttribute("s_no", s_no);
-//			model.addAttribute("c_no",c_no);
-//			model.addAttribute("no_type", no_type);
+
 		   return "store/detail";
 	   }
-	// 좋아요
-//		@GetMapping("store/LikeInsert.do")
-//		public String store_like_insert(int s_no,HttpSession session)
-//		{
-//			String id=(String)session.getAttribute("id");
-//			Map map=new HashMap();
-//			map.put("s_no", s_no);
-//			map.put("id", id);
-//			ldao.S_LikeInsert(s_no, map);
-//			
-//			return "redirect:../store/store_detail.do?s_no="+s_no;
-//			
-//		}
-//		@GetMapping("store/DisLikeInsert.do")
-//		public String store_dislike_insert(int s_no,HttpSession session)
-//		{
-//			String id=(String)session.getAttribute("id");
-//			Map map=new HashMap();
-//			map.put("s_no", s_no);
-//			map.put("id", id);
-//			ldao.S_LikeDelete(s_no, map);
-//			
-//			return "redirect:../store/store_detail.do?s_no="+s_no;
-//			
-//		}
+
 }

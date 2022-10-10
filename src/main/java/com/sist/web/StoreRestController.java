@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.dao.StoreDAO;
+import com.sist.vo.NewsVO;
 import com.sist.vo.StoreVO;
 
 @RestController
@@ -121,8 +122,8 @@ public class StoreRestController {
 	 		   obj.put("s_no", vo.getS_no());
 	 		 
 			   String name = vo.getName();
-			   if(name.length()>25) {
-				name = name.substring(0,25)+"...";
+			   if(name.length()>22) {
+				name = name.substring(0,22)+"...";
 				vo.setName(name);
 			   }
 					
@@ -146,6 +147,8 @@ public class StoreRestController {
  	  return arr.toJSONString();
  	  
  	 }
+	
+	
 	  @GetMapping(value="store/detail.do",produces = "text/plain;charset=utf-8")
 	    public String store_detail_vue(int s_no,int type)
 	    {
@@ -176,6 +179,7 @@ public class StoreRestController {
 	    		obj.put("img1", vo.getImg1());
 	    		obj.put("img2", vo.getImg2());
 	    		obj.put("img3", vo.getImg3());
+	    		obj.put("hit", vo.getHit());
 //	    		obj.put("",vo.getAddress().substring(vo.getAddress().indexOf(" ")).trim());
 	    		
 	    		result=obj.toJSONString();

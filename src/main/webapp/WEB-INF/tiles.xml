@@ -21,6 +21,18 @@
 		<put-attribute name="content" value="/WEB-INF/post/{1}.jsp" />
 	</definition>
 
+
+	<definition name="storemain" template="/WEB-INF/main/storemain.jsp">
+	<put-attribute name="header" value="/WEB-INF/main/header.jsp" />
+	<put-attribute name="store_hitbar" value="/WEB-INF/main/store_hitbar.jsp" />
+	<put-attribute name="content" value="/WEB-INF/store/store.jsp" />
+	<put-attribute name="footer" value="/WEB-INF/main/footer.jsp" />
+	</definition>
+	<definition name="store/*" extends="storemain">
+		<put-attribute name="content" value="/WEB-INF/store/{1}.jsp" />
+	</definition>
+	
+	
 	<!-- return main/main -->
 	<definition name="*/*" extends="main">
 		<put-attribute name="content" value="/WEB-INF/{1}/{2}.jsp" />
