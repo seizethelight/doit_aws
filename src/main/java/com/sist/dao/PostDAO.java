@@ -189,11 +189,49 @@ public class PostDAO {
 	{
 		mapper.blogReplyInsert(vo);
 	}
-	public String blogReplyDelete(int b_r_no)
+	
+	 private Connection conn;
+   private CallableStatement cs;
+   private final String URL="jdbc:oracle:thin:@211.63.89.131:1521:XE";
+   
+   public PostDAO()
+   {
+	   try
+	   {
+		   Class.forName("oracle.jdbc.driver.OracleDriver");
+	   }catch(Exception ex){}
+   }
+   public void getConnection()
+   {
+	   try
+	   {
+		   conn=DriverManager.getConnection(URL,"hr","happy");
+	   }catch(Exception ex) {}
+   }
+   public void disConnection()
+   {
+	   try
+	   {
+		   if(cs!=null) cs.close();
+		   if(conn!=null) conn.close();
+	   }catch(Exception ex) {}
+   }
+	   
+   
+	public void blogReplyDelete(int b_r_no)
 	{
-		String result="yes";
-		mapper.blogReplyDelete(b_r_no);
-		return result;
+		try {
+			getConnection();
+			String sql="{CALL blogReplyDelete(?)}";
+			cs=conn.prepareCall(sql);
+			cs.setInt(1, b_r_no);
+			cs.executeQuery();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		finally {
+			disConnection();
+		}
 	}
 	
 	//*********** 자유게시판 ***********//	

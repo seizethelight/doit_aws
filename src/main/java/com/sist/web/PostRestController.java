@@ -421,25 +421,11 @@ public class PostRestController {
 		}
 		return arr.toJSONString();
 	}
-	@GetMapping(value="post/blog_reply_insert.do", produces = "text/plain;charset=utf-8")
-	public String blog_reply_insert(BlogReplyVO vo, HttpSession session)
-	{
-	   dao.blogReplyInsert(vo);
-	   return "OK";
-	}
 	
-//	@GetMapping(value="post/blog_reply_delete.do", produces = "text/plain;charset=utf-8")
-//	public String blog_reply_delete(int b_r_no)
-//	{
-//		String result = dao.blogDeleteData(b_r_no);
-//		return result;
-//	}
-			
 	@GetMapping(value = "post/blog_reply_list.do", produces = "text/plain;charset=utf-8")
 	public String blog_reply_list(int b_no, HttpSession session) {
 		String id=(String)session.getAttribute("id");
 		String result = "";
-		
 		BlogReplyVO vo=new BlogReplyVO();
 		vo.setB_no(b_no);
 		
@@ -447,6 +433,26 @@ public class PostRestController {
 		result = blog_reply_json_data(list);
 		return result;
 	}
+	
+	@GetMapping(value="post/blog_reply_insert.do", produces = "text/plain;charset=utf-8")
+	public String blog_reply_insert(BlogReplyVO vo, HttpSession session)
+	{
+	   dao.blogReplyInsert(vo);
+	   return "OK";
+	}
+	
+	@GetMapping(value="post/blog_reply_delete.do", produces = "text/plain;charset=utf-8")
+	public String blog_reply_delete(int b_r_no)
+	{
+		String result="";
+		BlogReplyVO vo=new BlogReplyVO();
+		dao.blogReplyDelete(b_r_no);
+		
+		List<BlogReplyVO> list=dao.blogReplyListData(vo.getB_no());
+		result=blog_reply_json_data(list);
+		return result;
+	}
+	
 	
 	/**************** forum ****************/
 	// forum list

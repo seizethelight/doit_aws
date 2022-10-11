@@ -2230,10 +2230,32 @@ a {
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s
+  transition: all 0.3s ease 0s;
+  border : 0px;
 }
 
 .comments-area .btn-reply:hover {
+  background-color: #384aeb;
+  color: #fff;
+  font-weight: 700
+}
+
+.comments-area .reply-btn input[type=button] {
+  background-color: #fff;
+  color: #222;
+  padding: 5px 18px;
+  font-size: 12px;
+  display: block;
+  font-weight: 400;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  border : 0px;
+  
+}
+
+.comments-area .reply-btn .btn-reply:hover {
   background-color: #384aeb;
   color: #fff;
   font-weight: 700

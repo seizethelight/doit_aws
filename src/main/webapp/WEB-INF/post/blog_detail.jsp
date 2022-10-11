@@ -129,14 +129,14 @@
 					</div>
 					<div class="desc">
 						<h5>
-							<a href="#">{{cvo.id}}</a>
+							<a href="#">{{cvo.id}} {{cvo.b_r_no}}</a>
 						</h5>
 						<p class="date">{{cvo.dbday}} at {{cvo.dbtime}}</p>
 						<p class="comment">{{cvo.content}}</p>
 					</div>
 				</div>
 				<div class="reply-btn">
-					<a href="#" class="btn-reply text-uppercase">reply</a>
+					<input type="button" value="Delete" class="btn-reply text-uppercase" v-on:click="breplyDelete(cvo.b_r_no)">
 				</div>
 			</div>
 		</div>
@@ -227,11 +227,11 @@ new Vue({
 	el:'.comment_container',
 	data : {
 		b_no:${b_no},
-		id:'<%=(String) session.getAttribute("id")%>',
 		reply:[],
+		sid:'',
 		content:'',
-		b_r_no:0,
-		pwd:''
+		b_r_no:'',
+		pwd:'',
 	},
 	mounted:function(){
 		let _this=this;
@@ -266,6 +266,20 @@ new Vue({
 				alert("댓글이 성공적으로 등록 되었습니다. 새로운 댓글을 위해서 새로고침을 해주세요 :)");
 				_this.reply = result.data;
 				console.log(result.data)
+			})
+		},
+		breplyDelete:function(b_r_no){
+   		let _this=this;
+			axios.get("http://localhost:8080/web/post/blog_reply_delete.do",{
+				params : {
+					b_r_no : b_r_no,
+					b_no : _this.b_no
+				}
+			}).then(function(result){
+				console.log(this.data)
+				alert("댓글이 삭제되었습니다. 정상적인 동작을 위하여 새로고침이 필요합니다.")
+				_this.reply=result.data;
+
 			})
 		}
 	}

@@ -2289,7 +2289,8 @@ blog_right_sidebar .frequently_ask_question_widget .post_item .media-body {
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s
+  transition: all 0.3s ease 0s;
+  border : 0px;
 }
 
 .comments-area .btn-reply:hover {
