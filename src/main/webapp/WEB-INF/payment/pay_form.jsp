@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 	 <%-- <link rel="stylesheet" href="${path }/resources/css/pay_style.css" type="text/css"> --%>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
 </head>
 <body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -18,17 +20,17 @@
 					<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 					<script type="text/javascript">
 					var IMP = window.IMP; // 생략 가능
-					IMP.init("imp68206770"); // 예: imp00000000   imp12148244
+					IMP.init("imp40678337"); // 예: imp00000000   imp12148244  imp40678337
 					function requestPay() {
 						console.log('clicked');
 						
 						// IMP.request_pay(param, callback) 결제창 호출
 					  IMP.request_pay({ // param
-					      pg: "html5_inicis.MID-a",
+					      pg: "html5_inicis", //.INIpayTest
 					      pay_method: 'card',//결제수단 
-					      merchant_uid: "1",//주문번호 
+					      merchant_uid:'merchant_' + new Date().getTime(),
 					      name: 'doit 상품 결제',//결제창에 보여질 이름 
-					      amount: ${sum2},//가격 
+					      amount: ${sum+sum1},//가격 
 					      buyer_email: "${vo.email}",
 					      buyer_name: "${vo.name}",
 					      buyer_tel: "${vo.phone}",
@@ -37,13 +39,11 @@
 					  }, function (rsp) { // callback
 					      if (rsp.success) {
 					          // 결제 성공 시 로직,
-					          alert('결제에 성공하였습니다!');
-					    	  location.href="../mypage/payment.do";
-				                
+					         
 					      } else {
 					          // 결제 실패 시 로직,
-					    	  alert('결제에 실패하였습니다!');
-					          location.href="../main/main.do";
+					    	  alert('결제에 성공하였습니다!');
+					          location.href="../mypage/payment.do";
 					      }
 					  });
 					}
@@ -55,7 +55,7 @@
 			<h4 class="my-4" style="font-weight: bold">
 					결제하기
 			</h4>
-			
+		<form action="../mypage/payment.do" method="post" id="frm" name="frm">	
 			 <div class="column-labels" style="display: flex; font-weight: bold">
 			    <label class="product-image" style="width: 80%">이미지</label>
 			    <label class="product-details" style="width: 90%">상품명</label>
@@ -75,7 +75,7 @@
 	                 <div class="noen" style="display: flex;">
 	                 <td width=39%><h6>${gvo.name }</a>&nbsp;</h6></td>
 	                 <td width=19%><h6>${gvo.account }</a>&nbsp;</h6></td>
-	                 <td width=30%><h6 style="color: orange"><fmt:formatNumber value="${gvo.price }" pattern="#,###"/>원</a>&nbsp;</h6></td>
+	                 <td width=30%><h6 style="color: orange"><fmt:formatNumber value="${gvo.total }" pattern="#,###"/>원</a>&nbsp;</h6></td>
 	               </div>
 	               </tr>
 	             </table> 
@@ -89,7 +89,7 @@
 			</div>
 			<div style="border-bottom:2px solid #dee2e6;margin-bottom: 20px" ></div>
 			
-			<form action="#" method="request">
+			
 			<c:forEach var="vo" items="${list }">
 				<div class="form-row">
 					<div class="col-md-6 form-group">
@@ -123,7 +123,7 @@
 					<label for="adress" style="font-weight: bold;font-size: 16px;">주소</label>
 					<input type="text" class="form-control" id="adress" value="${vo.addr1 }" placeholder="도로명주소" required>
 					<div class="invalid-feedback">
-						Please enter your shipping address.
+						주소를 입력해주세요.
 					</div>
 				</div>
 
@@ -135,7 +135,7 @@
 				</div>
 				
 				<div class="form-check">
-					<input type="checkbox" class="form-check-input" id="shipping-adress"> 
+					<input type="checkbox" class="form-check-input" id="shipping-adress" name="chkSelect" checked required> 
 						결제정보 서비스를 위한 개인정보 수집 및 이용 약관에 동의합니다.
 					<label for="shipping-adress" class="form-check-label"></label>
 				</div>
@@ -144,20 +144,16 @@
 				
 				<div class="form-check">
 					<input type="radio" class="form-check-input" id="credit" name="payment-method" checked required>
-					<label for="credit" class="form-check-label">아임포트</label>
+					<label for="credit" class="form-check-label">아임포트 결제</label>
 				</div>
 
-				<div class="form-check">
-					<input type="radio" class="form-check-input" id="debit" name="payment-method" required>
-					<label for="debit" class="form-check-label">카카오 QR결제</label>
-				</div>
 
 				<div class="row mt-4"></div>
 				<div class="form-row"></div> 
 
 					<hr class="mb-4">
-				
-					<button class="btn btn-primary bt-md btn-block" type="button" onclick="requestPay()">결제하기</button>
+					<%-- <input type="hidden" name="no" value="${vo.no }"> --%>
+					<input type="button" class="btn btn-primary bt-md btn-block" onclick="requestPay()" value="결제하기" id="payBtn">
 					 <input type="button" class="btn btn-info bt-md btn-block" onclick="javascript:history.back()" value="취소">
 					
 			   </c:forEach>	
