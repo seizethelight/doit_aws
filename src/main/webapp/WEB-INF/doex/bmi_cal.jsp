@@ -1,46 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<html lang="en">
 <head>
-<title>서울시민 건강포털</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aroma Shop - Category</title>
+<link rel="icon" href="img/Fevicon.png" type="image/png">
+<link rel="stylesheet" href="../resources/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="../resources/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="../resources/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../resources/vendors/linericon/style.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="../resources/vendors/nice-select/nice-select.css">
+<link rel="stylesheet" href="../resources/vendors/nouislider/nouislider.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+ <link rel="stylesheet" href="../resources/css/style.css" >   
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ -->
 <style type="text/css">
-.container{
-   margin-top: 50px;
+ .container{
+  
    text-align: center;
 }
 .row{
    margin: 0px auto;
    width:100%;
    text-align:center;
-}
+} 
 .text-center{
 	text-align: center;
 }
 
+.msgbox{
+	padding:20px;
+}  
+  
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<link type="text/css" href="https://health.seoulmc.or.kr/css/default.css" rel="stylesheet" />
+<!-- <link type="text/css" href="https://health.seoulmc.or.kr/css/default.css" rel="stylesheet" />
 <link type="text/css" href="https://health.seoulmc.or.kr/css/BITCommon.css" rel="stylesheet" />
 <link type="text/css" href="https://health.seoulmc.or.kr/css/jquery.fileupload.css" rel="stylesheet" />
 <link type="text/css" href="https://health.seoulmc.or.kr/css/jquery.fileupload-ui.css" rel="stylesheet" />
-<link type="text/css" href="https://health.seoulmc.or.kr/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" />
+<link type="text/css" href="https://health.seoulmc.or.kr/css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" /> -->
 
 <script  type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 </head>
 <body>
+<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Exercise</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Doit!</a></li>
+              <li class="breadcrumb-item active" aria-current="page">BMI Calculate</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
 
 <div class="container">
-	<div style="height:100px"></div>
 	
 	<div class="pop-body">
+	<br>
 	<h2><b>나의 체질량지수(BMI)</b></h2>
-		<div class="message-box" >
+		<div class="message-box" id="msgbox">
 		<h6>
 			<span>체질량지수는 자신의 몸무게(kg)를 키의 제곱(m)으로 나눈 값입니다.<br />
 			18.5 미만             : 저체중<br />
@@ -125,6 +162,8 @@ $().ready(function() {
 		$("#resultText").text("");
 	});
 });
+
 </script>
+
 </body>
 </html>

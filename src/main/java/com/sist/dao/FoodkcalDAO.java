@@ -22,9 +22,9 @@ public class FoodkcalDAO {
 		return mapper.foodkcalTotalPage(map);
 	}
 
-	public FoodkcalVO foodkcalDetailData(int f_no) {
+	public FoodkcalVO foodkcalDetailData(Map map) {
 		// TODO Auto-generated method stub
-		mapper.foodkcalHitIncrement(f_no);
-		return mapper.foodkcalDetailData(f_no);
+		mapper.foodkcalHitIncrement(map);
+		return mapper.foodkcalDetailData(map);
 	}
 }

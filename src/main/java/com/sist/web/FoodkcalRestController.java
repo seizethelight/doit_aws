@@ -14,12 +14,17 @@ public class FoodkcalRestController {
 	@Autowired
 	private FoodkcalDAO fDao;
 	@GetMapping(value="doex/foodkcal_list.do", produces="text/plain;charset=UTF-8")
-	public String foodkcal_list(String page)
+	public String foodkcal_list(String page,String type,Model model)
 	{
 		 String result="";
 		if(page==null)
 			page="1";
-		
+		if(type==null)
+	 		   type="1";
+	 	   
+	 	   int index=Integer.parseInt(type);
+	 	   String[] table_name={"","t4_food_kcal","t4_exercise_kcal"};
+	 	   
 		   int curpage=Integer.parseInt(page);
 	 	   Map map=new HashMap();
 	 	   int rowSize=12;
@@ -28,7 +33,8 @@ public class FoodkcalRestController {
 	 	   
 	 	   map.put("start", start);
 	 	   map.put("end", end);
-	 	   
+	 	   map.put("table_name", table_name[index]);
+	 	  
 	 	   List<FoodkcalVO> list=fDao.foodkcalListData(map);
 	 	   int totalpage=fDao.foodkcalTotalPage(map);
 	 	   
@@ -48,6 +54,7 @@ public class FoodkcalRestController {
 		 		   {
 		 			   obj.put("curpage", curpage);
 		 	 		   obj.put("totalpage", totalpage);
+		 	 		   obj.put("type", type);
 		 		   }
 	 		   arr.add(obj);
 	 		   k++;
@@ -58,11 +65,16 @@ public class FoodkcalRestController {
 	    }
 	
 	 @GetMapping(value = "doex/foodkcal_detail.do", produces = "text/plain;charset=UTF-8")
-	 public String foodkcal_detail(int f_no)
+	 public String foodkcal_detail(int f_no,int type)
 	 {
 		 String result="";
 		 try {
-			 FoodkcalVO vo=fDao.foodkcalDetailData(f_no);
+			 	String[] table_name={"","t4_food_kcal","t4_exercise_kcal"};
+	    		Map map=new HashMap();
+	    		map.put("table_name", table_name[type]);
+	    		map.put("f_no", f_no);
+	    		
+			 FoodkcalVO vo=fDao.foodkcalDetailData(map);
 			 JSONObject obj=new JSONObject();
 			
 			 obj.put("f_no", vo.getF_no());

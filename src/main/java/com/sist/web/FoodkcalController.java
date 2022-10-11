@@ -24,11 +24,13 @@ public class FoodkcalController {
 	
 	
 	@GetMapping("doex/foodkcal_detail.do")
-	public String foodkcal_detail(int f_no,Model model)
+	public String foodkcal_detail(int f_no,int type,Model model)
 	{	
 		Map map=new HashMap();	
 		map.put("f_no", f_no);
 		model.addAttribute("f_no", f_no);
+		model.addAttribute("type", type);
 		return "doex/foodkcal_detail";
+		
 	}
 }

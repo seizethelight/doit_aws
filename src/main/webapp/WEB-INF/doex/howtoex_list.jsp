@@ -1,53 +1,137 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aroma Shop - Category</title>
+<link rel="icon" href="img/Fevicon.png" type="image/png">
+<link rel="stylesheet" href="../resources/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="../resources/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="../resources/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="../resources/vendors/linericon/style.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="../resources/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="../resources/vendors/nice-select/nice-select.css">
+<link rel="stylesheet" href="../resources/vendors/nouislider/nouislider.min.css">
 
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+ <link rel="stylesheet" href="../resources/css/style.css" > 
 
-    
-<style type="text/css">
-body{
-   /*background-color: #eff8ff;*/
-   background-color: #eee;
-     font-family: 'Noto Sans KR', sans-serif !important;
-     
+<style>
+.images:hover{
+  cursor: pointer;
 }
-.container{
-   margin-top: 30px;
+.card {
+    border: medium none;
+    box-shadow: 0 0 11px #daebff;
+    margin-bottom: 18px;
+    background-color: #FFFFFF
 }
-.row {
-   margin: 0px auto;
-   width:100%
+.card-list .badge {
+    left: 20px;
+    padding: 7px 10px;
+    position: absolute;
+    top: 20px;
+    z-index: 9;
 }
+.badge {
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 400;
+}
+img {
+    transform-style: preserve-3d;
+}
+img {
+    height: auto;
+    max-width: 93%;
+}
+.card-list-view .card-body, .card-list-view .card-footer {
+    padding: 11px 20px;
+}
+.card-list .card-body h2 small {
+    font-size: 19px;
+}
+.card-list .card-footer span {
+    margin: 0 15px 0 0;
+} 
+
+
+.search {
+  width: 65%;
+  position: relative;
+  display: flex;
+  margin-left: 200px;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #384aeb;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #384aeb;
+  background: #384aeb;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 .text-center{
 	margin:auto;
 	padding: 5px 0px 5px;
 }
-
-.padding-space{
-	padding-left:50px;
-}
-
-.btn.btn-outline-secondary {
-	border-radius:4px;
-}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </head>
+
 <body>
-<br><br><br><br><br>
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Exercise</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Doit!</a></li>
+              <li class="breadcrumb-item active" aria-current="page">How to Exercise</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
  <div class="container" id=app>
  
     <div style="height: 20px"></div>

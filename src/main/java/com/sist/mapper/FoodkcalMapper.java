@@ -10,22 +10,22 @@ public interface FoodkcalMapper {
 	@Select("SELECT f_no,f_title,f_unit,f_kcal, f_hit,num "
 			+"FROM (SELECT f_no,f_title,f_unit,f_kcal, f_hit, rownum as num "
 			+"FROM (SELECT f_no,f_title,f_unit,f_kcal, f_hit "			
-			+"FROM t4_food_kcal ORDER BY f_no ASC)) "
+			+"FROM ${table_name} ORDER BY f_no ASC)) "
 			+"WHERE num BETWEEN #{start} AND #{end}")
 	public List<FoodkcalVO> foodkcalListData(Map map);
 	
 	
-	@Select("SELECT CEIL(COUNT(*)/12.0) FROM t4_food_kcal")
+	@Select("SELECT CEIL(COUNT(*)/12.0) FROM ${table_name}")
 	public int foodkcalTotalPage(Map map);
 
-	@Update("UPDATE t4_food_kcal "
+	@Update("UPDATE ${table_name} "
 			+ "SET f_hit = f_hit + 1 "
 			+ "WHERE f_no=#{f_no}")
-	public void foodkcalHitIncrement(int f_no);
+	public void foodkcalHitIncrement(Map map);
 
-	@Select("SELECT * FROM t4_food_kcal "
+	@Select("SELECT * FROM ${table_name} "
 			+"WHERE f_no=#{f_no}")
-	public FoodkcalVO foodkcalDetailData(int f_no);
+	public FoodkcalVO foodkcalDetailData(Map map);
 	
 	
 
