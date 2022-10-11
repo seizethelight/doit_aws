@@ -81,7 +81,11 @@
 
 .lhbutton {
   margin-top : 20px;
-  text-align-last : center;
+  font-family: none;
+  display : flex;
+  place-items : center;
+  justify-content : center;
+  
 }
 .lhbutton button {
 	border: none;
@@ -91,12 +95,20 @@
 	margin: 5px;
 	font-size: 14px;
 	cursor: pointer;
+	
 }
 
 .lhbutton #like {
 		background-color: #637081;
 		background-image: linear-gradient(315deg, #637081 0%, #7c98b3 74%);
 		color: white;
+}
+.lhbutton #liked {
+  outline : none;
+  color : white;
+  background-color : #f5d020!important;
+  background-image : linear-gradient(315deg, #f5d020 0%, #f53803 74%)!important;
+  font-family : none;
 }
 
 .lhbutton #dislike {
@@ -179,15 +191,13 @@
 .comment-main-level .comment-avatar img{
   height : 50px;
   width : 50px;
+  margin-right : 15px;
 }
 .comment-main-level .comment-box {
   width : 100%;
 }
 .comment-main-level .comment-box .comment-content {
   color : #222;
-}
-.comment-main-level .comment-box .comment-name {
-  margin-left : 10px;
 }
 .comment-main-level .comment-box .comment-date {
   width : 100%;

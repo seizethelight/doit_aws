@@ -125,9 +125,14 @@ public class PostDAO {
 		return mapper.likeCheck(map);
 	}
 	// news like
-	public void newsLike(NewsLikeVO vo)
+	public void newsLikeInsert(Map map)
 	{
-		mapper.newsLike(vo);
+		mapper.newsLikeInsert(map);
+	}
+	// news like cancel
+	public void newsLikeCancel(Map map)
+	{
+		mapper.newsLikeCancel(map);
 	}
 	
 	//*********** 블로그 ***********//	
@@ -228,6 +233,12 @@ public class PostDAO {
 	public void forumReplyInsert(ForumReplyVO vo)
 	{
 		mapper.forumReplyInsert(vo);
+	}
+	public String forumReplyDelete(int f_r_no)
+	{
+		String result="yes";
+		mapper.forumReplyDelete(f_r_no);
+		return result;
 	}
 	
 	//*********** 개인 로그 ***********//		

@@ -202,7 +202,11 @@ public class PostRestController {
 		JSONObject obj = new JSONObject();
 		String sid=(String)session.getAttribute("id");
 		
-		obj.put("sid", sid);
+		Map map=new HashMap();
+		map.put("n_no", n_no);
+		map.put("id", sid);
+		int lCheck=dao.likeCheck(map);
+		
 		obj.put("n_no", vo.getN_no());
 		obj.put("title", vo.getTitle());
 		obj.put("id", vo.getId());
@@ -211,6 +215,7 @@ public class PostRestController {
 		obj.put("hit", vo.getHit());
 		obj.put("etdate", vo.getEtdate());
 		obj.put("cate", vo.getCate());
+		obj.put("lCheck", lCheck);
 
 		result = obj.toJSONString();
 		return result;
@@ -251,6 +256,11 @@ public class PostRestController {
 			JSONObject obj = new JSONObject();
 			obj.put("n_no", fvo.getN_no());
 			obj.put("title", fvo.getTitle());
+			String content = fvo.getContent();
+			if(content.length()>40) {
+				content = content.substring(0,20)+"...";
+				fvo.setContent(content);
+			}
 			obj.put("content", fvo.getContent());
 			obj.put("id", fvo.getId());
 			obj.put("dbday", fvo.getDbday());
@@ -269,12 +279,25 @@ public class PostRestController {
 		return result;
 	}
 	
-	// news like
-	@GetMapping(value = "post/news_like.do", produces = "text/plain;charset=utf-8")
-	public String post_news_like(NewsLikeVO vo, HttpSession session) 
-	{
-		String sid=(String)session.getAttribute("id");
-		dao.newsLike(vo);
+	// news like insert
+	@GetMapping(value = "post/news_like_insert.do", produces = "text/plain;charset=utf-8")
+	public String post_news_like_insert(NewsLikeVO vo, Map map, HttpSession session) 
+	{	
+		String id = (String) session.getAttribute("id");
+		map.put("id", id);
+		map.put("n_no", vo.getN_no());
+		dao.newsLikeInsert(map);
+		return "OK";
+	}
+	
+	// news like cancel
+	@GetMapping(value = "post/news_like_cancel.do", produces = "text/plain;charset=utf-8")
+	public String post_news_like_cancel(NewsLikeVO vo, Map map, HttpSession session) 
+	{	
+		String id = (String) session.getAttribute("id");
+		map.put("id", id);
+		map.put("n_no", vo.getN_no());
+		dao.newsLikeCancel(map);
 		return "OK";
 	}
 
@@ -485,11 +508,7 @@ public class PostRestController {
 	/**************** forum reply ****************/
 	public String reply_json_data(List<ForumReplyVO> list,String id)
 	{
-		/*
-		 * private int no,cno,type; private String id,name,msg,dbday;
-		 */
 		JSONArray arr = new JSONArray();
-		int k = 0;
 		for (ForumReplyVO rvo : list) {
 			JSONObject obj = new JSONObject();
 			obj.put("f_no", rvo.getF_no());
@@ -501,7 +520,6 @@ public class PostRestController {
 			obj.put("group_tab", rvo.getGroup_tab());
 			obj.put("group_step", rvo.getGroup_step());
 			obj.put("sessionId", id);
-			k++;
 			arr.add(obj);
 		}
 		return arr.toJSONString();
@@ -511,6 +529,13 @@ public class PostRestController {
 	{
 	   dao.forumReplyInsert(vo);
 	   return "OK";
+	}
+	
+	@GetMapping(value="post/reply_delete.do", produces = "text/plain;charset=utf-8")
+	public String reply_delete(int f_r_no)
+	{
+		String result = dao.forumDeleteData(f_r_no);
+		return result;
 	   
 	}
 			

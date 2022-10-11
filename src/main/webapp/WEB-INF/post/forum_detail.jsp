@@ -58,12 +58,14 @@
 <div class="post_navigation_area">
 	<div class="nav_container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<c:if test="${sessionScope.id == id }">
 			<li class="nav-item">
 			<input type="button" class="nav-link active" value="Delete" v-on:click="forumDelete()">
 			</li>
 			<li class="nav-item">
 				<a :href="'../post/forum_edit.do?f_no='+f_no"><input type="button" value="Edit" ></a>
 			</li>
+		</c:if>
 			<li class="nav-item">
 				<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
 			</li>
@@ -88,12 +90,13 @@
 						<div class="comment-box">
 							<div class="comment-head">
 								<h6 class="comment-name by-author">
-									<a href="http://creaticode.com/blog">{{rvo.id}}</a>
+									<a href="http://creaticode.com/blog">{{rvo.f_r_no}} {{rvo.id}}</a>
 								</h6>
 								
 								<div class="comment-date">
-									<span>{{rvo.dbday}}</span> <i class="fa fa-reply"></i>
-									<i class="fa fa-heart"></i>
+									<span>{{rvo.dbday}}</span>
+									<i class="fa fa-reply"></i>
+									<a @click="replyDelete()"><i class="fa fa-trash"></i></a>
 								</div>
 								
 							</div>
@@ -106,7 +109,7 @@
 			<table class="comment-apply">
 				<tr>
 					<td>
-						<textarea rows="4" cols="78" ref="content" style="float: left" v-model="content"></textarea> 
+						<textarea rows="4" cols="78" ref="content" style="float:left" v-model="content"></textarea> 
 						<input type=button value="댓글쓰기" class="btn btn-sm btn-primary" @click="replyInsert()"
 						style="height: 105px; margin-left:30px; background-color:#D75A43; border:solid 0px; border-radius:15px;">
 					</td>
@@ -214,13 +217,14 @@ new Vue({
     	f_no:${f_no},
     	id:'<%=(String) session.getAttribute("id")%>',
 	 		reply : [],
-	 		content:''
+	 		content:'',
+	 		f_r_no:0
    	},
    	mounted:function(){
    		let _this=this;
    		axios.get("http://localhost:8080/web/post/reply_list.do",{
    			params:{
-   				f_no:_this.f_no,
+   				f_no:_this.f_no
    			}
    		}).then(function(result){
    			_this.reply=result.data;
@@ -229,12 +233,12 @@ new Vue({
    	},
    	methods:{
 			replyInsert:function(){
+	   		let _this=this;
 				if(this.content==="")
 				{
 					this.$refs.content.focus();
 					return;
 				}
-				let _this=this;
 				axios.get("http://localhost:8080/web/post/reply_insert.do",{
 	    			params:{
 	    				f_no : this.f_no,
@@ -242,10 +246,23 @@ new Vue({
 	    				id : this.id
 	    			}
 	    		}).then(function(result){
+	    			content : "",
+	    			console.log( "댓글 등록 완료");
+		   			alert("댓글이 등록되었습니다. 새로고침을 해주세요");
 	    			_this.reply=result.data;
-	    			console.log(result.data)
-	    			this.reply.push(reply);
     		})
+			},
+			replyDelete:function(f_r_no){
+	   		let _this=this;
+				axios.get("http://localhost:8080/web/post/reply_delete.do",{
+					params : {
+						f_r_no : _this.f_r_no,
+						f_no : _this.f_no
+					}
+				}).then(function(result){
+					console.log(this.f_r_no)
+					_this.reply=result.data;
+				})
 			}
    	}
 })

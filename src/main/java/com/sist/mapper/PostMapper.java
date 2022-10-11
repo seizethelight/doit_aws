@@ -97,22 +97,24 @@ public interface PostMapper {
 	@Update("UPDATE T4_NEWS SET title=#{title}, content=#{content}, editeddate=SYSDATE WHERE n_no=#{n_no}")
 	public void newsEdit(NewsVO vo);
 	
-	// news 수정, 삭제를 위한 세션 비밀번호
 
 	// 뉴스 좋아요 확인
-	@Select("SELECT COUNT(*) FROM T4_NEWS_LIKE WHERE c_no=#{c_no} AND id=#{id}")
+	@Select("SELECT COUNT(*) FROM T4_NEWS_LIKE WHERE n_no=#{n_no} AND id=#{id}")
 	public int likeCheck(Map map);
 	
 	
 	// 뉴스 좋아요
 	@SelectKey(keyProperty = "l_no", resultType = int.class, before = true,
-			statement = "SELECT NVL(MAX(l_no)+1,1) as q_no FROM T4_NEWS_LIKE")
+			statement = "SELECT NVL(MAX(l_no)+1,1) as l_no FROM T4_NEWS_LIKE")
 	@Insert("INSERT INTO T4_NEWS_LIKE VALUES(#{l_no}, #{n_no}, #{id})")
-	public void newsLike(NewsLikeVO vo);
+	public void newsLikeInsert(Map map);
 	
 	@Update("UPDATE T4_NEWS SET likecount = likecount+1 WHERE n_no=#{n_no}")
 	public void newsLikeIncrement(int n_no);
 	
+	// 뉴스 좋아요 취소
+	@Delete("DELETE FROM T4_NEWS_LIKE WHERE n_no=#{n_no} AND id=#{id}")
+	public int newsLikeCancel(Map map);
 	
 	
 	//*********** 블로그 ***********//
@@ -188,12 +190,16 @@ public interface PostMapper {
 	// forum 댓글 인서트
 	@SelectKey(keyProperty = "f_r_no", resultType = int.class, before = true,
 	statement = "SELECT NVL(MAX(f_r_no)+1,1) as f_r_no FROM T4_FORUM_REPLY")
+	
 	@Insert("INSERT INTO T4_FORUM_REPLY VALUES(#{f_r_no}, #{content}, SYSDATE, #{f_no}, 1, 1, 1, #{id}  )")
 	public void forumReplyInsert(ForumReplyVO vo);
 
+	// forum 댓글 삭제
+	@Delete("DELETE FROM T4_FORUM_REPLY WHERE f_r_no=#{f_r_no}")
+	public void forumReplyDelete(int f_r_no);
 	
 	// forum 댓글 리스트
-	@Select("SELECT content, TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as dbday, f_no, f_r_no, group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no} ")
+	@Select("SELECT content, TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as dbday, f_no, f_r_no, group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no} ORDER BY dbday DESC")
 	public List<ForumReplyVO> replyListData(int f_no);
 	
 

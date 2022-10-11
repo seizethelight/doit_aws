@@ -9,6 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>DoIt</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <link rel="icon" href="${path}/resources/img/Fevicon.png" type="image/png">
 <link rel="stylesheet" href="${path}/resources/vendors/bootstrap/bootstrap.min.css">
 <link rel="stylesheet" href="${path}/resources/vendors/fontawesome/css/all.min.css">
@@ -319,56 +321,23 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0" v-for="fvo in news_top">
             <div class="card card-blog">
               <div class="card-blog__img">
                 <img class="card-img rounded-0" src="img/blog/blog1.png" alt="">
               </div>
               <div class="card-body">
                 <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
+                  <li><a href="#">{{fvo.id}}</a></li>
                   <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
                 </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">The Richland Center Shooping News and weekly shooper</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+                <h4 class="card-blog__title"><a href="single-blog.html">{{fvo.title}}</a></h4>
+                <p>{{fvo.content}}</p>
+                <a class="card-blog__link" :href="'../post/news_detail.do?n_no='+fvo.n_no">Read More <i class="ti-arrow-right"></i></a>
               </div>
             </div>
           </div>
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog2.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">The Shopping News also offers top-quality printing services</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="img/blog/blog3.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">Professional design staff and efficient equipment you’ll find we offer</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -402,69 +371,28 @@
     
 
 <script>
-    new Vue({
-		 el:'.bg-container',
-		 data:{
-			 curpage:1,
-			 totalpage:0,
-			 store_list:[],
-			 store_cookie:[],
-	         s_no:0,
-	         type:1
-		 },
-		 mounted:function(){
-			 this.send()
-		 },
-		 methods:{
-			 send:function(){
-				 let _this=this;
-				 axios.get("http://localhost:8080/web/store/list.do",{
-					 params:{
-						 page:_this.curpage,
-						 type:_this.type
-					 }
-				 }).then(function(result){
-					 console.log(result);
-					 _this.store_list=result.data;
-					 _this.curpage=result.data[0].curpage;
-					 _this.totalpage=result.data[0].totalpage;
-				 })
-				  axios.get("http://localhost:8080/web/store/store_cookie.do",{
-						params:{
-							s_no:_this.s_no
-						}
-		     		}).then(function(result){
-		     			console.log(result.data)
-		     			_this.store_cookie=result.data;
-		     		})
-			 },
-			 storeChange:function(c_no){
-				 
-	    			this.type=c_no;
-	    			this.curpage=1;
-	    			this.send();
-	    		},
-			 prev:function(){
-				 this.curpage=this.curpage>1?this.curpage-1:this.curpage;
-				 this.send()
-			 },
-			 next:function(){
-				 this.curpage=this.curpage<this.totalpage?this.curpage+1:this.curpage;
-				 this.send()
-			 }
-			
-		 }
-   }) 
+	new Vue({
+		el : '.blog',
+		data : {
+			news_top : []
+		},
+		mounted : function() {
+			let _this = this;
+			axios.get("http://localhost:8080/web/post/news_top.do", {
+				params : {
+
+				}
+			}).then(function(result) {
+				console.log(result.data);
+				_this.news_top = result.data;
+			})
+		}
+	})
   
   
-   </script>
+</script>
 
-  </main>
-
-
-  
-
-
+ </main>
 
   <script src="${path}/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="${path}/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>

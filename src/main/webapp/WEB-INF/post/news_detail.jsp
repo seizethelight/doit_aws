@@ -54,27 +54,34 @@
 	</div>
 	<!--================ 뉴스 끝 =================-->
 	
-	
+	<div class="post-controller">
 	<!--================ 좋아요 =================-->
 
-	<a style="cursor:pointer;" :href="'../post/news_like.do?n_no='+vo.n_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
- 	<a style="cursor:pointer;" :href="../main/main.do"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+	<!-- <a style="cursor:pointer;" :href="'../post/news_like.do?n_no='+vo.n_no"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a>
+ 	<a style="cursor:pointer;" :href="../main/main.do"><i class="fa fa-heart-o" style="font-size:30px; color: red;"></i></a> -->
  
   <div class='lhbutton'>
-		<button id="like" class="selected" v-on:click="newsLike()">Like</button>
-		<button id="dislike">Dislike</button>
+  	<c:if test="${sessionScope.id!=null && lCheck==0 }">
+  		<button id="like" class="selected" @click="newsLike()">Like</button>
+  		<button id="dislike">Dislike</button>
+  	</c:if>
+		<c:if test="${sessionScope.id!=null && lCheck!=0 }">
+			<button id="liked" class="selected" @click="newsLikeCancel()">Liked</button>
+			<button id="dislike">Dislike</button>
+		</c:if>
 	</div>
 	
 <!--================ 싫어요 =================-->
-	
 	
 <!--================ 포스트 네비게이션 시작 =================-->
 	<div class="post_navigation_area">
 		<div class="nav_container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<c:if test="${sessionScope.id == id }">
 				<li class="nav-item">
-				<input type="button" class="nav-link active" value="Delete" v-on:click="newsDelete()">
+					<input type="button" class="nav-link active" value="Delete" v-on:click="newsDelete()">
 				</li>
+			</c:if>
 				<li class="nav-item">
 					<a :href="'../post/news_edit.do?n_no='+n_no"><input type="button" value="Edit" ></a>
 				</li>
@@ -85,7 +92,7 @@
 		</div>
 	</div>
 <!--================ 포스트 네비게이션 끝 =================-->
-	
+	</div>
 	
 <!--================ 삭제 확인 모달 =================-->
 	
@@ -140,23 +147,29 @@ new Vue({
    	data:{
    		vo:{},
    		n_no:${n_no},
-   		title:''
+   		title:'',
+   		writtenid:''
    	},
    	mounted:function(){
    		let _this=this;
    		axios.get("http://localhost:8080/web/post/news_detail.do",{
    			params:{
-   				n_no:_this.n_no
+   				n_no:_this.n_no,
+   				lCheck : _this.lCheck
    			}
    		}).then(function(result){
+   			_this.writtenid=result.data.id;
+   			console.log(_this.writtenid)
    			_this.vo=result.data;
    		})
    	}
 }),
 new Vue({
-	el:'.post_navigation_area',
+	el:'.post-controller',
 	data:{
 		n_no:${n_no},
+		sid:'<%=(String) session.getAttribute("id")%>',
+		id:''
 	},
 	methods:{
 		newsDelete:function(){
@@ -170,26 +183,31 @@ new Vue({
 	   			alert("삭제 완료");
 	   			location.href="../post/news.do"
 	   		})
-		}
-	}
-}),
-new Vue({
-	el:'.lhbutton',
-	data : {
-		n_no : ${n_no},
-		sid : '<%= (String)session.getAttribute("id") %>',
-		l_no: ''
-	},
-	methods : {
+		},
 		newsLike : function(){
 			let _this=this;
-			axios.get("http://localhost:8080/web/post/news_like.do",{
+			axios.get("http://localhost:8080/web/post/news_like_insert.do",{
 				params : {
-					
+					n_no: _this.n_no,
+					id:_this.id
 				}
 			}).then(function(result){
+				console.log(this.n_no);
+				this.vo=result.data;
+				console.log(this.n_no)
 				console.log(result.data);
-				this.lvo=result.data;
+			})
+		},
+		newsLikeCancel : function(){
+			let _this=this;
+			axios.get("http://localhost:8080/web/post/news_like_cancel.do",{
+				params : {
+					n_no : _this.n_no,
+					id : _this.id
+				}
+			}).then(function(result){
+				console.log(this.id)
+				alert("취소 완료");
 			})
 		}
 	}
