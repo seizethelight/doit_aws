@@ -47,6 +47,13 @@
   	margin-bottom: 40px;
   }
   </style>
+  <script type="text/javascript">
+  $(function(){
+	  $('#DelBtn').click(function(){
+		  alert("회원탈퇴 완료")
+	  })
+  })
+  </script>
 </head>
 <body>
 	<!-- ================ start banner area ================= -->
@@ -116,7 +123,7 @@
 								<tr>
 									<td colspan="2" class="text-center">
 									 <a href="../mypage/info_delete_ok.do">
-										<input type=button value="회원탈퇴" class="button button-ck red">
+										<input type=button value="회원탈퇴" class="button button-ck red" id="DelBtn">
 								     </a> 
 									 <a href="../mypage/info_update.do">
 										<input type=button value="회원수정" class="button button-ck">
