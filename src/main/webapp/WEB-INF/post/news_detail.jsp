@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<div  class="news_container">
 <!--================ 뉴스 Area =================-->
 	<div class="single-post row">
 		<div class="col-lg-12">
@@ -77,13 +78,11 @@
 	<div class="post_navigation_area">
 		<div class="nav_container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
-			<c:if test="${sessionScope.id == id }">
 				<li class="nav-item">
-					<input type="button" class="nav-link active" value="Delete" v-on:click="newsDelete()">
+					<input type="button" class="nav-link active" value="Delete" v-on:click="newsDelete()" v-if="vo.id===sid">
 				</li>
-			</c:if>
 				<li class="nav-item">
-					<a :href="'../post/news_edit.do?n_no='+n_no"><input type="button" value="Edit" ></a>
+					<a :href="'../post/news_edit.do?n_no='+n_no"><input type="button" value="Edit" v-if="vo.id===sid"></a>
 				</li>
 				<li class="nav-item">
 					<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
@@ -139,16 +138,16 @@
 		</div>
 	</div>
 	<!--================ 페이지 이동 끝 =================-->
-
+</div>
 <!-- partial -->
 <script>
 new Vue({
-   	el:'.single-post',
+   	el:'.news_container',
    	data:{
    		vo:{},
    		n_no:${n_no},
    		title:'',
-   		writtenid:''
+   		sid:'<%=(String) session.getAttribute("id")%>',
    	},
    	mounted:function(){
    		let _this=this;
@@ -158,59 +157,50 @@ new Vue({
    				lCheck : _this.lCheck
    			}
    		}).then(function(result){
-   			_this.writtenid=result.data.id;
-   			console.log(_this.writtenid)
+   			_this.writtenid=(String)(result.data.id);
    			_this.vo=result.data;
    		})
-   	}
-}),
-new Vue({
-	el:'.post-controller',
-	data:{
-		n_no:${n_no},
-		sid:'<%=(String) session.getAttribute("id")%>',
-		id:''
-	},
-	methods:{
-		newsDelete:function(){
-			let _this=this;
-	   		axios.get("http://localhost:8080/web/post/news_delete.do",{
-	   			params:{
-	   				n_no:_this.n_no
-	   			}
-	   		}).then(function(result){
-	   			console.log( "삭제 완료");
-	   			alert("삭제 완료");
-	   			location.href="../post/news.do"
-	   		})
-		},
-		newsLike : function(){
-			let _this=this;
-			axios.get("http://localhost:8080/web/post/news_like_insert.do",{
-				params : {
-					n_no: _this.n_no,
-					id:_this.id
-				}
-			}).then(function(result){
-				console.log(this.n_no);
-				this.vo=result.data;
-				console.log(this.n_no)
-				console.log(result.data);
-			})
-		},
-		newsLikeCancel : function(){
-			let _this=this;
-			axios.get("http://localhost:8080/web/post/news_like_cancel.do",{
-				params : {
-					n_no : _this.n_no,
-					id : _this.id
-				}
-			}).then(function(result){
-				console.log(this.id)
-				alert("취소 완료");
-			})
+   	},
+		methods:{
+			newsDelete:function(){
+				let _this=this;
+		   		axios.get("http://localhost:8080/web/post/news_delete.do",{
+		   			params:{
+		   				n_no:_this.n_no
+		   			}
+		   		}).then(function(result){
+		   			console.log( "삭제 완료");
+		   			alert("삭제 완료");
+		   			location.href="../post/news.do"
+		   		})
+			},
+			newsLike : function(){
+				let _this=this;
+				axios.get("http://localhost:8080/web/post/news_like_insert.do",{
+					params : {
+						n_no: _this.n_no,
+						id:_this.id
+					}
+				}).then(function(result){
+					console.log(this.n_no);
+					this.vo=result.data;
+					console.log(this.n_no)
+					console.log(result.data);
+				})
+			},
+			newsLikeCancel : function(){
+				let _this=this;
+				axios.get("http://localhost:8080/web/post/news_like_cancel.do",{
+					params : {
+						n_no : _this.n_no,
+						id : _this.id
+					}
+				}).then(function(result){
+					console.log(this.id)
+					alert("취소 완료");
+				})
+			}
 		}
-	}
 })
 </script>
 </body>

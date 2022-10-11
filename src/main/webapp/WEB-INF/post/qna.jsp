@@ -21,12 +21,9 @@
     <article class="row blog_item" v-for="vo in qna_list">
         <div class="col-md-3">
             <div class="blog_info text-right">
-                <!-- <div class="post_tag">
-                    <a href="#">{{vo.cate}}</a>
-                </div> -->
                 <ul class="blog_meta list">
                  		<li>
-                        <a href="#">{{vo.cate}}
+                        <a href="#">QnA
                             <i class="lnr lnr-cate"></i>
                         </a>
                     </li>
@@ -50,7 +47,6 @@
         </div>
         <div class="col-md-9">
             <div class="blog_post">
-                <img src="img/blog/main-blog/m-blog-1.jpg" alt="">
                 <div class="blog_details">
                     <a href="single-blog.html">
                         <h2>{{vo.title}}</h2>

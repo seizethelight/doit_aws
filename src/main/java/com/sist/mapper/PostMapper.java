@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
 
+import com.sist.vo.BlogReplyVO;
 import com.sist.vo.BlogVO;
 import com.sist.vo.ForumVO;
 import com.sist.vo.NewsLikeVO;
@@ -150,6 +151,24 @@ public interface PostMapper {
 	// blog 수정
 	@Update("UPDATE T4_BLOG SET title=#{title}, content=#{content} WHERE b_no=#{b_no}")
 	public void blogEdit(BlogVO vo);
+	
+	//*********** 블로그 댓글 ***********//	
+
+	// blog 댓글 인서트
+	@SelectKey(keyProperty = "b_r_no", resultType = int.class, before = true,
+	statement = "SELECT NVL(MAX(b_r_no)+1,1) as b_r_no FROM T4_BLOG_REPLY")
+	@Insert("INSERT INTO T4_BLOG_REPLY VALUES(#{b_r_no}, #{b_no}, #{content}, #{pwd}, #{id}, sysdate )")
+	public void blogReplyInsert(BlogReplyVO vo);
+
+	// blog 댓글 삭제
+	@Delete("DELETE FROM T4_BLOG_REPLY WHERE b_r_no=#{b_r_no}")
+	public void blogReplyDelete(int b_r_no);
+
+	// blog 댓글 리스트
+	@Select("SELECT content, TO_CHAR(regdate, 'MONTH dd, yyyy','NLS_DATE_LANGUAGE=ENGLISH') as dbday, "
+			+ "TO_CHAR(regdate, 'hh24:mi am', 'NLS_DATE_LANGUAGE=ENGLISH') AS dbtime, "
+			+ "b_no, b_r_no, pwd, id FROM T4_BLOG_REPLY WHERE b_no=#{b_no} ORDER BY dbday DESC")
+	public List<BlogReplyVO> blogReplyListData(int b_no);
 	
 	//*********** 포럼 ***********//	
 	// forum 리스트

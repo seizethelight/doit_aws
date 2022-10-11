@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.dao.PostDAO;
+import com.sist.vo.BlogReplyVO;
 import com.sist.vo.BlogVO;
 import com.sist.vo.CartVO;
 import com.sist.vo.ForumReplyVO;
@@ -401,7 +402,52 @@ public class PostRestController {
 		String result = dao.blogEdit(vo);
 		return result;
 	}
+	
+	/**************** blog reply ****************/
+	public String blog_reply_json_data(List<BlogReplyVO> list)
+	{
+		JSONArray arr = new JSONArray();
+		for (BlogReplyVO bvo : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("b_no", bvo.getB_no());
+			obj.put("b_r_no", bvo.getB_r_no());
+			obj.put("content", bvo.getContent());
+			obj.put("id", bvo.getId());
+			obj.put("dbday", bvo.getDbday());
+			obj.put("dbtime", bvo.getDbtime());
+			obj.put("pwd", bvo.getPwd());
 
+			arr.add(obj);
+		}
+		return arr.toJSONString();
+	}
+	@GetMapping(value="post/blog_reply_insert.do", produces = "text/plain;charset=utf-8")
+	public String blog_reply_insert(BlogReplyVO vo, HttpSession session)
+	{
+	   dao.blogReplyInsert(vo);
+	   return "OK";
+	}
+	
+//	@GetMapping(value="post/blog_reply_delete.do", produces = "text/plain;charset=utf-8")
+//	public String blog_reply_delete(int b_r_no)
+//	{
+//		String result = dao.blogDeleteData(b_r_no);
+//		return result;
+//	}
+			
+	@GetMapping(value = "post/blog_reply_list.do", produces = "text/plain;charset=utf-8")
+	public String blog_reply_list(int b_no, HttpSession session) {
+		String id=(String)session.getAttribute("id");
+		String result = "";
+		
+		BlogReplyVO vo=new BlogReplyVO();
+		vo.setB_no(b_no);
+		
+		List<BlogReplyVO> list = dao.blogReplyListData(b_no);
+		result = blog_reply_json_data(list);
+		return result;
+	}
+	
 	/**************** forum ****************/
 	// forum list
 	@GetMapping(value = "post/forum_list.do", produces = "text/plain;charset=utf-8")

@@ -10,26 +10,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-
-
-	<!-- ================ start banner area ================= -->
-	<!-- 	<section class="blog-banner-area" id="blog">
-		<div class="container h-100">
-			<div class="blog-banner">
-				<div class="text-center">
-					<h1>Blog Details</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
-            </ol>
-          </nav>
-				</div>
-			</div>
-    </div>
-	</section> -->
-	<!-- ================ end banner area ================= -->
-
+<div class="blog_container">
 	<!--================Blog Area =================-->
 	<div class="single-post row">
 		<div class="col-lg-12">
@@ -40,7 +21,7 @@
 		<div class="col-lg-3  col-md-3">
 			<div class="blog_info text-right">
 				<div class="post_tag">
-					<a href="#">{{vo.cate}}</a>
+					<a href="#">-</a>
 				</div>
 				<ul class="blog_meta list">
 					<li>
@@ -78,10 +59,10 @@
 		<div class="nav_container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-				<input type="button" class="nav-link active" value="Delete" v-on:click="blogDelete()">
+				<input type="button" class="nav-link active" value="Delete" v-on:click="blogDelete()" v-if="vo.id===sid">
 				</li>
 				<li class="nav-item">
-					<a :href="'../post/blog_edit.do?b_no='+b_no"><input type="button" value="Edit" ></a>
+					<a :href="'../post/blog_edit.do?b_no='+b_no"><input type="button" value="Edit" v-if="vo.id===sid"></a>
 				</li>
 				<li class="nav-item">
 					<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
@@ -133,12 +114,14 @@
 			</div>
 		</div>
 	</div>
+</div>
+	<!--================ blog_container 끝 =================-->
 	
-	
+<div class="comment_container">
 	<!--================ 댓글보기 시작 =================-->
 	<div class="comments-area">
-		<h4>05 Comments</h4>
-		<div class="comment-list">
+		<h4> Comments</h4>
+		<div class="comment-list" v-for="cvo in reply">
 			<div class="single-comment justify-content-between d-flex">
 				<div class="user justify-content-between d-flex">
 					<div class="thumb">
@@ -146,10 +129,10 @@
 					</div>
 					<div class="desc">
 						<h5>
-							<a href="#">Emilly Blunt</a>
+							<a href="#">{{cvo.id}}</a>
 						</h5>
-						<p class="date">December 4, 2017 at 3:12 pm</p>
-						<p class="comment">Never say goodbye till the end comes!</p>
+						<p class="date">{{cvo.dbday}} at {{cvo.dbtime}}</p>
+						<p class="comment">{{cvo.content}}</p>
 					</div>
 				</div>
 				<div class="reply-btn">
@@ -158,7 +141,7 @@
 			</div>
 		</div>
 		<!--================ 대댓글 =================-->
-		<div class="comment-list left-padding">
+		<!-- <div class="comment-list left-padding">
 			<div class="single-comment justify-content-between d-flex">
 				<div class="user justify-content-between d-flex">
 					<div class="thumb">
@@ -176,28 +159,8 @@
 					<a href="#" class="btn-reply text-uppercase">reply</a>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		
-		
-		<div class="comment-list">
-			<div class="single-comment justify-content-between d-flex">
-				<div class="user justify-content-between d-flex">
-					<div class="thumb">
-						<img src="img/blog/c5.jpg" alt="">
-					</div>
-					<div class="desc">
-						<h5>
-							<a href="#">Ina Hayes</a>
-						</h5>
-						<p class="date">December 4, 2017 at 3:12 pm</p>
-						<p class="comment">Never say goodbye till the end comes!</p>
-					</div>
-				</div>
-				<div class="reply-btn">
-					<a href="#" class="btn-reply text-uppercase">reply</a>
-				</div>
-			</div>
-		</div>
 	</div>
 	<!--================ 댓글보기 끝 =================-->
 	
@@ -207,32 +170,30 @@
 		<form>
 			<div class="form-group form-inline">
 				<div class="form-group col-lg-6 col-md-6 name">
-					<input type="text" class="form-control" id="name"
-						placeholder="Name" onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Name'">
+					<input type="text" class="form-control" ref='<%=(String) session.getAttribute("id")%>' 
+					placeholder='<%=(String) session.getAttribute("id")%>' readonly>
 				</div>
 				<div class="form-group col-lg-6 col-md-6 password">
-					<input type="password" class="form-control" id="password"
-						placeholder="Account Password" onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Account Password'">
+					<input type="password" class="form-control" v-model="pwd" placeholder="Account Password" 
+					onfocus="this.placeholder = ''" onblur="this.placeholder = 'Account Password'">
 				</div>
 			</div>
 			<div class="form-group">
-				<textarea class="form-control mb-10" rows="5" name="message"
-					placeholder="Messege" onfocus="this.placeholder = ''"
-					onblur="this.placeholder = 'Messege'" required=""></textarea>
+				<textarea class="form-control mb-10" rows="5" ref="content" placeholder="Messege" onfocus="this.placeholder = ''" 
+				onblur="this.placeholder = 'Messege'" required="" v-model="content"></textarea>
 			</div>
-			<a href="#" class="button button-postComment button--active">Post
-				Comment</a>
+			<input type=button @click="breplyInsert()" class="button button-postComment button--active" value="Post Comment">
 		</form>
 	</div>
+</div>
 <!--================ 댓글달기 끝 =================-->
 <script>
 new Vue({
- 	el:'.single-post',
+ 	el:'.blog_container',
  	data:{
  		vo:{},
- 		b_no:${b_no}
+ 		b_no:${b_no},
+ 		sid:'<%=(String) session.getAttribute("id")%>'
  	},
  	mounted:function(){
  		let _this=this;
@@ -246,13 +207,7 @@ new Vue({
  			console.log(result.data);
  			_this.vo=result.data;
  		})
- 	}
-}),
-new Vue({
-	el:'.post_navigation_area',
-	data:{
-		b_no:${b_no}
-	},
+ 	},
 	methods:{
 		blogDelete:function(){
 			let _this=this;
@@ -265,6 +220,53 @@ new Vue({
 	   			alert("삭제 완료");
 	   			location.href="../post/blog.do"
 	   		})
+		}
+	}
+}),
+new Vue({
+	el:'.comment_container',
+	data : {
+		b_no:${b_no},
+		id:'<%=(String) session.getAttribute("id")%>',
+		reply:[],
+		content:'',
+		b_r_no:0,
+		pwd:''
+	},
+	mounted:function(){
+		let _this=this;
+		axios.get("http://localhost:8080/web/post/blog_reply_list.do",{
+			params:{
+				b_no:_this.b_no
+			}
+		}).then(function(result){
+			_this.comment_count=result.data.length;
+			_this.reply=result.data;
+			console.log(_this.reply);
+		})
+	},
+	methods : {
+		breplyInsert:function(){
+			let _this=this;
+			if(this.content==="")
+			{
+				this.$refs.content.focus();
+				return;
+			}
+			axios.get("http://localhost:8080/web/post/blog_reply_insert.do",{
+				params:{
+					b_no : this.b_no,
+					content : this.content,
+					id : this.id,
+					pwd : this.pwd
+				}
+			}).then(function(result){
+				content:"",
+				console.log("댓글등록 완료")
+				alert("댓글이 성공적으로 등록 되었습니다. 새로운 댓글을 위해서 새로고침을 해주세요 :)");
+				_this.reply = result.data;
+				console.log(result.data)
+			})
 		}
 	}
 })

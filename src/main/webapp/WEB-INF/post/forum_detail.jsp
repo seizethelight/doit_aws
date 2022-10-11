@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -12,6 +11,7 @@
 <link rel="stylesheet" href="${path}/resources/css/post/poststyle.css" type="text/css"/>
 </head>
 <body>
+<div class="forum_container">
 	<!--================Blog Area =================-->
 	<div class="single-post row">
 		<div class="col-lg-12">
@@ -58,14 +58,12 @@
 <div class="post_navigation_area">
 	<div class="nav_container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
-		<c:if test="${sessionScope.id == id }">
 			<li class="nav-item">
-			<input type="button" class="nav-link active" value="Delete" v-on:click="forumDelete()">
+			<input type="button" class="nav-link active" value="Delete" v-on:click="forumDelete()" v-if="vo.id===sid">
 			</li>
 			<li class="nav-item">
-				<a :href="'../post/forum_edit.do?f_no='+f_no"><input type="button" value="Edit" ></a>
+				<a :href="'../post/forum_edit.do?f_no='+f_no"><input type="button" value="Edit" v-if="vo.id===sid"></a>
 			</li>
-		</c:if>
 			<li class="nav-item">
 				<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
 			</li>
@@ -73,7 +71,7 @@
 	</div>
 </div>
 <!--================ 포스트 네비게이션 끝 =================-->
-
+</div>
 	
 <!---------- 댓글 + 답글 영역 ---------->
 	<div class='comment'>
@@ -110,8 +108,7 @@
 				<tr>
 					<td>
 						<textarea rows="4" cols="78" ref="content" style="float:left" v-model="content"></textarea> 
-						<input type=button value="댓글쓰기" class="btn btn-sm btn-primary" @click="replyInsert()"
-						style="height: 105px; margin-left:30px; background-color:#D75A43; border:solid 0px; border-radius:15px;">
+						<input type=button value="댓글쓰기" class="btn btn-sm btn-primary" @click="replyInsert()">
 					</td>
 				</tr>
 			</table>
@@ -168,10 +165,12 @@
 <!-- partial -->
 <script>
 new Vue({
-	el:'.post_navigation_area',
+	el:'.forum_container',
 	data:{
 		f_no:${f_no},
-		sessionId:''
+		sid:'<%=(String) session.getAttribute("id")%>',
+		vo:{},
+		
 	},
 	methods:{
 		forumDelete:function(){
@@ -186,28 +185,20 @@ new Vue({
 	   			location.href="../post/forum.do"
 	   		})
 		}
-	}
-})
-
-const detail=new Vue({
-   	el:'.single-post',
-   	data:{
-   		vo:{},
-   		f_no:${f_no}
-   	},
-   	mounted:function(){
-   		let _this=this;
-   		// 요청 
-   		axios.get("http://localhost:8080/web/post/forum_detail.do",{
-   			params:{
-   				f_no:_this.f_no
-   			}
-   		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
-   		}).then(function(result){
-   			console.log(result.data)
-   			_this.vo=result.data;
-   		})
-   	}
+	},
+ 	mounted:function(){
+ 		let _this=this;
+ 		// 요청 
+ 		axios.get("http://localhost:8080/web/post/forum_detail.do",{
+ 			params:{
+ 				f_no:_this.f_no
+ 			}
+ 		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
+ 		}).then(function(result){
+ 			console.log(result.data)
+ 			_this.vo=result.data;
+ 		})
+ 	}
 })
 	
 /* 답변 리스트 */

@@ -10,22 +10,22 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-
+	<div class="qna_container">
 	<!--================Blog Area =================-->
 	<div class="single-post row">
 		<div class="col-lg-12">
-			<div class="feature-img">
+<!-- 			<div class="feature-img">
 				<img class="img-fluid" src="img/blog/feature-img1.jpg" alt="">
-			</div>
+			</div> -->
 		</div>
 		<div class="col-lg-3  col-md-3">
 			<div class="blog_info text-right">
 				<div class="post_tag">
-					<a href="#">{{vo.cate}}</a>
+					<a href="#">-</a>
 				</div>
 				<ul class="blog_meta list">
 					<li>
-						<a href="#">{{vo.cate}}</a>
+						<a href="#">QnA<i class="lnr lnr-heart-pulse"></i></a>
 					</li>
 					<li>
 						<a href="#">{{vo.id}}<i class="lnr lnr-user"></i></a>
@@ -59,11 +59,10 @@
 		<div class="nav_container">
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 				<li class="nav-item">
-				<input type="button" class="nav-link active" value="Delete" id='vdelete' v-on:click="qnaDelete()">
+				<input type="button" class="nav-link active" value="Delete" id='vdelete' v-on:click="qnaDelete()" v-if="vo.id===sid">
 				</li>
 				<li class="nav-item">
-					<a :href="'../post/qna_edit.do?q_no='+q_no">
-					<input type="button" value="Edit" ></a>
+					<a :href="'../post/qna_edit.do?q_no='+q_no"><input type="button" value="Edit" v-if="vo.id===sid"></a>
 				</li>
 				<li class="nav-item">
 					<input type="button" class="nav-link active" value="Back" onclick="javascript:history.back()">
@@ -115,33 +114,28 @@
 			</div>
 		</div>
 	</div>
-	
+</div>
 <!-- partial -->
 <script>
 new Vue({
-   	el:'.single-post',
-   	data:{
-   		vo:{},
-   		q_no:${q_no}
-   	},
-   	mounted:function(){
-   		let _this=this;
-   		// 요청 
-   		axios.get("http://localhost:8080/web/post/qna_detail.do",{
-   			params:{
-   				q_no:_this.q_no
-   			}
-   		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
-   		}).then(function(result){
-   			_this.vo=result.data;
-   		})
-   	}
-}),
-new Vue({
-	el:'.post_navigation_area',
-	data:{
-		q_no:${q_no},
-	},
+ 	el:'.qna_container',
+ 	data:{
+ 		vo:{},
+ 		q_no:${q_no},
+ 		sid:'<%=(String) session.getAttribute("id")%>',
+ 	},
+ 	mounted:function(){
+ 		let _this=this;
+ 		// 요청 
+ 		axios.get("http://localhost:8080/web/post/qna_detail.do",{
+ 			params:{
+ 				q_no:_this.q_no
+ 			}
+ 		// 요청 처리 결과값 읽기 => 데이터값 변경 (상태변경) 상태 관리 프로그램 
+ 		}).then(function(result){
+ 			_this.vo=result.data;
+ 		})
+ 	},
 	methods:{
 		qnaDelete:function(){
 			let _this=this;

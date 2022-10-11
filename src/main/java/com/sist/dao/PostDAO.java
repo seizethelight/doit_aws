@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sist.mapper.PostMapper;
+import com.sist.vo.BlogReplyVO;
 import com.sist.vo.BlogVO;
 import com.sist.vo.ForumVO;
 import com.sist.vo.NewsLikeVO;
@@ -178,6 +179,23 @@ public class PostDAO {
 		return result;
 	}
 	
+	//*********** 블로그 댓글 ***********//	
+	// blog reply list
+	public List<BlogReplyVO> blogReplyListData(int b_no)
+	{
+		return mapper.blogReplyListData(b_no);
+	}
+	public void blogReplyInsert(BlogReplyVO vo)
+	{
+		mapper.blogReplyInsert(vo);
+	}
+	public String blogReplyDelete(int b_r_no)
+	{
+		String result="yes";
+		mapper.blogReplyDelete(b_r_no);
+		return result;
+	}
+	
 	//*********** 자유게시판 ***********//	
 	//forum list
 	public List<ForumVO> forumListData(Map map)
@@ -203,11 +221,6 @@ public class PostDAO {
 		mapper.forumInsert(vo);
 	}
 	
-	// forum reply list
-	public List<ForumReplyVO> replyListData(int f_no)
-	{
-		return mapper.replyListData(f_no);
-	}
 	// forum delete
 	public String forumDeleteData(int f_no)
 	{
@@ -230,6 +243,11 @@ public class PostDAO {
 	}
 	
 	//*********** 자유게시판 댓글 ***********//	
+	// forum reply list
+	public List<ForumReplyVO> replyListData(int f_no)
+	{
+		return mapper.replyListData(f_no);
+	}
 	public void forumReplyInsert(ForumReplyVO vo)
 	{
 		mapper.forumReplyInsert(vo);
