@@ -76,7 +76,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">MyPage</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="../mypage/myinfo.do">MyInfo</a></li>
+                  <li class="nav-item"><a class="nav-link" href="../mypage/info_before.do">MyInfo</a></li>
                   <li class="nav-item"><a class="nav-link" href="../mypage/payment.do">Payment</a></li>
                   <li class="nav-item"><a class="nav-link" href="../cart/cart_list.do">Cart</a></li>
                   <li class="nav-item"><a class="nav-link" href="../mypage/mylike.do">MyLike</a></li>

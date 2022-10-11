@@ -110,7 +110,7 @@ $(function(){
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
-									<input type="checkbox" id="ck" name="ck">
+									<input type="checkbox" id="ck" name="ck" checked>
 									<label for="f-option2">Keep ID?</label>
 								</div>
 							</div>

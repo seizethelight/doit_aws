@@ -182,7 +182,7 @@
 								<input type="text" class="form-control" value="${vo.addr2 }" id="addr2" name="addr2" placeholder="Address2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address2'">
               				</div>
 							<div class="col-md-12 form-group">
-								<button type="submit" value="submit" class="button button-register w-100">Register</button>
+								<button type="submit" value="submit" class="button button-register w-100">save</button>
 							</div>
 						</form>
 					</div>

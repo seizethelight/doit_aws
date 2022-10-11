@@ -2,6 +2,7 @@ package com.sist.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -26,11 +27,13 @@ public interface MypageMapper {
 			   +"phone=#{phone} "
 			   +"WHERE id=#{id}")
 	public void memberUpdate(MemberVO vo);
+	@Delete("DELETE FROM t4_user "
+			+"WHERE id=#{id}")
+	public void memberDelete(String id);
 	@Select("SELECT t4_gym_like.j_no, t4_gym_like.id, t4_gym_like.g_no, t4_gym.poster, t4_gym.store, t4_gym.price "
 			+ "FROM t4_gym_like "
 			+ "LEFT JOIN t4_gym "
 			+ "ON t4_gym_like.g_no = t4_gym.g_no "
 			+ "WHERE id = #{id}")
 	public List<LikeVO> myPageLikeData(String id);
-	
 }

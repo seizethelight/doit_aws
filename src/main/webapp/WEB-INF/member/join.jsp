@@ -28,7 +28,7 @@
     $('#idcheck').click(function(){
     	$( "#dialog" ).dialog({
     		autoOpen:false,
-    		width:390,
+    		width:420,
     		height:250,
     		modal:true,
     		background: '#fff'
@@ -193,7 +193,7 @@
               				</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
+									<input type="checkbox" id="f-option2" name="selector" checked>
 									<label for="f-option2">Allow Doit to use your information</label>
 								</div>
 							</div>

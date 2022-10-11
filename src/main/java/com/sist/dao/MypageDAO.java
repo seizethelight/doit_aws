@@ -34,6 +34,10 @@ public class MypageDAO {
 	{
 		mapper.memberUpdate(vo);
 	}
+	public void memberDelete(String id)
+	{
+	   mapper.memberDelete(id);
+	}
 	
 	//좋아요 내역
 	public List<LikeVO> myPageLikeData(String id)

@@ -2,6 +2,7 @@ package com.sist.web;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,12 +48,12 @@ public class MypageController {
 		   }
 		   return result;
 	 }
-	@GetMapping("mypage/myinfo") //내정보
+	@RequestMapping("mypage/myinfo") //내정보
 	public String myinfo(String id,Model model)
 	{
 		return "mypage/myinfo";
 	}
-	@GetMapping("mypage/info_update") //내정보수정
+	@RequestMapping("mypage/info_update") //내정보수정
 	public String info_update(Model model,HttpSession session)
 	{
 		String id=(String)session.getAttribute("id");
@@ -67,6 +68,17 @@ public class MypageController {
 	   dao.memberUpdate(vo);
 	   session.setAttribute("name", vo.getName());
 	   return "redirect:../mypage/myinfo.do";
+	}
+	@GetMapping("mypage/info_delete_ok.do")
+	public String info_delete_ok(HttpSession session,HttpServletResponse response)
+	{
+		String id=(String)session.getAttribute("id");
+		System.out.println("sessionId:"+id);
+		dao.memberDelete(id);
+		System.out.println("회원탈퇴완료");
+		session.invalidate();
+		System.out.println("로그아웃완료");
+		return "redirect:../main/main.do";
 	}
 	@GetMapping("mypage/myactivity") //내활동
 	public String myActivity()

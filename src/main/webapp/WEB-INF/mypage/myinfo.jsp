@@ -115,11 +115,15 @@
 								</tr>
 								<tr>
 									<td colspan="2" class="text-center">
-									 <a href="../mypage/info_before.do">
-										<input type=button value="회원수정" class="button button-ck red">
+									 <a href="../mypage/info_delete_ok.do">
+										<input type=button value="회원탈퇴" class="button button-ck red">
+								     </a> 
+									 <a href="../mypage/info_update.do">
+										<input type=button value="회원수정" class="button button-ck">
 								     </a> 
 										<input type=button value="취소" class="button button-ck"
-										onclick="javascript:history.back()"></td>
+										onclick="javascript:history.back()">
+									</td>
 								</tr>
 							</table>
 						</form>

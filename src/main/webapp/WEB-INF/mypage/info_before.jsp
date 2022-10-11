@@ -115,7 +115,7 @@
     				let res=result.data;
     				if(res==='yes')
     				{
-    					location.href="../mypage/info_update.do";
+    					location.href="../mypage/myinfo.do";
     				}
     				else
     				{
