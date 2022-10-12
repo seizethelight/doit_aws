@@ -73,7 +73,7 @@
 <!--================ 포스트 네비게이션 끝 =================-->	
 	
 <!--================ 페이지 이동 =================-->
-	<div class="navigation-area">
+	<!-- <div class="navigation-area">
 		<div class="row">
 			<div
 				class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
@@ -83,7 +83,7 @@
 					</a>
 				</div>
 				<div class="arrow">
-					<a href="#"> 
+					<a href="'../post/blog_detail.do?b_no='+vo.b_no-1"> 
 						<span class="lnr text-white lnr-arrow-left"></span>
 					</a>
 				</div>
@@ -113,7 +113,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 	<!--================ blog_container 끝 =================-->
 	
@@ -129,7 +129,7 @@
 					</div>
 					<div class="desc">
 						<h5>
-							<a href="#">{{cvo.id}} {{cvo.b_r_no}}</a>
+							<a href="#">{{cvo.id}}</a>
 						</h5>
 						<p class="date">{{cvo.dbday}} at {{cvo.dbtime}}</p>
 						<p class="comment">{{cvo.content}}</p>
@@ -228,7 +228,7 @@ new Vue({
 	data : {
 		b_no:${b_no},
 		reply:[],
-		sid:'',
+ 		sid:'<%=(String) session.getAttribute("id")%>',
 		content:'',
 		b_r_no:'',
 		pwd:'',
@@ -257,11 +257,12 @@ new Vue({
 				params:{
 					b_no : this.b_no,
 					content : this.content,
-					id : this.id,
+					id : _this.sid,
 					pwd : this.pwd
 				}
 			}).then(function(result){
 				content:"",
+				console.log(_this.sid)
 				console.log("댓글등록 완료")
 				alert("댓글이 성공적으로 등록 되었습니다. 새로운 댓글을 위해서 새로고침을 해주세요 :)");
 				_this.reply = result.data;

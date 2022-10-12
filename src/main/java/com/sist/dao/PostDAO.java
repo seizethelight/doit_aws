@@ -218,20 +218,11 @@ public class PostDAO {
    }
 	   
    
-	public void blogReplyDelete(int b_r_no)
+	public String blogReplyDelete(int b_r_no)
 	{
-		try {
-			getConnection();
-			String sql="{CALL blogReplyDelete(?)}";
-			cs=conn.prepareCall(sql);
-			cs.setInt(1, b_r_no);
-			cs.executeQuery();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		finally {
-			disConnection();
-		}
+		String result="yes";
+		mapper.blogReplyDelete(b_r_no);
+		return result;
 	}
 	
 	//*********** 자유게시판 ***********//	

@@ -71,7 +71,7 @@
 
 			<div class="media post_item">
 				<div class="media-body">
-					<a href="http://localhost:8080/web/post/qna_detail.do?q_no=8">
+					<a href="http://localhost:8080/web/post/qna_detail.do?q_no=13">
 						<h3>개인 아이디 회원가입 방법</h3>
 					</a>
 					<p>Click for more information</p>
@@ -79,7 +79,7 @@
 			</div>
 			<div class="media post_item">
 				<div class="media-body">
-					<a href="http://localhost:8080/web/post/qna_detail.do?q_no=9">
+					<a href="http://localhost:8080/web/post/qna_detail.do?q_no=7">
 						<h3>간편 로그인 설정 및 해제 방법</h3>
 					</a>
 					<p>Click for more information</p>
@@ -87,8 +87,8 @@
 			</div>
 			<div class="media post_item">
 				<div class="media-body">
-					<a href="http://localhost:8080/web/post/qna_detail.do?q_no=7">
-						<h3>직접 처리 불가능한 멤버십 취소·환불의 경우</h3>
+					<a href="http://localhost:8080/web/post/qna_detail.do?q_no=15">
+						<h3>도용 발생 시 대처 방법</h3>
 					</a>
 					<p>Click for more information</p>
 				</div>

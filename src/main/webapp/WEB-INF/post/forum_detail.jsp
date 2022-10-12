@@ -88,7 +88,7 @@
 						<div class="comment-box">
 							<div class="comment-head">
 								<h6 class="comment-name by-author">
-									<a href="http://creaticode.com/blog">{{rvo.f_r_no}} {{rvo.id}}</a>
+									<a href="#">{{rvo.id}}</a>
 								</h6>
 								
 								<div class="comment-date">
@@ -118,7 +118,7 @@
 	
 
 <!--================ 페이지 이동 =================-->
-	<div class="navigation-area">
+	<%-- <div class="navigation-area">
 		<div class="row">
 			<div
 				class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
@@ -157,7 +157,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> --%>
 <!--================ 페이지 이동 끝 =================-->
 	
 	

@@ -57,6 +57,12 @@
 											<textarea class="insert_body" rows="15" cols="70" v-model="content" ref="content" placeholder="블로그 내용을 작성하세요"></textarea>
 										</td>
 									</tr>
+									<tr>
+										<td id='tour-table'>IMG</td>
+										<td>
+											<input type="text" class="insert_body" rows="15" cols="70" v-model="img" ref="img" placeholder="이미지 주소를 입력하세요.">
+										</td>
+									</tr>
 								</thead>
 							</table>
 							<div class='insert-button'>
@@ -78,7 +84,8 @@ new Vue({
 		id:'<%=(String) session.getAttribute("id")%>',
 		title:'',
 		content:'',
-		cate:''
+		cate:'',
+		img:''
 	},
 	methods:{
 		blogInsert:function(){
@@ -100,7 +107,8 @@ new Vue({
 					id:this.id,
 					title:this.title,
 					content:this.content,
-					cate:this.cate
+					cate:this.cate,
+					img:this.img
 				}
 			}).then(function(result){
 				location.href="../post/blog.do";

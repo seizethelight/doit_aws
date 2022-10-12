@@ -36,7 +36,7 @@ public interface PostMapper {
 	// qna 추가
 	@SelectKey(keyProperty = "q_no", resultType = int.class, before = true,
 			statement = "SELECT NVL(MAX(q_no)+1,1) as q_no FROM t4_qna")
-	@Insert("INSERT INTO t4_qna VALUES(#{q_no}, #{title}, #{content} ,SYSDATE, 0, 0, 0, 0, #{id} )")
+	@Insert("INSERT INTO t4_qna VALUES(#{q_no}, #{title}, #{content} ,SYSDATE, 0, 0, 0, 0, #{id}, SYSDATE )")
 	public void qnaInsertData(QnaVO vo);
 	
 	// qna 디테일
@@ -138,10 +138,10 @@ public interface PostMapper {
 	@Update("UPDATE T4_BLOG SET hit=hit+1 WHERE b_no=#{b_no}")
 	public void blogHitIncrement(int b_no);
 	
-	// forum 인서트
+	// blog 인서트
 	@SelectKey(keyProperty = "b_no", resultType = int.class, before = true,
-	statement = "SELECT NVL(MAX(b_no)+1,1) as q_no FROM T4_BLOG")
-	@Insert("INSERT INTO T4_BLOG VALUES(#{id}, #{title}, #{content}, SYSDATE, #{b_no}, 0,#{cate}, 0)")
+	statement = "SELECT NVL(MAX(b_no)+1,1) as b_no FROM T4_BLOG")
+	@Insert("INSERT INTO T4_BLOG VALUES(#{id}, #{title}, #{content}, SYSDATE, #{b_no}, 0, #{cate}, #{img})")
 	public void blogInsertData(BlogVO vo);
 	
 	// blog 삭제
@@ -175,7 +175,7 @@ public interface PostMapper {
 	@Select("SELECT f_no, title, content, TO_CHAR(regdate, 'YYYY-MM-DD') as dbday, id, hit, cate, img, num "
 			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate, img, rownum as num "
 			+ "FROM (SELECT f_no, title, content, regdate, id, hit, cate, img "
-			+ "FROM T4_FORUM ORDER BY f_no DESC)) "
+			+ "FROM T4_FORUM ORDER BY regdate DESC)) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
 	public List<ForumVO> forumListData(Map map);	
 	

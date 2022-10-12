@@ -64,43 +64,20 @@
     </article>
 
 		<nav class="blog-pagination justify-content-center d-flex">
-			<table class="table">
-				<tr>
-					<td class="pagination">
-						<button class="btn btn-sm btn-info" v-on:click="prev()">이전</button>
-						<div class="pagenumber"> {{curpage}} / {{totalpage}} </div>
-						<button class="btn btn-sm btn-info" v-on:click="next()">다음</button>
-					</td>
-				</tr>
-			</table>
-		</nav>
-		
-    <nav class="blog-pagination justify-content-center d-flex">
         <ul class="pagination">
             <li class="page-item">
-                <a href="#" class="page-link" aria-label="Previous">
+                <a v-on:click="prev()" class="page-link" aria-label="Previous">
                     <span aria-hidden="true">
                         <span class="lnr lnr-chevron-left"></span>
                     </span>
                 </a>
             </li>
+ 						<li class="page-item">{{curpage}}</li>
+ 						<li class="page-item">&nbsp;/&nbsp;</li>
+           	<li class="page-item">{{totalpage}}</li>
+            
             <li class="page-item">
-                <a href="#" class="page-link">01</a>
-            </li>
-            <li class="page-item active">
-                <a href="#" class="page-link">02</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">03</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">04</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link">09</a>
-            </li>
-            <li class="page-item">
-                <a href="#" class="page-link" aria-label="Next">
+                <a v-on:click="next()" class="page-link" aria-label="Next">
                     <span aria-hidden="true">
                         <span class="lnr lnr-chevron-right"></span>
                     </span>
