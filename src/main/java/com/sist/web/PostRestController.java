@@ -558,7 +558,7 @@ public class PostRestController {
 	}
 	
 	/**************** forum reply ****************/
-	public String reply_json_data(List<ForumReplyVO> list,String id)
+	public String reply_json_data(List<ForumReplyVO> list)
 	{
 		JSONArray arr = new JSONArray();
 		for (ForumReplyVO rvo : list) {
@@ -571,7 +571,6 @@ public class PostRestController {
 			obj.put("group_id", rvo.getGroup_id());
 			obj.put("group_tab", rvo.getGroup_tab());
 			obj.put("group_step", rvo.getGroup_step());
-			obj.put("sessionId", id);
 			arr.add(obj);
 		}
 		return arr.toJSONString();
@@ -586,9 +585,13 @@ public class PostRestController {
 	@GetMapping(value="post/reply_delete.do", produces = "text/plain;charset=utf-8")
 	public String reply_delete(int f_r_no)
 	{
-		String result = dao.forumDeleteData(f_r_no);
+		String result="";
+		ForumReplyVO vo=new ForumReplyVO();
+		dao.forumReplyDelete(f_r_no);
+		
+		List<ForumReplyVO> list=dao.replyListData(vo.getF_no());
+		result=reply_json_data(list);
 		return result;
-	   
 	}
 			
 	@GetMapping(value = "post/reply_list.do", produces = "text/plain;charset=utf-8")
@@ -598,7 +601,7 @@ public class PostRestController {
 		ForumReplyVO vo=new ForumReplyVO();
 		vo.setF_no(f_no);
 		List<ForumReplyVO> list = dao.replyListData(f_no);
-		result = reply_json_data(list, sid);
+		result = reply_json_data(list);
 		return result;
 	}
 	

@@ -136,31 +136,10 @@
 					</div>
 				</div>
 				<div class="reply-btn">
-					<input type="button" value="Delete" class="btn-reply text-uppercase" v-on:click="breplyDelete(cvo.b_r_no)">
+					<input type="button" value="Delete" class="btn-reply text-uppercase" v-on:click="breplyDelete(cvo.b_r_no)" v-if="cvo.id===sid">
 				</div>
 			</div>
 		</div>
-		<!--================ 대댓글 =================-->
-		<!-- <div class="comment-list left-padding">
-			<div class="single-comment justify-content-between d-flex">
-				<div class="user justify-content-between d-flex">
-					<div class="thumb">
-						<img src="img/blog/c3.jpg" alt="">
-					</div>
-					<div class="desc">
-						<h5>
-							<a href="#">Annie Stephens</a>
-						</h5>
-						<p class="date">December 4, 2017 at 3:12 pm</p>
-						<p class="comment">Never say goodbye till the end comes!</p>
-					</div>
-				</div>
-				<div class="reply-btn">
-					<a href="#" class="btn-reply text-uppercase">reply</a>
-				</div>
-			</div>
-		</div> -->
-		
 	</div>
 	<!--================ 댓글보기 끝 =================-->
 	

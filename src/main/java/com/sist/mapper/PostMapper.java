@@ -209,7 +209,6 @@ public interface PostMapper {
 	// forum 댓글 인서트
 	@SelectKey(keyProperty = "f_r_no", resultType = int.class, before = true,
 	statement = "SELECT NVL(MAX(f_r_no)+1,1) as f_r_no FROM T4_FORUM_REPLY")
-	
 	@Insert("INSERT INTO T4_FORUM_REPLY VALUES(#{f_r_no}, #{content}, SYSDATE, #{f_no}, 1, 1, 1, #{id}  )")
 	public void forumReplyInsert(ForumReplyVO vo);
 
@@ -218,7 +217,9 @@ public interface PostMapper {
 	public void forumReplyDelete(int f_r_no);
 	
 	// forum 댓글 리스트
-	@Select("SELECT content, TO_CHAR(regdate, 'YYYY-MM-DD hh:mm:ss') as dbday, f_no, f_r_no, group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no} ORDER BY dbday DESC")
+	@Select("SELECT content, TO_CHAR(regdate, 'MONTH dd, yyyy','NLS_DATE_LANGUAGE=ENGLISH') as dbday, "
+			+ "TO_CHAR(regdate, 'hh24:mi am', 'NLS_DATE_LANGUAGE=ENGLISH') AS dbtime, f_no, f_r_no, "
+			+ "group_id, group_step, group_tab, id FROM T4_FORUM_REPLY WHERE f_no=#{f_no} ORDER BY dbday DESC")
 	public List<ForumReplyVO> replyListData(int f_no);
 	
 

@@ -73,93 +73,55 @@
 <!--================ 포스트 네비게이션 끝 =================-->
 </div>
 	
-<!---------- 댓글 + 답글 영역 ---------->
-	<div class='comment'>
-		<!-- Contenedor Principal -->
-		<div class="comments-container">
-			<ul id="comments-list" class="comments-list" v-for="rvo in reply">
-				<li>
-					<div class="comment-main-level">
-						<!-- Avatar -->
-						<div class="comment-avatar">
-							<img src="https://img.icons8.com/external-happy-man-bomsymbols-/91/000000/external-human-happy-man-human-resource-and-life-style-set-1-happy-man-bomsymbols-.png" alt=""/>
-						</div>
-						<!-- Contenedor del Comentario -->
-						<div class="comment-box">
-							<div class="comment-head">
-								<h6 class="comment-name by-author">
-									<a href="#">{{rvo.id}}</a>
-								</h6>
-								
-								<div class="comment-date">
-									<span>{{rvo.dbday}}</span>
-									<i class="fa fa-reply"></i>
-									<a @click="replyDelete()"><i class="fa fa-trash"></i></a>
-								</div>
-								
-							</div>
-							<div class="comment-content">{{rvo.content}}</div>
-						</div>
-					</div> 
-				</li>
-			</ul>
-			<c:if test="${sessionScope.id!=null }">
-			<table class="comment-apply">
-				<tr>
-					<td>
-						<textarea rows="4" cols="78" ref="content" style="float:left" v-model="content"></textarea> 
-						<input type=button value="댓글쓰기" class="btn btn-sm btn-primary" @click="replyInsert()">
-					</td>
-				</tr>
-			</table>
-		</c:if>
+<div class="comment_container">
+	<!--================ 댓글보기 시작 =================-->
+	<div class="comments-area">
+		<h4> Comments</h4>
+		<div class="comment-list" v-for="rvo in reply">
+			<div class="single-comment justify-content-between d-flex">
+				<div class="user justify-content-between d-flex">
+					<div class="thumb">
+						<img src="img/blog/c1.jpg" alt="">
+					</div>
+					<div class="desc">
+						<h5>
+							<a href="#">{{rvo.id}}</a>
+						</h5>
+						<p class="date">{{rvo.dbday}} at {{rvo.dbtime}}</p>
+						<p class="comment">{{rvo.content}}</p>
+					</div>
+				</div>
+				<div class="reply-btn">
+					<input type="button" value="Delete" class="btn-reply text-uppercase" v-on:click="replyDelete(rvo.f_r_no)" v-if="rvo.id===sid">
+				</div>
+			</div>
 		</div>
 	</div>
+	<!--================ 댓글보기 끝 =================-->
 	
-
-<!--================ 페이지 이동 =================-->
-	<%-- <div class="navigation-area">
-		<div class="row">
-			<div
-				class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-				<div class="thumb">
-					<a href="#"> 
-					<img class="img-fluid" src="${path}/resources/img/blog/prev.jpg" alt="">
-					</a>
+	<!--================ 댓글달기 시작 =================-->
+	<div class="comment-form">
+		<h4>Leave a Reply</h4>
+		<form>
+			<div class="form-group form-inline">
+				<div class="form-group col-lg-6 col-md-6 name">
+					<input type="text" class="form-control" ref='<%=(String) session.getAttribute("id")%>' 
+					placeholder='<%=(String) session.getAttribute("id")%>' readonly>
 				</div>
-				<div class="arrow">
-					<a href="#"> 
-						<span class="lnr text-white lnr-arrow-left"></span>
-					</a>
-				</div>
-				<div class="detials">
-					<p>Prev Post</p>
-					<a href="#">
-						<h4>Space The Final Frontier</h4>
-					</a>
+				<div class="form-group col-lg-6 col-md-6 password">
+					<input type="text" class="form-control"
+					placeholder="댓글안에 당신의 성숙함도 함께 담아주세요." readonly>
 				</div>
 			</div>
-			<div
-				class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-				<div class="detials">
-					<p>Next Post</p>
-					<a href="#">
-						<h4>Telescopes 101</h4>
-					</a>
-				</div>
-				<div class="arrow">
-					<a href="#"> <span class="lnr text-white lnr-arrow-right"></span>
-					</a>
-				</div>
-				<div class="thumb">
-					<a href="#"> <img class="img-fluid" src="${path}/resources/img/blog/next.jpg" alt="">
-					</a>
-				</div>
+			<div class="form-group">
+				<textarea class="form-control mb-10" rows="5" ref="content" placeholder="Messege" onfocus="this.placeholder = ''" 
+				onblur="this.placeholder = 'Messege'" required="" v-model="content"></textarea>
 			</div>
-		</div>
-	</div> --%>
-<!--================ 페이지 이동 끝 =================-->
-	
+			<input type=button @click="replyInsert()" class="button button-postComment button--active" value="Post Comment">
+		</form>
+	</div>
+	<!--================ 댓글달기 끝 =================-->
+</div>
 	
 	
 <!-- partial -->
@@ -203,13 +165,13 @@ new Vue({
 	
 /* 답변 리스트 */
 new Vue({
-   	el:'.comment',
+   	el:'.comment_container',
    	data:{
     	f_no:${f_no},
-    	id:'<%=(String) session.getAttribute("id")%>',
+    	sid:'<%=(String) session.getAttribute("id")%>',
 	 		reply : [],
 	 		content:'',
-	 		f_r_no:0
+	 		f_r_no:''
    	},
    	mounted:function(){
    		let _this=this;
@@ -234,7 +196,7 @@ new Vue({
 	    			params:{
 	    				f_no : this.f_no,
 	    				content : this.content,
-	    				id : this.id
+	    				id : this.sid
 	    			}
 	    		}).then(function(result){
 	    			content : "",
@@ -252,6 +214,7 @@ new Vue({
 					}
 				}).then(function(result){
 					console.log(this.f_r_no)
+					alert("댓글이 삭제되었습니다. 정상적인 동작을 위하여 새로고침이 필요합니다.")
 					_this.reply=result.data;
 				})
 			}
