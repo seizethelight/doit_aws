@@ -73,7 +73,7 @@ body{
   	},
   	mounted:function(){
   		let _this=this;
-  		axios.get("http://localhost:8080/web/doex/foodkcal_detail.do",{
+  		axios.get("http://15.165.108.114/doex/foodkcal_detail.do",{
   			params:{
   				f_no:_this.f_no
   			}

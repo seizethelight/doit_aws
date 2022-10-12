@@ -83,7 +83,7 @@
    	mounted:function(){
    		let _this=this;
    		
-   		axios.get("http://localhost:8080/web/post/blog_detail.do",{
+   		axios.get("http://15.165.108.114/post/blog_detail.do",{
    			params:{
    				b_no:_this.b_no,
    			}
@@ -105,7 +105,7 @@ new Vue({
    	},
    	mounted:function(){
    		let _this=this;
-   		axios.get("http://localhost:8080/web/post/forum_edit.do",{
+   		axios.get("http://15.165.108.114/post/forum_edit.do",{
    			params:{
    				f_no:_this.f_no
    			}
@@ -126,7 +126,7 @@ new Vue({
    				return;
    			}
    			let _this=this;
-   			axios.get("http://localhost:8080/web/post/forum_edit_vue.do",{
+   			axios.get("http://15.165.108.114/post/forum_edit_vue.do",{
    				params:{
    					f_no:_this.f_no,
    					title:_this.title,

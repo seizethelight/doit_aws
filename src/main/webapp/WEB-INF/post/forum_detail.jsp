@@ -137,7 +137,7 @@ new Vue({
 	methods:{
 		forumDelete:function(){
 			let _this=this;
-	   		axios.get("http://localhost:8080/web/post/forum_delete.do",{
+	   		axios.get("http://15.165.108.114/post/forum_delete.do",{
 	   			params:{
 	   				f_no:_this.f_no
 	   			}
@@ -151,7 +151,7 @@ new Vue({
  	mounted:function(){
  		let _this=this;
  		// 요청 
- 		axios.get("http://localhost:8080/web/post/forum_detail.do",{
+ 		axios.get("http://15.165.108.114/post/forum_detail.do",{
  			params:{
  				f_no:_this.f_no
  			}
@@ -175,7 +175,7 @@ new Vue({
    	},
    	mounted:function(){
    		let _this=this;
-   		axios.get("http://localhost:8080/web/post/reply_list.do",{
+   		axios.get("http://15.165.108.114/post/reply_list.do",{
    			params:{
    				f_no:_this.f_no
    			}
@@ -192,7 +192,7 @@ new Vue({
 					this.$refs.content.focus();
 					return;
 				}
-				axios.get("http://localhost:8080/web/post/reply_insert.do",{
+				axios.get("http://15.165.108.114/post/reply_insert.do",{
 	    			params:{
 	    				f_no : this.f_no,
 	    				content : this.content,
@@ -207,7 +207,7 @@ new Vue({
 			},
 			replyDelete:function(f_r_no){
 	   		let _this=this;
-				axios.get("http://localhost:8080/web/post/reply_delete.do",{
+				axios.get("http://15.165.108.114/post/reply_delete.do",{
 					params : {
 						f_r_no : _this.f_r_no,
 						f_no : _this.f_no

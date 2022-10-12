@@ -81,7 +81,7 @@ new Vue({
 				return;
 			}
 			
-			axios.get("http://localhost:8080/web/post/qna_insert.do",{
+			axios.get("http://15.165.108.114/post/qna_insert.do",{
 				params:{
 					id:this.id,
 					title:this.title,

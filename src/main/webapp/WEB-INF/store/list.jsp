@@ -172,7 +172,7 @@
 		 methods:{
 			 send:function(){
 				 let _this=this;
-				 axios.get("http://localhost:8080/web/store/list.do",{
+				 axios.get("http://15.165.108.114/store/list.do",{
 					 params:{
 						 page:_this.curpage,
 						 type:_this.type
@@ -183,7 +183,7 @@
 					 _this.curpage=result.data[0].curpage;
 					 _this.totalpage=result.data[0].totalpage;
 				 })
-				  axios.get("http://localhost:8080/web/store/store_cookie.do",{
+				  axios.get("http://15.165.108.114/store/store_cookie.do",{
 						params:{
 							s_no:_this.s_no
 						}

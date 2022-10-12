@@ -177,7 +177,7 @@ new Vue({
  	mounted:function(){
  		let _this=this;
  		// 요청 
- 		axios.get("http://localhost:8080/web/post/blog_detail.do",{
+ 		axios.get("http://15.165.108.114/post/blog_detail.do",{
  			params:{
  				b_no:_this.b_no
  			}
@@ -190,7 +190,7 @@ new Vue({
 	methods:{
 		blogDelete:function(){
 			let _this=this;
-	   		axios.get("http://localhost:8080/web/post/blog_delete.do",{
+	   		axios.get("http://15.165.108.114/post/blog_delete.do",{
 	   			params:{
 	   				b_no:_this.b_no
 	   			}
@@ -214,7 +214,7 @@ new Vue({
 	},
 	mounted:function(){
 		let _this=this;
-		axios.get("http://localhost:8080/web/post/blog_reply_list.do",{
+		axios.get("http://15.165.108.114/post/blog_reply_list.do",{
 			params:{
 				b_no:_this.b_no
 			}
@@ -232,7 +232,7 @@ new Vue({
 				this.$refs.content.focus();
 				return;
 			}
-			axios.get("http://localhost:8080/web/post/blog_reply_insert.do",{
+			axios.get("http://15.165.108.114/post/blog_reply_insert.do",{
 				params:{
 					b_no : this.b_no,
 					content : this.content,
@@ -250,7 +250,7 @@ new Vue({
 		},
 		breplyDelete:function(b_r_no){
    		let _this=this;
-			axios.get("http://localhost:8080/web/post/blog_reply_delete.do",{
+			axios.get("http://15.165.108.114/post/blog_reply_delete.do",{
 				params : {
 					b_r_no : b_r_no,
 					b_no : _this.b_no
@@ -264,7 +264,6 @@ new Vue({
 		}
 	}
 })
-	
-	</script>
+</script>
 </body>
 </html>

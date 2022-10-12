@@ -104,7 +104,7 @@ body{
   	},
   	mounted:function(){
   		let _this=this;
-  		axios.get("http://localhost:8080/web/doex/howtoex_detail.do",{
+  		axios.get("http://15.165.108.114/doex/howtoex_detail.do",{
   			params:{
   				ex_no:_this.ex_no
   			}

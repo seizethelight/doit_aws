@@ -196,7 +196,7 @@ img {
 		 },
 		 mounted:function(){
 			 let _this=this;
-			 axios.get("http://localhost:8080/web/doex/howtoex_list.do",{
+			 axios.get("http://15.165.108.114/doex/howtoex_list.do",{
 				 params:{
 					 page:_this.curpage
 				 }
@@ -213,7 +213,7 @@ img {
 		 methods:{
 			 send:function(){
 				 let _this=this;
-				 axios.get("http://localhost:8080/web/doex/howtoex_list.do",{
+				 axios.get("http://15.165.108.114/doex/howtoex_list.do",{
 					 params:{
 						 page:_this.curpage
 					 }

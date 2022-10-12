@@ -224,12 +224,12 @@ img {
          // success:function(result)
     	 mounted:function(){
     		 // window.onload => main
-    		 // http://localhost:8080/web/food/vue_find.do?ss=%EA%B0%95%EB%82%A8&page=1
+    		 // http://15.165.108.114/food/vue_find.do?ss=%EA%B0%95%EB%82%A8&page=1
     		 this.send();
     	 },
     	 methods:{
     		 send:function(){
-    			 axios.get('http://localhost:8080/web/doex/vue_find.do',{
+    			 axios.get('http://15.165.108.114/doex/vue_find.do',{
         			 params:{
         				 ss:this.ss,
         				 page:this.curpage
@@ -242,7 +242,7 @@ img {
         			 this.totalpage=this.howtoex_list[0].totalpage;
         		 })
         		 
-        		 axios.get("http://localhost:8080/web/doex/howtoex_cookie.do",{
+        		 axios.get("http://15.165.108.114/doex/howtoex_cookie.do",{
 						params:{
 							ex_no:_this.ex_no
 						}

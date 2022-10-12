@@ -95,7 +95,7 @@
 				},
 				mounted : function() {
 					let _this = this;
-					axios.get("http://localhost:8080/web/post/qna_list.do",
+					axios.get("http://15.165.108.114/post/qna_list.do",
 							{
 								params : {
 									page : _this.curpage
@@ -111,7 +111,7 @@
 					send : function() {
 						let _this = this;
 						axios.get(
-							"http://localhost:8080/web/post/qna_list.do",
+							"http://15.165.108.114/post/qna_list.do",
 							{
 								params : {
 									page : _this.curpage

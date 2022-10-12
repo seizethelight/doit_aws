@@ -127,7 +127,7 @@ new Vue({
  	mounted:function(){
  		let _this=this;
  		// 요청 
- 		axios.get("http://localhost:8080/web/post/qna_detail.do",{
+ 		axios.get("http://15.165.108.114/post/qna_detail.do",{
  			params:{
  				q_no:_this.q_no
  			}
@@ -139,7 +139,7 @@ new Vue({
 	methods:{
 		qnaDelete:function(){
 			let _this=this;
-	   		axios.get("http://localhost:8080/web/post/qna_delete.do",{
+	   		axios.get("http://15.165.108.114/post/qna_delete.do",{
 	   			params:{
 	   				q_no:_this.q_no
 	   			}

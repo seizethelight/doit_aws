@@ -319,7 +319,7 @@ img {
 		 methods:{
 			 send:function(){
 				 let _this=this;
-				  axios.get("http://localhost:8080/web/gym/gym_list_vue.do",{
+				  axios.get("http://15.165.108.114/gym/gym_list_vue.do",{
 					 params:{
 						 search:_this.search,
 						 page:_this.curpage
@@ -329,7 +329,7 @@ img {
 					 _this.curpage=result.data[0].curpage;
 					 _this.totalpage=result.data[0].totalpage;
 				 }) 
-				 axios.get("http://localhost:8080/web/gym/gym_cookie.do",{
+				 axios.get("http://15.165.108.114/gym/gym_cookie.do",{
 						params:{
 							g_no:_this.g_no
 						}

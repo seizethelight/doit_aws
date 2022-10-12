@@ -101,7 +101,7 @@ new Vue(
 			let _this = this;
 			axios
 					.get(
-							"http://localhost:8080/web/post/news_list.do",
+							"http://15.165.108.114/post/news_list.do",
 							{
 								params : {
 									page : _this.curpage
@@ -120,7 +120,7 @@ new Vue(
 				let _this = this;
 				axios
 						.get(
-								"http://localhost:8080/web/post/news_list.do",
+								"http://15.165.108.114/post/news_list.do",
 								{
 									params : {
 										page : _this.curpage

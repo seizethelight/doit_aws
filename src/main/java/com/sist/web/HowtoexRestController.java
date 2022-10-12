@@ -49,7 +49,7 @@ public class HowtoexRestController {
 	 		   obj.put("ex_bodypart", vo.getEx_bodypart());
 	 		   obj.put("ex_musclepart1", vo.getEx_musclepart1());
 	 		  obj.put("ex_musclepart2", vo.getEx_musclepart2());
-	 		 obj.put("pic1", "http://localhost:8080/web/"+vo.getPic1());
+	 		 obj.put("pic1", "http://15.165.108.114/"+vo.getPic1());
 	 		   if(k==0)
 	 		   {
 	 			   obj.put("curpage", curpage);
@@ -76,7 +76,7 @@ public class HowtoexRestController {
     		if(page==null)
     			page="1";
     		if(ss==null)
-    			ss="?ñ¥Íπ?";
+    			ss="?ÔøΩÔøΩÔøΩ?";
     		int curpage=Integer.parseInt(page);
     		Map map=new HashMap();
     		int rowSize=12;
@@ -89,7 +89,7 @@ public class HowtoexRestController {
     		List<HowtoexVO> list=eDao.exFindData(map);
  	 	    int totalpage=eDao.exFindTotalPage(ss);
  	 	   
-    		JSONArray arr=new JSONArray(); //List  => [] => ?ûêÎ∞îÏä§?Å¨Î¶ΩÌä∏ Í∞ùÏ≤¥?ëú?òÑÎ≤? 
+    		JSONArray arr=new JSONArray(); //List  => [] => ?ÔøΩÔøΩÎ∞îÏä§?ÔøΩÔøΩÎ¶ΩÌä∏ Í∞ùÏ≤¥?ÔøΩÔøΩ?ÔøΩÔøΩÔøΩ? 
     		int k=0;
     		for(HowtoexVO vo:list)
     		{
@@ -101,11 +101,11 @@ public class HowtoexRestController {
     			 obj.put("ex_bodypart", vo.getEx_bodypart());
     			 obj.put("ex_musclepart1", vo.getEx_musclepart1());
     			 obj.put("ex_musclepart2", vo.getEx_musclepart2());
-    			 obj.put("pic1", "http://localhost:8080/web/"+vo.getPic1());
+    			 obj.put("pic1", "http://15.165.108.114/"+vo.getPic1());
     			 obj.put("sub1", vo.getSub1());
-    			 obj.put("pic2", "http://localhost:8080/web/"+vo.getPic2());
-    			 obj.put("pic3", "http://localhost:8080/web/"+vo.getPic3());
-    			 obj.put("pic4", "http://localhost:8080/web/"+vo.getPic4());
+    			 obj.put("pic2", "http://15.165.108.114/"+vo.getPic2());
+    			 obj.put("pic3", "http://15.165.108.114/"+vo.getPic3());
+    			 obj.put("pic4", "http://15.165.108.114/"+vo.getPic4());
     			 obj.put("sub2", vo.getSub2());
     			 obj.put("sub3", vo.getSub3());
     			 obj.put("sub4", vo.getSub4());
@@ -139,11 +139,11 @@ public class HowtoexRestController {
 			 obj.put("ex_bodypart", vo.getEx_bodypart());
 			 obj.put("ex_musclepart1", vo.getEx_musclepart1());
 			 obj.put("ex_musclepart2", vo.getEx_musclepart2());
-			 obj.put("pic1", "http://localhost:8080/web/"+vo.getPic1());
+			 obj.put("pic1", "http://15.165.108.114/"+vo.getPic1());
 			 obj.put("sub1", vo.getSub1());
-			 obj.put("pic2", "http://localhost:8080/web/"+vo.getPic2());
-			 obj.put("pic3", "http://localhost:8080/web/"+vo.getPic3());
-			 obj.put("pic4", "http://localhost:8080/web/"+vo.getPic4());
+			 obj.put("pic2", "http://15.165.108.114/"+vo.getPic2());
+			 obj.put("pic3", "http://15.165.108.114/"+vo.getPic3());
+			 obj.put("pic4", "http://15.165.108.114/"+vo.getPic4());
 			 obj.put("sub2", vo.getSub2());
 			 obj.put("sub3", vo.getSub3());
 			 obj.put("sub4", vo.getSub4());
@@ -189,7 +189,7 @@ public class HowtoexRestController {
 		 		obj.put("ex_bodypart", vo.getEx_bodypart());
 		 		obj.put("ex_musclepart1", vo.getEx_musclepart1());
 		 		obj.put("ex_musclepart2", vo.getEx_musclepart2());
-		 		obj.put("pic1", "http://localhost:8080/web/"+vo.getPic1());
+		 		obj.put("pic1", "http://15.165.108.114/"+vo.getPic1());
 	    		arr.add(obj);
 	    	}
 	    	result=arr.toJSONString();

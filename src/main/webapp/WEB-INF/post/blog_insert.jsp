@@ -102,7 +102,7 @@ new Vue({
 			}
 			
 			// 전송  => ?name=
-			axios.get("http://localhost:8080/web/post/blog_insert.do",{
+			axios.get("http://15.165.108.114/post/blog_insert.do",{
 				params:{
 					id:this.id,
 					title:this.title,

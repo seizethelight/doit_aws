@@ -337,7 +337,7 @@
     	},
     	mounted:function(){
     		let _this=this;
-    		axios.get("http://localhost:8080/web/store/detail.do",{
+    		axios.get("http://15.165.108.114/store/detail.do",{
     			params:{
     				type:_this.type,
     				s_no:_this.s_no

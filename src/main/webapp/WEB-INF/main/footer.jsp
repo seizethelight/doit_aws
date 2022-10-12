@@ -41,11 +41,11 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Quick Links</h4>
 							<ul class="list">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Product</a></li>
-								<li><a href="#">Brand</a></li>
+								<li><a href="../main/main.do">Home</a></li>
+								<li><a href="../store/list.do">Shop</a></li>
+								<li><a href="../post/blog.do">Blog</a></li>
+								<li><a href="../doex/howtoex_list.do">Exercise</a></li>
+								<li><a href="../gym/gym_list.do">Gym</a></li>
 								<li><a href="#">Contact</a></li>
 							</ul>
 						</div>
@@ -71,15 +71,15 @@
 									<span class="fa fa-location-arrow"></span>
 									Head Office
 								</p>
-								<p>123, Main Street, Your City</p>
+								<p>123, Main Street, Seoul</p>
 	
 								<p class="sm-head">
 									<span class="fa fa-phone"></span>
 									Phone Number
 								</p>
 								<p>
-									+123 456 7890 <br>
-									+123 456 7890
+									+82 10 9977 2572 <br>
+									+82 2 3482 4632
 								</p>
 	
 								<p class="sm-head">
@@ -87,8 +87,8 @@
 									Email
 								</p>
 								<p>
-									free@infoexample.com <br>
-									www.infoexample.com
+									yeb.kim@hotmail.com <br>
+									www.github.com/sistteamtuna/new_doit
 								</p>
 							</div>
 						</div>

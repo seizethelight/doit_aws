@@ -64,7 +64,7 @@ input[type="button"]:hover{
     			// 비밀번호 입력
     			let _this=this;
     			//axios.post() axios.get()
-    			axios.get('http://localhost:8080/web/mypage/info_before_ok.do',{
+    			axios.get('http://15.165.108.114/mypage/info_before_ok.do',{
     				params:{
     					pw:this.pw
     				}

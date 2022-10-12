@@ -22,7 +22,6 @@
 </head>
 
 <body>
-
   <main class="site-main">
     
     <!--================ Hero banner start =================-->
@@ -378,7 +377,7 @@
 		},
 		mounted : function() {
 			let _this = this;
-			axios.get("http://localhost:8080/web/post/news_top.do", {
+			axios.get("http://15.165.108.114/post/news_top.do", {
 				params : {
 
 				}

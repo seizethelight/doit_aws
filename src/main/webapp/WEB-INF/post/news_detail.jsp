@@ -151,7 +151,7 @@ new Vue({
    	},
    	mounted:function(){
    		let _this=this;
-   		axios.get("http://localhost:8080/web/post/news_detail.do",{
+   		axios.get("http://15.165.108.114/post/news_detail.do",{
    			params:{
    				n_no:_this.n_no,
    				lCheck : _this.lCheck
@@ -164,7 +164,7 @@ new Vue({
 		methods:{
 			newsDelete:function(){
 				let _this=this;
-		   		axios.get("http://localhost:8080/web/post/news_delete.do",{
+		   		axios.get("http://15.165.108.114/post/news_delete.do",{
 		   			params:{
 		   				n_no:_this.n_no
 		   			}
@@ -176,7 +176,7 @@ new Vue({
 			},
 			newsLike : function(){
 				let _this=this;
-				axios.get("http://localhost:8080/web/post/news_like_insert.do",{
+				axios.get("http://15.165.108.114/post/news_like_insert.do",{
 					params : {
 						n_no: _this.n_no,
 						id:_this.id
@@ -190,7 +190,7 @@ new Vue({
 			},
 			newsLikeCancel : function(){
 				let _this=this;
-				axios.get("http://localhost:8080/web/post/news_like_cancel.do",{
+				axios.get("http://15.165.108.114/post/news_like_cancel.do",{
 					params : {
 						n_no : _this.n_no,
 						id : _this.id

@@ -308,7 +308,7 @@ app{
 	   mounted:function(){
 		   // 카카오 등록 
 		   let _this=this;
-		   axios.get("http://localhost:8080/web/gym/gym_detail_vue.do",{
+		   axios.get("http://15.165.108.114/gym/gym_detail_vue.do",{
 			   params:{
 				   g_no:_this.g_no
 			   }
